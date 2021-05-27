@@ -33,5 +33,5 @@ gulp.task('images', function() {
 });
 
 //Building project with run sequence
-gulp.task('build-styles', ['build-css', 'images', 'build-themes']);
+gulp.task('build-styles', gulp.series(gulp.parallel('build-css', 'images', 'build-themes')));
 
