@@ -310,6 +310,10 @@ export default {
         stripedRows: {
             type: Boolean,
             default: false
+        },
+        beforeRowClick: {
+            type: Function,
+            default: () => true
         }
     },
     data() {
@@ -636,6 +640,8 @@ export default {
                 return;
             }
 
+            const clickable = this.beforeRowClick()
+            if(!clickable) return;
             this.$emit('row-click', e);
 
             if (this.selectionMode) {
