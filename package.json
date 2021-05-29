@@ -24,6 +24,7 @@
     "material",
     "bootstrap"
   ],
+  "main": "dist",
   "devDependencies": {
     "@babel/cli": "^7.4.4",
     "@fullcalendar/core": "5.4.0",
@@ -37,9 +38,9 @@
     "@vue/compiler-sfc": "^3.0.0",
     "@vuelidate/core": "^2.0.0-alpha.14",
     "@vuelidate/validators": "^2.0.0-alpha.12",
-    "axios": "^0.19.0",
+    "axios": "^0.21.1",
     "babel-eslint": "^10.1.0",
-    "chart.js": "2.7.3",
+    "chart.js": "^3.3.0",
     "codesandbox": "2.1.14",
     "core-js": "^3.6.5",
     "eslint": "^6.7.2",
