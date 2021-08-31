@@ -2034,6 +2034,12 @@ export default {
                             <td>download</td>
                             <td>Name of the exported file.</td>
                         </tr>
+                         <tr>
+                            <td>exportFunction</td>
+                            <td>function</td>
+                            <td>download</td>
+                            <td>Custom function to export data.</td>
+                        </tr>
                         <tr>
                             <td>autoLayout</td>
                             <td>boolean</td>
@@ -2275,6 +2281,17 @@ export default {
                                 event.index: Row index. <br />
                                 event.type: Type of the selection, valid values are "row", "radio" or "checkbox".</td>
                             <td>Callback to invoke when a row is unselected.</td>
+                        </tr>
+                        <tr>
+                            <td>row-select-all</td>
+                            <td>event.originalEvent: Browser event. <br />
+                                event.data: Selected dataset</td>
+                            <td>Fired when header checkbox is checked.</td>
+                        </tr>
+                        <tr>
+                            <td>row-unselect-all</td>
+                            <td>event.originalEvent: Browser event.</td>
+                            <td>Fired when header checkbox is unchecked.</td>
                         </tr>
                         <tr>
                             <td>column-resize-end</td>
@@ -2635,7 +2652,7 @@ export default {
                     <MultiSelect v-model="filterModel.value" :options="representatives" optionLabel="name" placeholder="Any" class="p-column-filter">
                         <template #option="slotProps">
                             <div class="p-multiselect-representative-option">
-                                <img :alt="slotProps.option.name" :src="'demo/images/avatar/' + slotProps.option.image" width="32" style="vertical-align: middle" />
+                                <img :alt="slotProps.option.name" src="https://www.primefaces.org/wp-content/uploads/2020/05/placeholder.png" width="32" style="vertical-align: middle" />
                                 <span class="image-text">{{slotProps.option.name}}</span>
                             </div>
                         </template>

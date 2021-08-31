@@ -48,7 +48,7 @@ export default {
         return {
             selectedGroupedCities: null,
             groupedCities: [{
-                label: 'Germany', code: 'DE', 
+                label: 'Germany', code: 'DE',
                 items: [
                     {label: 'Berlin', value: 'Berlin'},
                     {label: 'Frankfurt', value: 'Frankfurt'},
@@ -57,7 +57,7 @@ export default {
                 ]
             },
             {
-                label: 'USA', code: 'US', 
+                label: 'USA', code: 'US',
                 items: [
                     {label: 'Chicago', value: 'Chicago'},
                     {label: 'Los Angeles', value: 'Los Angeles'},
@@ -66,7 +66,7 @@ export default {
                 ]
             },
             {
-                label: 'Japan', code: 'JP', 
+                label: 'Japan', code: 'JP',
                 items: [
                     {label: 'Kyoto', value: 'Kyoto'},
                     {label: 'Osaka', value: 'Osaka'},
@@ -80,7 +80,7 @@ export default {
 </code></pre>
 
 <pre v-code><code><template v-pre>
-&lt;MultiSelect v-model="selectedGroupedCities" :options="groupedCities" 
+&lt;MultiSelect v-model="selectedGroupedCities" :options="groupedCities"
         optionLabel="label" optionGroupLabel="label" optionGroupChildren="items"&gt;
 &lt;/MultiSelect&gt;
 </template>
@@ -98,7 +98,7 @@ export default {
 
 		<h5>Templating</h5>
 		<p>Label of an option is used as the display text of an item by default, for custom content support define an <i>option</i> template that gets the option instance as a parameter.
-        In addition <i>value</i>, <i>optiongroup</i>, <i>header</i>, <i>footer</i>, <i>emptyfilter</i> and <i>empty</i> slots are provided for further customization.</p>
+        In addition <i>value</i>, <i>optiongroup</i>, <i>chip</i>, <i>header</i>, <i>footer</i>, <i>emptyfilter</i> and <i>empty</i> slots are provided for further customization.</p>
 <pre v-code><code><template v-pre>
 &lt;MultiSelect v-model="selectedCars2" :options="cars" optionLabel="brand" placeholder="Select a Car"&gt;
 	&lt;template #value="slotProps"&gt;
@@ -302,6 +302,30 @@ export default {
                         <td>pi pi-spinner pi-spin</td>
                         <td>Icon to display in loading state.</td>
                     </tr>
+                    <tr>
+                        <td>maxSelectedLabels</td>
+                        <td>number</td>
+                        <td>null</td>
+                        <td>Decides how many selected item labels to show at most.</td>
+                    </tr>
+                    <tr>
+                        <td>selectedItemsLabel</td>
+                        <td>string</td>
+                        <td>&#123;0&#125; items selected</td>
+                        <td>Label to display after exceeding max selected labels.</td>
+                    </tr>
+                    <tr>
+                        <td>selectAll</td>
+                        <td>boolean</td>
+                        <td>false</td>
+                        <td>Whether all data is selected.</td>
+                    </tr>
+                    <tr>
+                        <td>virtualScrollerOptions</td>
+                        <td>object</td>
+                        <td>null</td>
+                        <td>Whether to use the virtualScroller feature. The properties of <router-link to="/virtualscroller">VirtualScroller</router-link> component can be used like an object in it.</td>
+                    </tr>
 				</tbody>
 			</table>
 		</div>
@@ -349,6 +373,12 @@ export default {
                             event.value: Filter value </td>
                         <td>Callback to invoke on filter input.</td>
                     </tr>
+                    <tr>
+                        <td>selectall-change</td>
+                        <td>event.originalEvent: Original event <br />
+                            event.checked: Whether all data is selected.</td>
+                        <td>Callback to invoke when all data is selected.</td>
+                    </tr>
                 </tbody>
             </table>
         </div>
@@ -370,7 +400,7 @@ export default {
                         <td>Shows the overlay.</td>
                     </tr>
                     <tr>
-                        <td>Hide</td>
+                        <td>hide</td>
                         <td>-</td>
                         <td>Hides the overlay.</td>
                     </tr>
@@ -419,6 +449,25 @@ export default {
                     </tr>
                     <tr>
                         <td>empty</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>chip</td>
+                        <td>value: A value in the selection</td>
+                    </tr>
+                    <tr>
+                        <td>content</td>
+                        <td>items: An array of objects to display for virtualscroller<br />
+                            styleClass: Style class of the component<br />
+                            contentRef: Referance of the content<br />
+                            getItemOptions: Options of the items</td>
+                    </tr>
+                    <tr>
+                        <td>loader</td>
+                        <td>options: Options of the loader items for virtualscroller</td>
+                    </tr>
+                    <tr>
+                        <td>indicator</td>
                         <td>-</td>
                     </tr>
 				</tbody>
@@ -524,6 +573,9 @@ export default {
 
         <h5>Loading State</h5>
         <MultiSelect placeholder="Loading..." loading></MultiSelect>
+
+        <h5>Virtual Scroll (1000 Items)</h5>
+        <MultiSelect v-model="selectedItems" :options="items" :maxSelectedLabels="3" :selectAll="selectAll" @selectall-change="onSelectAllChange($event)" @change="onChange($event)" optionLabel="label" optionValue="value" :virtualScrollerOptions="{ itemSize: 34 }" placeholder="Select Item" />
     </div>
 </template>
 
@@ -535,6 +587,8 @@ export default {
             selectedCities2: null,
             selectedCountries: null,
             selectedGroupedCities: null,
+            selectedItems: null,
+            selectAll: false,
             cities: [
                 {name: 'New York', code: 'NY'},
                 {name: 'Rome', code: 'RM'},
@@ -555,7 +609,7 @@ export default {
                 {name: 'United States', code: 'US'}
             ],
             groupedCities: [{
-                label: 'Germany', code: 'DE', 
+                label: 'Germany', code: 'DE',
                 items: [
                     {label: 'Berlin', value: 'Berlin'},
                     {label: 'Frankfurt', value: 'Frankfurt'},
@@ -564,7 +618,7 @@ export default {
                 ]
             },
             {
-                label: 'USA', code: 'US', 
+                label: 'USA', code: 'US',
                 items: [
                     {label: 'Chicago', value: 'Chicago'},
                     {label: 'Los Angeles', value: 'Los Angeles'},
@@ -573,14 +627,24 @@ export default {
                 ]
             },
             {
-                label: 'Japan', code: 'JP', 
+                label: 'Japan', code: 'JP',
                 items: [
                     {label: 'Kyoto', value: 'Kyoto'},
                     {label: 'Osaka', value: 'Osaka'},
                     {label: 'Tokyo', value: 'Tokyo'},
                     {label: 'Yokohama', value: 'Yokohama'}
                 ]
-            }]
+            }],
+            items: Array.from({ length: 1000 }, (_, i) => ({ label: \`Item #\${i}\`, value: i }))
+        }
+    },
+    methods: {
+        onSelectAllChange(event) {
+            this.selectedItems = event.checked ? this.items.map((item) => item.value) : [];
+            this.selectAll = event.checked;
+        },
+        onChange(event) {
+            this.selectAll = event.value.length === this.items.length
         }
     }
 }
@@ -660,6 +724,9 @@ export default {
 
         <h5>Loading State</h5>
         <MultiSelect placeholder="Loading..." loading></MultiSelect>
+
+        <h5>Virtual Scroll (1000 Items)</h5>
+        <MultiSelect v-model="selectedItems" :options="items" :maxSelectedLabels="3" :selectAll="selectAll" @selectall-change="onSelectAllChange($event)" @change="onChange($event)" optionLabel="label" optionValue="value" :virtualScrollerOptions="{ itemSize: 34 }" placeholder="Select Item" />
     </div>
 </template>
 
@@ -672,6 +739,8 @@ export default {
         const selectedCities2 = ref();
         const selectedCountries = ref();
         const selectedGroupedCities = ref();
+        const selectedItems = ref();
+        const selectAll = ref(false);
         const cities = ref([
             {name: 'New York', code: 'NY'},
             {name: 'Rome', code: 'RM'},
@@ -693,7 +762,7 @@ export default {
         ]);
         const groupedCities = ref([
             {
-                label: 'Germany', code: 'DE', 
+                label: 'Germany', code: 'DE',
                 items: [
                     {label: 'Berlin', value: 'Berlin'},
                     {label: 'Frankfurt', value: 'Frankfurt'},
@@ -702,7 +771,7 @@ export default {
                 ]
             },
             {
-                label: 'USA', code: 'US', 
+                label: 'USA', code: 'US',
                 items: [
                     {label: 'Chicago', value: 'Chicago'},
                     {label: 'Los Angeles', value: 'Los Angeles'},
@@ -711,7 +780,7 @@ export default {
                 ]
             },
             {
-                label: 'Japan', code: 'JP', 
+                label: 'Japan', code: 'JP',
                 items: [
                     {label: 'Kyoto', value: 'Kyoto'},
                     {label: 'Osaka', value: 'Osaka'},
@@ -720,8 +789,18 @@ export default {
                 ]
             }
         ]);
+        const items = Array.from({ length: 1000 }, (_, i) => ({ label: \`Item #\${i}\`, value: i }))
 
-        return { selectedCities1, selectedCities2, selectedCountries, selectedGroupedCities, cities, countries, groupedCities }
+        return { selectedCities1, selectedCities2, selectedCountries, selectedGroupedCities, cities, countries, groupedCities, items, selectedItems, selectAll }
+    },
+    methods: {
+        onSelectAllChange(event) {
+            this.selectedItems = event.checked ? this.items.map((item) => item.value) : [];
+            this.selectAll = event.checked;
+        },
+        onChange(event) {
+            this.selectAll = event.value.length === this.items.length
+        }
     }
 }
 <\\/script>

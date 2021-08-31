@@ -4,7 +4,8 @@
         <p>Chart components are based on <a href="https://www.chartjs.org/">Charts.js</a>, an open source HTML5 based charting library.</p>
 
         <h5>Getting Started</h5>
-        <p>To begin with, charts.js package needs to be installed in your project.</p>
+        <p>Chart component is a wrapper around on <a href="https://www.chartjs.org/docs/3.3.2/">Chart.js 3.3.2+</a> so chart.js needs to be included in your project.
+        For a complete documentation and samples please refer to the <a href="https://www.chartjs.org/">chart.js website</a>.</p>
  <pre v-code.script><code>
 npm install chart.js --save
 
@@ -17,7 +18,7 @@ import Chart from 'primevue/chart';
 </code></pre>
 
 		<h5>Chart Types</h5>
-		<p>Chart type is defined using the <i>type</i> property. Currently there are 6 options available; <b>pie</b>, <b>doughtnut</b>, <b>line</b>, <b>bar</b>, <b>radar</b> and <b>polarArea</b>.</p>
+		<p>Chart type is defined using the <i>type</i> property. Currently there are 6 options available; <b>pie</b>, <b>doughnut</b>, <b>line</b>, <b>bar</b>, <b>radar</b> and <b>polarArea</b>.</p>
 
 		<h5>Data</h5>
 		<p>Data of a chart is provided using a binding to the <i>data</i> property, each type has its own format of data. Here is an example of a line chart.  For more information refer to the <a href="https://www.chartjs.org/">charts.js</a> documentation.</p>

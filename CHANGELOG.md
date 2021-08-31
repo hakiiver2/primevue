@@ -1,5 +1,95 @@
 # Changelog
 
+## [3.6.4](https://github.com/primefaces/primevue/tree/3.6.4) (2021-08-10)
+
+[Full Changelog](https://github.com/primefaces/primevue/compare/3.6.3...3.6.4)
+
+**Fixed bugs:**
+
+- Vue < 3.2 Compatibility [\#1437](https://github.com/primefaces/primevue/issues/1437)
+
+## [3.6.3](https://github.com/primefaces/primevue/tree/3.6.3) (2021-08-10)
+
+[Full Changelog](https://github.com/primefaces/primevue/compare/3.6.2...3.6.3)
+
+**Fixed bugs:**
+
+- Support for scrolling and column groups [\#1314](https://github.com/primefaces/primevue/issues/1314)
+- StyleClass does not open overlay when source is clicked again [\#1436](https://github.com/primefaces/primevue/issues/1436)
+
+## [3.6.2](https://github.com/primefaces/primevue/tree/3.6.2) (2021-08-06)
+
+[Full Changelog](https://github.com/primefaces/primevue/compare/3.6.1...3.6.2)
+
+**Fixed bugs:**
+
+- Toast does not clear hide timeout on unmount [\#1415](https://github.com/primefaces/primevue/issues/1415)
+
+## [3.6.1](https://github.com/primefaces/primevue/tree/3.6.1) (2021-08-05)
+
+[Full Changelog](https://github.com/primefaces/primevue/compare/3.6.0...3.6.1)
+
+**Implemented New Features and Enhancements:**
+
+- style and class props for FileUpload [\#1407](https://github.com/primefaces/primevue/issues/1407)
+- New v-styleclass directive [\#1405](https://github.com/primefaces/primevue/issues/1405)
+- value and disabled props for Tooltip [\#1404](https://github.com/primefaces/primevue/issues/1404)
+- New styleClass and contentStyleClass props for Toast [\#1403](https://github.com/primefaces/primevue/issues/1403)
+
+## [3.6.0](https://github.com/primefaces/primevue/tree/3.6.0) (2021-07-27)
+
+[Full Changelog](https://github.com/primefaces/primevue/compare/3.5.1...3.6.0)
+
+**Implemented New Features and Enhancements:**
+
+- New Dock Component [\#1386](https://github.com/primefaces/primevue/issues/1386)
+- Gray palette for themes [\#1385](https://github.com/primefaces/primevue/issues/1385)
+- New Speed Dial Component [\#1384](https://github.com/primefaces/primevue/issues/1384)
+- Responsive Toast [\#1354](https://github.com/primefaces/primevue/issues/1354)
+- Responsive TabMenu and Breadcrumb [\#1353](https://github.com/primefaces/primevue/issues/1353)
+- Update FullCalendar to 5.7.2 [\#1351](https://github.com/primefaces/primevue/issues/1351)
+- Update Chart.js to 3.3.2 [\#1348](https://github.com/primefaces/primevue/issues/1348)
+- Row double click for DataTable [\#1347](https://github.com/primefaces/primevue/issues/1347)
+- New SplitButton with TieredMenu [\#1313](https://github.com/primefaces/primevue/issues/1313)
+- Feature Request: Templating for Toast component [\#1249](https://github.com/primefaces/primevue/issues/1249)
+- Custom target for OverlayPanel [\#942](https://github.com/primefaces/primevue/issues/942)
+- VirtualScroller Component [\#692](https://github.com/primefaces/primevue/issues/692)
+
+**Fixed bugs:**
+
+- Comments in ColumnGroup rows are rendered as \<th\> elements [\#1368](https://github.com/primefaces/primevue/issues/1368)
+- Overlay aligning calculation defect [\#1358](https://github.com/primefaces/primevue/issues/1358)
+- DataTable cell editing regression [\#1357](https://github.com/primefaces/primevue/issues/1357)
+- DataTable row group and resizable column not working together [\#1355](https://github.com/primefaces/primevue/issues/1355)
+- Filtering non existing item in dropdown \[filter=true, group=true\] and pressing key down generates error [\#1342](https://github.com/primefaces/primevue/issues/1342)
+- Accordion tab-open and tab-close events [\#1329](https://github.com/primefaces/primevue/issues/1329)
+- Missing `class` prop on Button component fails Typescript complier [\#1319](https://github.com/primefaces/primevue/issues/1319)
+- Tooltips closed on window resize after system keyboard appears on mobile devices  [\#1318](https://github.com/primefaces/primevue/issues/1318)
+- ProgressBar does not show zero percent [\#1272](https://github.com/primefaces/primevue/issues/1272)
+
+## [3.5.1](https://github.com/primefaces/primevue/tree/3.5.1) (2021-06-11)
+
+[Full Changelog](https://github.com/primefaces/primevue/compare/3.5.0...3.5.1)
+
+**Implemented New Features and Enhancements:**
+
+- Chip templating support for AutoComplete and MultiSelect [\#1341](https://github.com/primefaces/primevue/issues/1341)
+- TreeSelect and CascadeSelect material theming improvements [\#1321](https://github.com/primefaces/primevue/issues/1321)
+- Toast center positioning enhancement [\#1315](https://github.com/primefaces/primevue/issues/1315)
+- Remove button in Chips template [\#1300](https://github.com/primefaces/primevue/issues/1300)
+- The TreeSelect shouldn't scroll the Browser when trying to open it with the keyboard [\#1298](https://github.com/primefaces/primevue/issues/1298)
+
+**Fixed bugs:**
+
+- AccordionTab error with v-if="false" [\#1339](https://github.com/primefaces/primevue/issues/1339)
+- Dynamic columns not showing in Datatable with vue 3.1.1 [\#1323](https://github.com/primefaces/primevue/issues/1323)
+- Programmatic PanelMenu header link needs click twice to toggle itself [\#1310](https://github.com/primefaces/primevue/issues/1310)
+- Datatable event @value-change return undefined when filtering [\#1308](https://github.com/primefaces/primevue/issues/1308)
+- JumpToPageDropdown are numbered from 0 instead of 1 [\#1306](https://github.com/primefaces/primevue/issues/1306)
+- Upload button disable on FileUpload [\#1294](https://github.com/primefaces/primevue/issues/1294)
+- DataTable slotProps.index mismatch [\#1274](https://github.com/primefaces/primevue/issues/1274)
+- DataTable does not honor initial selection [\#1269](https://github.com/primefaces/primevue/issues/1269)
+
 ## [3.5.0](https://github.com/primefaces/primevue/tree/3.5.0)
 
 [Full Changelog](https://github.com/primefaces/primevue/compare/3.4.0...3.5.0)
@@ -480,6 +570,69 @@
 - Scrollable Table alignment improvement [\#482](https://github.com/primefaces/primevue/issues/482)
 - Button not registered in FileUpload [\#478](https://github.com/primefaces/primevue/issues/478)
 - BlockUI documentation indicates "show" event whereas the actual event is "unblock" [\#485](https://github.com/primefaces/primevue/issues/485)
+
+## [2.5.1](https://github.com/primefaces/primevue/tree/2.5.1) (2021-08-10)
+
+[Full Changelog](https://github.com/primefaces/primevue/compare/2.5.0...2.5.1)
+
+**Fixed bugs:**
+
+- Scrollable Table alignment improvement [\#1438](https://github.com/primefaces/primevue/issues/1438)
+- PrimeFlex 3 support for DataView [\#1435](https://github.com/primefaces/primevue/issues/1435)
+
+## [2.5.0](https://github.com/primefaces/primevue/tree/2.5.0) (2021-08-10)
+
+[Full Changelog](https://github.com/primefaces/primevue/compare/2.4.2...2.5.0)
+
+**Implemented New Features and Enhancements:**
+
+- Dock component v2 [\#1434](https://github.com/primefaces/primevue/issues/1434)
+- Chart.js version update [\#1432](https://github.com/primefaces/primevue/issues/1432)
+- Speed Dial component v2 [\#1431](https://github.com/primefaces/primevue/issues/1431)
+- FullCalendar-Vue theme update [\#1430](https://github.com/primefaces/primevue/issues/1430)
+- Responsive TabMenu and Breadcrumb v2 [\#1424](https://github.com/primefaces/primevue/issues/1424)
+- breakpoints prop for Responsive Toast [\#1423](https://github.com/primefaces/primevue/issues/1423)
+- Center positioning Toast [\#1422](https://github.com/primefaces/primevue/issues/1422)
+- Templating for Toast component [\#1421](https://github.com/primefaces/primevue/issues/1421)
+- v-styleclass directive for v2 [\#1417](https://github.com/primefaces/primevue/issues/1417)
+- style and class props for FileUpload component [\#1416](https://github.com/primefaces/primevue/issues/1416)
+- value and disabled props for Tooltip component [\#1414](https://github.com/primefaces/primevue/issues/1414)
+- styleClass and contentStyleClass props for Toast component [\#1413](https://github.com/primefaces/primevue/issues/1413)
+- Row double click for DataTable [\#1347](https://github.com/primefaces/primevue/issues/1347)
+- CascadeSelect material theming improvements [\#1324](https://github.com/primefaces/primevue/issues/1324)
+
+**Fixed bugs:**
+
+- ProgressBar does not show 0 percent [\#1420](https://github.com/primefaces/primevue/issues/1420)
+- Toast does not clear hide timeout on beforeDestroy [\#1418](https://github.com/primefaces/primevue/issues/1418)
+- Accordion tab-open and tab-close events [\#1329](https://github.com/primefaces/primevue/issues/1329)
+
+## [2.4.2](https://github.com/primefaces/primevue/tree/2.4.2) (2021-06-07)
+
+[Full Changelog](https://github.com/primefaces/primevue/compare/2.4.1...2.4.2)
+
+**Implemented New Features and Enhancements:**
+
+- Chips remove button for templating [\#1307](https://github.com/primefaces/primevue/issues/1307)
+- IDE support  [\#1296](https://github.com/primefaces/primevue/issues/1296)
+- MultiSelect selectionLimit showToggleAll [\#1288](https://github.com/primefaces/primevue/issues/1288)
+- FileUpload long filename [\#1287](https://github.com/primefaces/primevue/issues/1287)
+- hideIcon and showIcon for Password [\#1286](https://github.com/primefaces/primevue/issues/1286)
+
+**Fixed bugs:**
+
+- DataTable multi selection with meta key [\#1305](https://github.com/primefaces/primevue/issues/1305)
+- Sidebar content overflows [\#1295](https://github.com/primefaces/primevue/issues/1295)
+- FileUpload accepts any type of file [\#1291](https://github.com/primefaces/primevue/issues/1291)
+- AutoComplete forceSelection with Multiple [\#1289](https://github.com/primefaces/primevue/issues/1289)
+- Decimal value for Slider [\#1285](https://github.com/primefaces/primevue/issues/1285)
+- Panel closes itself when typing on mobile [\#1284](https://github.com/primefaces/primevue/issues/1284)
+- DataTable state restore broken for columnOrder and columnWidths [\#1283](https://github.com/primefaces/primevue/issues/1283)
+- Multiselect doesn't set focus to the multiselect filter when dropdown is expanded [\#1243](https://github.com/primefaces/primevue/issues/1243)
+- Error when navigating to a component including TabView with active index \> 0 [\#1221](https://github.com/primefaces/primevue/issues/1221)
+- Calendar.vue property panelClass is not used. [\#1213](https://github.com/primefaces/primevue/issues/1213)
+- Multiple Form Components Break Inside TabView [\#1209](https://github.com/primefaces/primevue/issues/1209)
+- Primevue 2.4 TabView and Accordeon throw errow on npm build [\#1019](https://github.com/primefaces/primevue/issues/1019)
 
 ## [2.4.1](https://github.com/primefaces/primevue/tree/2.4.1) (2021-04-22)
 

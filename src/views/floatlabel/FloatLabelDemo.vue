@@ -93,8 +93,8 @@
                     </div>
                     <div class="p-field p-col-12 p-md-4">
                         <span class="p-float-label">
-                            <Textarea id="textarea" v-model="value10" rows="3" />
-                            <label for="textarea">Textarea</label>
+                            <TreeSelect v-model="selectedNode" :options="nodes"></TreeSelect>
+                            <label for="treeselect">TreeSelect</label>
                         </span>
                     </div>
                     <div class="p-field p-col-12 p-md-4">
@@ -103,16 +103,23 @@
                             <label for="password">Password</label>
                         </span>
                     </div>
+                    <div class="p-field p-col-12 p-md-4">
+                        <span class="p-float-label">
+                            <Textarea id="textarea" v-model="value10" rows="3" />
+                            <label for="textarea">Textarea</label>
+                        </span>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <AppDoc name="FloatLabelDemo" :sources="sources" :service="['CountryService']" :data="['countries']" github="floatlabel/FloatLabelDemo.vue" />
+        <AppDoc name="FloatLabelDemo" :sources="sources" :service="['CountryService', 'NodeService']" :data="['countries', 'treenodes']" github="floatlabel/FloatLabelDemo.vue" />
     </div>
 </template>
 
 <script>
 import CountryService from '../../service/CountryService';
+import NodeService from '../../service/NodeService';
 
 export default {
     data() {
@@ -140,6 +147,8 @@ export default {
             valueIconLeft: null,
             valueIconRight: null,
             selectedCity: null,
+            nodes: null,
+            selectedNode: null,
             cascadeCountries: [
                 {
                     name: 'Australia',
@@ -306,14 +315,20 @@ export default {
                 </div>
                 <div class="p-field p-col-12 p-md-4">
                     <span class="p-float-label">
-                        <Textarea id="textarea" v-model="value10" rows="3" />
-                        <label for="textarea">Textarea</label>
+                        <TreeSelect v-model="selectedNode" :options="nodes"></TreeSelect>
+                        <label for="treeselect">TreeSelect</label>
                     </span>
                 </div>
                 <div class="p-field p-col-12 p-md-4">
                     <span class="p-float-label">
                         <Password id="password" v-model="value11" />
                         <label for="password">Password</label>
+                    </span>
+                </div>
+                <div class="p-field p-col-12 p-md-4">
+                    <span class="p-float-label">
+                        <Textarea id="textarea" v-model="value10" rows="3" />
+                        <label for="textarea">Textarea</label>
                     </span>
                 </div>
             </div>
@@ -323,6 +338,8 @@ export default {
 
 <script>
 import CountryService from './service/CountryService';
+import NodeService from './service/NodeService';
+
 export default {
     data() {
         return {
@@ -349,6 +366,8 @@ export default {
             valueIconLeft: null,
             valueIconRight: null,
             selectedCity: null,
+            nodes: null,
+            selectedNode: null,
             cascadeCountries: [
                 {
                     name: 'Australia',
@@ -428,11 +447,14 @@ export default {
         }
     },
     countryService: null,
+    nodeService: null,
     created() {
         this.countryService = new CountryService();
+        this.nodeService = new NodeService();
     },
     mounted() {
         this.countryService.getCountries().then(data => this.countries = data);
+        this.nodeService.getTreeNodes().then(data => this.nodes = data);
     },
     methods: {
         searchCountry(event) {
@@ -541,14 +563,20 @@ export default {
                 </div>
                 <div class="p-field p-col-12 p-md-4">
                     <span class="p-float-label">
-                        <Textarea id="textarea" v-model="value10" rows="3" />
-                        <label for="textarea">Textarea</label>
+                        <TreeSelect v-model="selectedNode" :options="nodes"></TreeSelect>
+                        <label for="treeselect">TreeSelect</label>
                     </span>
                 </div>
                 <div class="p-field p-col-12 p-md-4">
                     <span class="p-float-label">
                         <Password id="password" v-model="value11" />
                         <label for="password">Password</label>
+                    </span>
+                </div>
+                <div class="p-field p-col-12 p-md-4">
+                    <span class="p-float-label">
+                        <Textarea id="textarea" v-model="value10" rows="3" />
+                        <label for="textarea">Textarea</label>
                     </span>
                 </div>
             </div>
@@ -559,13 +587,16 @@ export default {
 <script>
 import { ref, onMounted } from 'vue';
 import CountryService from './service/CountryService';
+import NodeService from './service/NodeService';
 
 export default {
     setup() {
         onMounted(() => {
             countryService.value.getCountries().then(data => countries.value = data);
+            nodeService.value.getTreeNodes().then(data => nodes.value = data);
         })
         const countryService = ref(new CountryService());
+        const nodeService = ref(new NodeService());
         const countries = ref();
         const filteredCountries = ref();
         const cities = ref([
@@ -589,6 +620,8 @@ export default {
         const valueIconLeft = ref();
         const valueIconRight = ref();
         const selectedCity = ref();
+        const selectedNode = ref();
+        const nodes = ref();
         const cascadeCountries = ref([
             {
                 name: 'Australia',
@@ -680,7 +713,8 @@ export default {
         };
 
         return { countryService, countries, filteredCountries, cities, value1, value2, value3, value4, value5, value6, 
-            value7, value8, value9, value10, value11, valueIconLeft, valueIconRight, selectedCity, cascadeCountries, searchCountry }
+            value7, value8, value9, value10, value11, valueIconLeft, valueIconRight, selectedCity, cascadeCountries, searchCountry,
+            nodes, selectedNode }
     }
 }
 <\\/script>
@@ -690,11 +724,14 @@ export default {
         }
     },
     countryService: null,
+    nodeService: null,
     created() {
         this.countryService = new CountryService();
+        this.nodeService = new NodeService();
     },
     mounted() {
         this.countryService.getCountries().then(data => this.countries = data);
+        this.nodeService.getTreeNodes().then(data => this.nodes = data);
     },
     methods: {
         searchCountry(event) {

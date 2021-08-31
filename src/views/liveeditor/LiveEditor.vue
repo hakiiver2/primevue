@@ -95,7 +95,7 @@ export default {
                                 ...extDependencies,
                                 'vue': dependencies['vue'],
                                 'axios': dependencies['axios'],
-                                'primevue': '^3.5.0',
+                                'primevue': '^3.6.0',
                                 'primeflex': dependencies['primeflex'],
                                 'primeicons': 'latest',
                                 '@babel/cli': dependencies['@babel/cli'],
@@ -432,6 +432,7 @@ import DataViewLayoutOptions from 'primevue/dataviewlayoutoptions';
 import DeferredContent from 'primevue/deferredcontent';
 import Dialog from 'primevue/dialog';
 import Divider from 'primevue/divider';
+import Dock from 'primevue/dock';
 import Dropdown from 'primevue/dropdown';
 import Fieldset from 'primevue/fieldset';
 import FileUpload from 'primevue/fileupload';
@@ -469,6 +470,7 @@ import ScrollTop from 'primevue/scrolltop';
 import Skeleton from 'primevue/skeleton';
 import Slider from 'primevue/slider';
 import Sidebar from 'primevue/sidebar';
+import SpeedDial from 'primevue/speeddial';
 import SplitButton from 'primevue/splitbutton';
 import Splitter from 'primevue/splitter';
 import SplitterPanel from 'primevue/splitterpanel';
@@ -490,6 +492,7 @@ import Tree from 'primevue/tree';
 import TreeSelect from 'primevue/treeselect';
 import TreeTable from 'primevue/treetable';
 import TriStateCheckbox from 'primevue/tristatecheckbox';
+import VirtualScroller from 'primevue/virtualscroller';
 ${extImport}
 
 const app = createApp(${name});
@@ -531,6 +534,7 @@ app.component('DataViewLayoutOptions', DataViewLayoutOptions);
 app.component('DeferredContent', DeferredContent);
 app.component('Dialog', Dialog);
 app.component('Divider', Divider);
+app.component('Dock', Dock);
 app.component('Dropdown', Dropdown);
 app.component('Fieldset', Fieldset);
 app.component('FileUpload', FileUpload);
@@ -567,6 +571,7 @@ app.component('ScrollTop', ScrollTop);
 app.component('Slider', Slider);
 app.component('Sidebar', Sidebar);
 app.component('Skeleton', Skeleton);
+app.component('SpeedDial', SpeedDial);
 app.component('SplitButton', SplitButton);
 app.component('Splitter', Splitter);
 app.component('SplitterPanel', SplitterPanel);
@@ -586,6 +591,7 @@ app.component('Tree', Tree);
 app.component('TreeSelect', TreeSelect);
 app.component('TreeTable', TreeTable);
 app.component('TriStateCheckbox', TriStateCheckbox);
+app.component('VirtualScroller', VirtualScroller);
 ${extElement}
 
 app.mount("#app");
