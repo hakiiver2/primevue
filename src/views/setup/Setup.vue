@@ -16,7 +16,7 @@
             <p>PrimeVue is available at <a href="https://www.npmjs.com/package/primevue">npm</a>, if you have an existing application run the following commands to download PrimeVue and PrimeIcons to your project.</p>
 
 <pre v-code.script><code>
-npm install primevue@^3.3.5 --save
+npm install primevue@^3.6.2 --save
 npm install primeicons --save
 
 </code></pre>
@@ -134,15 +134,11 @@ dependencies: {
                     <tbody>
                         <tr>
                             <td>Charts</td>
-                            <td>Charts.js 2.1.x+</td>
+                            <td>Charts.js 3.3.2+</td>
                         </tr>
                         <tr>
                             <td>Editor</td>
                             <td>Quill.js 1.3.3+</td>
-                        </tr>
-                        <tr>
-                            <td>FullCalendar</td>
-                            <td>FullCalendar 5.4.0+.</td>
                         </tr>
                         <tr>
                             <td>PrimeFlex</td>

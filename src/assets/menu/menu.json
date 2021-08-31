@@ -99,7 +99,25 @@
             ]
         },
         {
-            "name": "PrimeFlex",
+            "name": "PrimeBlocks",
+            "meta": ["primeblocks"],
+            "banner": true,
+            "imageLight": "demo/images/banner-primeblocks.png",
+            "imageDark": "demo/images/banner-primeblocks-dark.png",
+            "url": "https://www.primefaces.org/primeblocks-vue",
+            "children": []
+        },
+        {
+            "name": "PrimeFlex 3.0",
+            "meta": ["primeflex"],
+            "banner": true,
+            "imageLight": "demo/images/banner-primeflex.svg",
+            "imageDark": "demo/images/banner-primeflex-dark.svg",
+            "url": "https://www.primefaces.org/primeflex",
+            "children": []
+        },
+        {
+            "name": "PrimeFlex 2.0",
             "meta": ["primeflex"],
             "children": [
                 {
@@ -152,7 +170,8 @@
             "children": [
                 {
                     "name": "AutoComplete",
-                    "to": "/autocomplete"
+                    "to": "/autocomplete",
+                    "badge":"Updated"
                 },
                 {
                     "name": "Calendar",
@@ -176,7 +195,8 @@
                 },
                 {
                     "name": "Dropdown",
-                    "to": "/dropdown"
+                    "to": "/dropdown",
+                    "badge": "Updated"
                 },
                 {
                     "name": "Editor",
@@ -216,7 +236,8 @@
                 },
                 {
                     "name": "Listbox",
-                    "to": "/listbox"
+                    "to": "/listbox",
+                    "badge":"Updated"
                 },
                 {
                     "name": "MultiSelect",
@@ -267,6 +288,11 @@
                 {
                     "name": "Button",
                     "to": "/button"
+                },
+                {
+                    "name": "Speed Dial",
+                    "to": "/speeddial",
+                    "badge": "New"
                 },
                 {
                     "name": "SplitButton",
@@ -405,6 +431,11 @@
                 {
                     "name": "DataView",
                     "to": "/dataview"
+                },
+                {
+                    "name": "VirtualScroller",
+                    "to": "/virtualscroller",
+                    "badge": "New"
                 },
                 {
                     "name": "FilterService",
@@ -653,12 +684,18 @@
                 {
                     "name": "TieredMenu",
                     "to": "/tieredmenu"
+                },
+                {
+                    "name": "Dock",
+                    "to": "/dock",
+                    "badge": "New"
                 }
             ]
         },
         {
             "name": "Chart",
             "meta": ["chart"],
+            "badge": "Updated",
             "children": [
                 {
                     "name": "ChartModel",
@@ -762,6 +799,11 @@
                             "to": "/galleria/advanced"
                         }
                     ]
+                },
+                {
+                    "name": "Image",
+                    "to": "/image",
+                    "badge": "New"
                 }
             ]
         },
@@ -808,6 +850,11 @@
                 {
                     "name": "Ripple",
                     "to": "/ripple"
+                },
+                {
+                    "name": "StyleClass",
+                    "to": "/styleclass",
+                    "badge": "New"
                 },
                 {
                     "name": "Tag",

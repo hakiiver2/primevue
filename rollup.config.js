@@ -14,6 +14,7 @@ let globalDependencies = {
     'primevue/utils': 'primevue.utils',
     'primevue/button': 'primevue.button',
     'primevue/inputtext': 'primevue.inputtext',
+    'primevue/virtualscroller': 'primevue.virtualscroller',
     'primevue/dialog': 'primevue.dialog',
     'primevue/paginator': 'primevue.paginator',
     'primevue/confirmationeventbus': 'primevue.confirmationeventbus',
@@ -25,6 +26,7 @@ let globalDependencies = {
     'primevue/message': 'primevue.message',
     'primevue/dropdown': 'primevue.dropdown',
     'primevue/menu': 'primevue.menu',
+    'primevue/tieredmenu': 'primevue.tieredmenu',
     'primevue/tree': 'primevue.tree',
     '@fullcalendar/core': 'FullCalendar'
 }
@@ -95,6 +97,7 @@ function addDirectives() {
     addEntry('badgedirective', 'BadgeDirective.js', 'badgedirective');
     addEntry('ripple', 'Ripple.js', 'ripple');
     addEntry('tooltip', 'Tooltip.js', 'tooltip');
+    addEntry('styleclass', 'StyleClass.js', 'styleclass');
 }
 
 function addConfig() {

@@ -96,6 +96,18 @@ export default defineComponent({
                         <td>null</td>
                         <td>Key of the Toast to display the message.</td>
                     </tr>
+                    <tr>
+                        <td>styleClass</td>
+                        <td>string</td>
+                        <td>null</td>
+                        <td>Style class of the message.</td>
+                    </tr>
+                    <tr>
+                        <td>contentStyleClass</td>
+                        <td>string</td>
+                        <td>null</td>
+                        <td>Style class of the content.</td>
+                    </tr>
 				</tbody>
 			</table>
 		</div>
@@ -142,7 +154,7 @@ export default defineComponent({
 
 		<h5>Position</h5>
 		<p>There are four positions available for the toast container defined by the <i>position</i> property that defaults to "top-right". Other
-			valid values are "top-left", "top-center", "bottom-left", "botton-center", "bottom-right" and "center".
+			valid values are "top-left", "top-center", "bottom-left", "bottom-center", "bottom-right" and "center".
 		</p>
 <pre v-code><code>
 &lt;Toast /&gt;
@@ -175,6 +187,54 @@ this.$toast.add({severity:'success', summary: 'Specific Message', group: 'mykey'
 
 		<h5>Clearing Messages</h5>
 		<p><i>removeGroup(group)</i> clears the messages for a specific Toast whereas <i>removeAllGroups()</i> method clears all messages.</p>
+
+        <h5>Templating</h5>
+        <p>Templating allows customizing the content where the message instance is available as the implicit variable.</p>
+<pre v-code><code><template v-pre>
+&lt;Toast position="bottom-center" group="bc"&gt;
+    &lt;template #message="slotProps"&gt;
+        &lt;div class="p-d-flex p-flex-column"&gt;
+            &lt;div class="p-text-center"&gt;
+                &lt;i class="pi pi-exclamation-triangle" style="font-size: 3rem"&gt;&lt;/i&gt;
+                &lt;h4&gt;{{slotProps.message.summary}}&lt;/h4&gt;
+                &lt;p&gt;{{slotProps.message.detail}}&lt;/p&gt;
+            &lt;/div&gt;
+            &lt;div class="p-grid p-fluid"&gt;
+                &lt;div class="p-col-6"&gt;
+                    &lt;Button class="p-button-success" label="Yes" @click="onConfirm" /&gt;
+                &lt;/div&gt;
+                &lt;div class="p-col-6"&gt;
+                    &lt;Button class="p-button-secondary" label="No" @click="onReject" /&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/template&gt;
+&lt;/Toast&gt;
+
+</template>
+</code></pre>
+
+        <h5>Responsive</h5>
+        <p>Toast styling can be adjusted per screen size with the <i>breakpoints</i> option. The value of <i>breakpoints</i> should be an object literal whose keys are the maximum screen sizes and values are the styles per screen. In example below, width of the toast messages cover the whole page on screens whose widths is smaller than 921px.</p>
+<pre v-code><code>
+&lt;Toast :breakpoints="&#123;'920px': &#123;width: '100%', right: '0', left: '0'&#125;&#125;"&gt;&lt;/Toast&gt;
+
+</code></pre>
+
+        <h5>Constants</h5>
+        <p>ToastSeverity constants API is provided to easily choose a severity of the message with typescript.</p>
+<pre v-code.script><code>
+import {ToastSeverity} from 'primevue/api';
+
+export default {
+    methods: {
+        showInfo() {
+            this.$toast.add({severity: ToastSeverity.INFO, summary: 'Info Message', detail:'Message Content', life: 3000});
+        }
+    }
+}
+
+</code></pre>
 
 		<h5>Properties</h5>
 		<div class="doc-tablewrapper">
@@ -212,9 +272,33 @@ this.$toast.add({severity:'success', summary: 'Specific Message', group: 'mykey'
                         <td>0</td>
                         <td>Base zIndex value to use in layering.</td>
                     </tr>
+                    <tr>
+                        <td>breakpoints</td>
+                        <td>object</td>
+                        <td>null</td>
+                        <td>Object literal to define styles per screen size.</td>
+                    </tr>
 				</tbody>
 			</table>
 		</div>
+
+        <h5>Slots</h5>
+		<div class="doc-tablewrapper">
+            <table class="doc-table">
+				<thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Parameters</th>
+                    </tr>
+				</thead>
+				<tbody>
+                    <tr>
+                        <td>message</td>
+                        <td>-</td>
+                    </tr>
+				</tbody>
+			</table>
+        </div>
 
 		<h5>Styling</h5>
 		<p>Following is the list of structural style classes, for theming classes visit <router-link to="/theming">theming</router-link> page.</p>
@@ -279,6 +363,26 @@ export default {
         <Toast position="bottom-left" group="bl" />
         <Toast position="bottom-right" group="br" />
 
+        <Toast position="bottom-center" group="bc">
+            <template #message="slotProps">
+                <div class="p-d-flex p-flex-column">
+                    <div class="p-text-center">
+                        <i class="pi pi-exclamation-triangle" style="font-size: 3rem"></i>
+                        <h4>{{slotProps.message.summary}}</h4>
+                        <p>{{slotProps.message.detail}}</p>
+                    </div>
+                    <div class="p-grid p-fluid">
+                        <div class="p-col-6">
+                            <Button class="p-button-success" label="Yes" @click="onConfirm"></Button>
+                        </div>
+                        <div class="p-col-6">
+                            <Button class="p-button-secondary" label="No" @click="onReject"></Button>
+                        </div>
+                    </div>
+                </div>
+            </template>
+        </Toast>
+
         <div class="card">
             <h5>Severities</h5>
             <Button label="Success" class="p-button-success" @click="showSuccess" />
@@ -297,6 +401,9 @@ export default {
 
             <h5>Remove All</h5>
             <Button @click="clear" label="Clear" />
+
+            <h5>Template</h5>
+            <Button @click="showTemplate" label="Confirm" />
         </div>
     </div>
 </template>
@@ -338,6 +445,15 @@ export default {
             this.$toast.add({severity:'info', summary:'Message 2', detail:'Message 2 Content', life: 3000});
             this.$toast.add({severity:'info', summary:'Message 3', detail:'Message 3 Content', life: 3000});
         },
+        showTemplate() {
+            this.$toast.add({severity: 'warn', summary: 'Are you sure?', detail: 'Proceed to confirm', group: 'bc'});
+        },
+        onConfirm() {
+            this.$toast.removeGroup('bc');
+        },
+        onReject() {
+            this.$toast.removeGroup('bc');
+        },
         clear() {
             this.$toast.removeAllGroups();
         }
@@ -369,6 +485,26 @@ button {
         <Toast position="bottom-left" group="bl" />
         <Toast position="bottom-right" group="br" />
 
+        <Toast position="bottom-center" group="bc">
+            <template #message="slotProps">
+                <div class="p-d-flex p-flex-column">
+                    <div class="p-text-center">
+                        <i class="pi pi-exclamation-triangle" style="font-size: 3rem"></i>
+                        <h4>{{slotProps.message.summary}}</h4>
+                        <p>{{slotProps.message.detail}}</p>
+                    </div>
+                    <div class="p-grid p-fluid">
+                        <div class="p-col-6">
+                            <Button class="p-button-success" label="Yes" @click="onConfirm"></Button>
+                        </div>
+                        <div class="p-col-6">
+                            <Button class="p-button-secondary" label="No" @click="onReject"></Button>
+                        </div>
+                    </div>
+                </div>
+            </template>
+        </Toast>
+
         <div class="card">
             <h5>Severities</h5>
             <Button label="Success" class="p-button-success" @click="showSuccess" />
@@ -387,6 +523,9 @@ button {
 
             <h5>Remove All</h5>
             <Button @click="clear" label="Clear" />
+
+            <h5>Template</h5>
+            <Button @click="showTemplate" label="Confirm" />
         </div>
     </div>
 </template>
@@ -428,12 +567,21 @@ export default defineComponent({
             toast.add({severity:'info', summary:'Message 2', detail:'Message 2 Content', life: 3000});
             toast.add({severity:'info', summary:'Message 3', detail:'Message 3 Content', life: 3000});
         }
+        const showTemplate = () => {
+            toast.add({severity: 'warn', summary: 'Are you sure?', detail: 'Proceed to confirm', group: 'bc'});
+        }
+        const onConfirm = () => {
+            toast.removeGroup('bc');
+        }
+        const onReject = () => {
+            toast.removeGroup('bc');
+        }
         const clear = () => {
             toast.removeAllGroups();
         }
 
         return { showSuccess, showInfo, showWarn, showError, showTopLeft, showBottomLeft, 
-            showBottomRight, showSticky, showMultiple, clear };
+            showBottomRight, showSticky, showMultiple, showTemplate, onConfirm, onReject, clear };
     }
 });
 <\\/script>
