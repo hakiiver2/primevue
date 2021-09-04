@@ -268,8 +268,10 @@ const Tooltip = {
             target.$_ptooltipDisabled = false;
         }
         else {
-            target.$_ptooltipValue = options.value.value;
-            target.$_ptooltipDisabled = options.value.disabled || false;
+            // target.$_ptooltipValue = options.value.value;
+            target.$_ptooltipValue = options.value;
+            // target.$_ptooltipDisabled = options.value.disabled || false;
+            target.$_ptooltipDisabled = options.disabled || false;
         }
 
         target.$_ptooltipZIndex = options.instance.$primevue && options.instance.$primevue.config && options.instance.$primevue.config.zIndex.tooltip;
@@ -296,8 +298,10 @@ const Tooltip = {
             target.$_ptooltipDisabled = false;
         }
         else {
-            target.$_ptooltipValue = options.value.value;
-            target.$_ptooltipDisabled = options.value.disabled;
+            // target.$_ptooltipValue = options.value.value;
+            target.$_ptooltipValue = options.value;
+            // target.$_ptooltipDisabled = options.value.disabled || false;
+            target.$_ptooltipDisabled = options.disabled || false;
         }
     },
 
