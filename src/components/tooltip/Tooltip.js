@@ -58,6 +58,10 @@ function onBlur(event) {
     hide(event.currentTarget);
 }
 
+function onShowClick(event) {
+    show(event.currentTarget);
+}
+
 function onClick(event) {
     hide(event.currentTarget);
 }
