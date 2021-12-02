@@ -2,7 +2,7 @@
     <div class="home">
         <div :class="introductionClass">
             <div class="introduction-promo">Now with Vue 3 Support</div>
-            <div class="introduction-title">The Ultimate UI Component Library</div>
+            <div class="introduction-title">The NextGen UI Component Library</div>
             <div class="introduction-subtitle">for Vue</div>
 
             <router-link to="/setup" class="action-button">GET STARTED</router-link>
@@ -131,8 +131,18 @@
 
             <div class="p-grid">
                 <div class="p-col-12 p-md-3">
+                    <a href="https://www.primefaces.org/sakai-vue">
+                        <img alt="Sakai" src="../assets/images/layouts/sakai-vue.jpg">
+                    </a>
+                </div>
+                <div class="p-col-12 p-md-3">
+                    <a href="https://www.primefaces.org/layouts/atlantis-vue">
+                        <img alt="Atlantis" src="../assets/images/layouts/atlantis-vue.jpg">
+                    </a>
+                </div>
+                <div class="p-col-12 p-md-3">
                     <a href="https://www.primefaces.org/layouts/freya-vue">
-                        <img alt="Ultima" src="../assets/images/layouts/freya-vue.png">
+                        <img alt="Freya" src="../assets/images/layouts/freya-vue.png">
                     </a>
                 </div>
                 <div class="p-col-12 p-md-3">
@@ -183,19 +193,6 @@
                 <div class="p-col-12 p-md-3"></div>
             </div>
         </div>
-        <div class="templates">
-            <h4>Free Application Template for PrimeVue</h4>
-            <p>Sigma is a free and open source admin template based on <a href="https://cli.vuejs.org">Vue-CLI</a>.</p>
-
-            <div class="p-grid">
-                <div class="p-col-12">
-                    <a href="https://www.primefaces.org/sigma-vue">
-                        <img alt="Sigma" src="../assets/images/layouts/sigma.jpg" />
-                    </a>
-                </div>
-            </div>
-        </div>
-
         <div class="primevue-designer">
             <h4>Theme Designer</h4>
             <p>PrimeVue is a design-agnostic library and the theming system is based on the Theme Designer, the official tool to create themes for the components. Designer includes a SASS enabled infrastructure that has over 500 customizable variables, a live editor
@@ -242,9 +239,7 @@
                     <h4>PrimeVue PRO Support</h4>
                     <p>No time to wait for a response at forum or issue tracker? Then PrimeVue PRO Support is definitely for you.</p>
                     <p>PrimeVUE PRO is an exceptional support service where you'll contact the PrimeTek via a private channel and receive assistance just in a couple of hours. Optionally PrimeVue PRO offers the ability to request changes and new features for the component library.</p>
-                    <a class="action-button" href="mailto:contact@primetek.com.tr">
-                        Get a Quote
-                    </a>
+                    <router-link to="/support" class="action-button">LEARN MORE</router-link>
                 </div>
                 <div class="p-col-12 p-md-6">
                     <img alt="PRO" src="../assets/images/home/asset-pro.png" />

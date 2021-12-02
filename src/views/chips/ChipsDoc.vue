@@ -1,8 +1,15 @@
 <template>
 	<AppDoc name="ChipsDemo" :sources="sources" github="chips/ChipsDemo.vue">
-        <h5>Import</h5>
+        <h5>Import via Module</h5>
 <pre v-code.script><code>
 import Chips from 'primevue/chips';
+
+</code></pre>
+
+        <h5>Import via CDN</h5>
+<pre v-code><code>
+&lt;script src="https://unpkg.com/primevue@^3/core/core.min.js"&gt;&lt;/script&gt;
+&lt;script src="https://unpkg.com/primevue@^3/chips/chips.min.js"&gt;&lt;/script&gt;
 
 </code></pre>
 
@@ -253,6 +260,54 @@ export default {
     }
 }
 <\\/script>
+
+`
+                },
+                'browser-source': {
+                    tabName: 'Browser Source',
+                    imports: `<script src="https://unpkg.com/primevue@^3/chips/chips.min.js"><\\/script>`,
+                    content: `<div id="app">
+            <div class="p-fluid">
+                <div class="card">
+                    <h5>Basic</h5>
+                    <p-chips v-model="value1"></p-chips>
+
+                    <h5>Comma Separator</h5>
+                    <p-chips v-model="value2" separator=","></p-chips>
+
+                    <h5>Template</h5>
+                    <p-chips v-model="value3">
+                        <template #chip="slotProps">
+                            <div>
+                                <span>{{slotProps.value}} - (active) </span>
+                                <i class="pi pi-user-plus" style="font-size: 14px"></i>
+                            </div>
+                        </template>
+                    </p-chips>
+                </div>
+            </div>
+        </div>
+
+        <script type="module">
+        const { createApp, ref } = Vue;
+
+        const App = {
+            setup() {
+                const value1 = ref();
+                const value2 = ref();
+                const value3 = ref();
+
+                return { value1, value2, value3 }
+            },
+            components: {
+                "p-chips": primevue.chips
+            }
+        };
+
+        createApp(App)
+            .use(primevue.config.default)
+            .mount("#app");
+        <\\/script>
 
 `
                 }

@@ -1,8 +1,15 @@
 <template>
 	<AppDoc name="BreadcrumbDemo" :sources="sources" github="breadcrumb/BreadcrumbDemo.vue">
-        <h5>Import</h5>
+        <h5>Import via Module</h5>
 <pre v-code.script><code>
 import Breadcrumb from 'primevue/breadcrumb';
+
+</code></pre>
+
+        <h5>Import via CDN</h5>
+<pre v-code><code>
+&lt;script src="https://unpkg.com/primevue@^3/core/core.min.js"&gt;&lt;/script&gt;
+&lt;script src="https://unpkg.com/primevue@^3/breadcrumb/breadcrumb.min.js"&gt;&lt;/script&gt;
 
 </code></pre>
 
@@ -211,6 +218,53 @@ export default {
     }
 }
 <\\/script>
+`
+                },
+                'browser-source': {
+                    tabName: 'Browser Source',
+                    imports: `<script src="https://unpkg.com/vue-router@4.0.0/dist/vue-router.global.js"><\\/script>
+        <script src="https://unpkg.com/primevue@^3/breadcrumb/breadcrumb.min.js"><\\/script>`,
+                    content: `<div id="app">
+            <p-breadcrumb :home="home" :model="items"></p-breadcrumb>
+        </div>
+
+        <script type="module">
+        const { createApp, ref } = Vue;
+        const { createRouter, createWebHistory } = VueRouter;
+
+        const App = {
+            setup() {
+                const home = ref({
+                    icon: 'pi pi-home', 
+                    to: '/',
+                });
+                const items = ref([
+                    {label: 'Computer'},
+                    {label: 'Notebook'},
+                    {label: 'Accessories'},
+                    {label: 'Backpacks'},
+                    {label: 'Item'}
+                ]);
+
+                return { home, items }
+            },
+            components: {
+                "p-breadcrumb": primevue.breadcrumb
+            }
+        };
+
+        const routes = [{ path: "/", component: App }];
+
+        const router = VueRouter.createRouter({
+            history: VueRouter.createWebHashHistory(),
+            routes
+        });
+
+        createApp(App)
+            .use(router)
+            .use(primevue.config.default)
+            .mount("#app");
+        <\\/script>
 `
                 }
             }

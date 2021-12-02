@@ -1,8 +1,15 @@
 <template>
-	<AppDoc name="InputTextDemo" :sources="sources" github="inputtext/InputTextDemo.vue">
-        <h5>Import</h5>
+	<AppDoc name="ImageDemo" :sources="sources" github="image/ImageDemo.vue">
+        <h5>Import via Module</h5>
 <pre v-code.script><code>
 import Image from 'primevue/image';
+
+</code></pre>
+
+        <h5>Import via CDN</h5>
+<pre v-code><code>
+&lt;script src="https://unpkg.com/primevue@^3/core/core.min.js"&gt;&lt;/script&gt;
+&lt;script src="https://unpkg.com/primevue@^3/image/image.min.js"&gt;&lt;/script&gt;
 
 </code></pre>
 
@@ -200,6 +207,31 @@ export default {
 export default {
 }
 <\\/script>`
+                },
+                'browser-source': {
+                    tabName: 'Browser Source',
+                    imports: `<script src="https://unpkg.com/primevue@^3/image/image.min.js"><\\/script>`,
+                    content:`<div id="app">
+            <h5>Basic</h5>
+            <p-image src="https://www.primefaces.org/wp-content/uploads/2020/05/placeholder.png" alt="Image" width="250"></p-image>
+
+            <h5>Preview</h5>
+            <p-image src="https://www.primefaces.org/wp-content/uploads/2020/05/placeholder.png" alt="Image" width="250" preview></p-image>
+        </div>
+
+        <script type="module">
+        const { createApp } = Vue;
+
+        const App = {
+            components: {
+                "p-image": primevue.image
+            }
+        };
+
+        createApp(App)
+            .use(primevue.config.default)
+            .mount("#app");
+        <\\/script>`
                 }
             }
         }

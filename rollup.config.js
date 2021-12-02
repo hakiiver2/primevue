@@ -7,31 +7,42 @@ const path = require('path');
 
 let entries = [];
 
-let globalDependencies = {
-    'vue': 'Vue',
-    'primevue/api': 'primevue.api',
-    'primevue/ripple': 'primevue.ripple',
+let core = {};
+
+let coreDependencies = {
     'primevue/utils': 'primevue.utils',
-    'primevue/button': 'primevue.button',
-    'primevue/inputtext': 'primevue.inputtext',
+    'primevue/api': 'primevue.api',
+    'primevue/config': 'primevue.config',
+    'primevue/ripple': 'primevue.ripple',
     'primevue/virtualscroller': 'primevue.virtualscroller',
-    'primevue/dialog': 'primevue.dialog',
-    'primevue/paginator': 'primevue.paginator',
     'primevue/confirmationeventbus': 'primevue.confirmationeventbus',
     'primevue/toasteventbus': 'primevue.toasteventbus',
     'primevue/overlayeventbus': 'primevue.overlayeventbus',
+    'primevue/terminalservice': 'primevue.terminalservice',
     'primevue/useconfirm': 'primevue.useconfirm',
     'primevue/usetoast': 'primevue.usetoast',
-    'primevue/progressbar': 'primevue.progressbar',
+    'primevue/button': 'primevue.button',
+    'primevue/inputtext': 'primevue.inputtext',
+    'primevue/inputnumber': 'primevue.inputnumber',
     'primevue/message': 'primevue.message',
+    'primevue/progressbar': 'primevue.progressbar',
     'primevue/dropdown': 'primevue.dropdown',
-    'primevue/menu': 'primevue.menu',
-    'primevue/tieredmenu': 'primevue.tieredmenu',
+    'primevue/dialog': 'primevue.dialog',
+    'primevue/paginator': 'primevue.paginator',
     'primevue/tree': 'primevue.tree',
-    '@fullcalendar/core': 'FullCalendar'
+    'primevue/menu': 'primevue.menu',
+    'primevue/tieredmenu': 'primevue.tieredmenu'
+}
+
+let globalDependencies = {
+    'vue': 'Vue',
+    '@fullcalendar/core': 'FullCalendar',
+    ...coreDependencies
 }
 
 function addEntry(folder, inFile, outFile) {
+    let useCorePlugin = Object.keys(coreDependencies).some(d => d.replace('primevue/', '') === outFile);
+
     entries.push({
         input: 'src/components/' + folder + '/' + inFile,
         output: [
@@ -52,7 +63,8 @@ function addEntry(folder, inFile, outFile) {
         ],
         plugins: [
             vue(),
-            postcss()
+            postcss(),
+            useCorePlugin && corePlugin()
         ]
     });
 
@@ -77,20 +89,67 @@ function addEntry(folder, inFile, outFile) {
         plugins: [
             vue(),
             postcss(),
-            terser()
+            terser(),
+            useCorePlugin && corePlugin()
         ]
     });
 }
 
-function addSFC() {
-    fs.readdirSync(path.resolve(__dirname, './src/components/')).forEach(folder => {
-        fs.readdirSync(path.resolve(__dirname, './src/components/' + folder)).forEach(file => {
-            let name = file.split(/(.vue)$|(.js)$/)[0].toLowerCase();
-            if (/\.vue$/.test(file) && (name === folder)) {
-                addEntry(folder, file, name);
+function corePlugin() {
+    return {
+        name: 'corePlugin',
+        generateBundle(outputOptions, bundle) {
+            if (outputOptions.format === 'iife') {
+                Object.keys(bundle).forEach(id => {
+                    const chunk = bundle[id];
+                    const name = id.replace('.min.js', '').replace('.js', '');
+                    const filePath = `./dist/core/core${id.indexOf('.min.js') > 0 ? '.min.js': '.js'}`;
+
+                    core[filePath] ? (core[filePath][name] = chunk.code) : (core[filePath] = { [`${name}`]: chunk.code });
+                });
             }
+        }
+    };
+}
+
+function addCore() {
+    const lastEntry = entries[entries.length - 1];
+
+    lastEntry.plugins = [
+        ...lastEntry.plugins,
+        {
+            name: 'coreMergePlugin',
+            generateBundle() {
+                Object.entries(core).forEach(([filePath, value]) => {
+                    const code = Object.keys(coreDependencies).reduce((val, d) => {
+                        const name = d.replace('primevue/', '');
+                        val += value[name] + '\n';
+
+                        return val;
+                    }, '');
+
+                    fs.outputFile(path.resolve(__dirname, filePath), code, {}, function(err) {
+                        if (err) {
+                            return console.error(err);
+                        }
+                    });
+                });
+            }
+        }
+    ]
+}
+
+function addSFC() {
+    fs.readdirSync(path.resolve(__dirname, './src/components/'), { withFileTypes: true })
+        .filter(dir => dir.isDirectory())
+        .forEach(({ name: folderName }) => {
+            fs.readdirSync(path.resolve(__dirname, './src/components/' + folderName)).forEach(file => {
+                let name = file.split(/(.vue)$|(.js)$/)[0].toLowerCase();
+                if (/\.vue$/.test(file) && (name === folderName)) {
+                    addEntry(folderName, file, name);
+                }
+            });
         });
-    });
 }
 
 function addDirectives() {
@@ -123,11 +182,12 @@ function addServices() {
     addEntry('terminalservice', 'TerminalService.js', 'terminalservice');
 }
 
-addSFC();
-addDirectives();
-addConfig();
 addUtils();
 addApi();
+addConfig();
+addDirectives();
 addServices();
+addSFC();
+addCore();
 
 export default entries;
