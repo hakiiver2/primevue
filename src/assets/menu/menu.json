@@ -94,7 +94,7 @@
                 },
                 {
                     "name": "SASS API",
-                    "href": "https://www.primefaces.org/designer/api/primevue/3.0.0"
+                    "href": "https://www.primefaces.org/designer/api/primevue/3.5.0"
                 }
             ]
         },
@@ -159,7 +159,7 @@
             "meta": ["primeicons"],
             "children": [
                 {
-                    "name": "Icons v4.1",
+                    "name": "Icons v5",
                     "to": "/icons"
                 }
             ]
@@ -170,12 +170,12 @@
             "children": [
                 {
                     "name": "AutoComplete",
-                    "to": "/autocomplete",
-                    "badge":"Updated"
+                    "to": "/autocomplete"
                 },
                 {
                     "name": "Calendar",
-                    "to": "/calendar"
+                    "to": "/calendar",
+                    "badge": "Updated"
                 },
                 {
                     "name": "CascadeSelect",
@@ -195,8 +195,7 @@
                 },
                 {
                     "name": "Dropdown",
-                    "to": "/dropdown",
-                    "badge": "Updated"
+                    "to": "/dropdown"
                 },
                 {
                     "name": "Editor",
@@ -236,8 +235,7 @@
                 },
                 {
                     "name": "Listbox",
-                    "to": "/listbox",
-                    "badge":"Updated"
+                    "to": "/listbox"
                 },
                 {
                     "name": "MultiSelect",
@@ -291,8 +289,7 @@
                 },
                 {
                     "name": "Speed Dial",
-                    "to": "/speeddial",
-                    "badge": "New"
+                    "to": "/speeddial"
                 },
                 {
                     "name": "SplitButton",
@@ -434,8 +431,7 @@
                 },
                 {
                     "name": "VirtualScroller",
-                    "to": "/virtualscroller",
-                    "badge": "New"
+                    "to": "/virtualscroller"
                 },
                 {
                     "name": "FilterService",
@@ -468,7 +464,6 @@
                 {
                     "name": "Tree",
                     "meta": ["tree"],
-                    "badge": "New",
                     "children": [
                         {
                             "name": "Documentation",
@@ -492,15 +487,13 @@
                         },
                         {
                             "name": "Scroll",
-                            "to": "/tree/scroll",
-                            "badge": "New"
+                            "to": "/tree/scroll"
                         }
                     ]
                 },
                 {
                     "name": "TreeTable",
                     "meta": ["treetable"],
-                    "badge": "New",
                     "children": [
                         {
                             "name": "Documentation",
@@ -544,8 +537,7 @@
                         },
                         {
                             "name": "Scroll",
-                            "to": "/treetable/scroll",
-                            "badge": "New"
+                            "to": "/treetable/scroll"
                         },
                         {
                             "name": "Responsive",
@@ -687,15 +679,13 @@
                 },
                 {
                     "name": "Dock",
-                    "to": "/dock",
-                    "badge": "New"
+                    "to": "/dock"
                 }
             ]
         },
         {
             "name": "Chart",
             "meta": ["chart"],
-            "badge": "Updated",
             "children": [
                 {
                     "name": "ChartModel",
@@ -802,8 +792,7 @@
                 },
                 {
                     "name": "Image",
-                    "to": "/image",
-                    "badge": "New"
+                    "to": "/image"
                 }
             ]
         },
@@ -853,8 +842,7 @@
                 },
                 {
                     "name": "StyleClass",
-                    "to": "/styleclass",
-                    "badge": "New"
+                    "to": "/styleclass"
                 },
                 {
                     "name": "Tag",

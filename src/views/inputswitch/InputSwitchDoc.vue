@@ -1,8 +1,15 @@
 <template>
 	<AppDoc name="InputSwitchDemo" :sources="sources" github="inputswitch/InputSwitchDemo.vue">
-		<h5>Import</h5>
+		<h5>Import via Module</h5>
 <pre v-code.script><code>
 import InputSwitch from 'primevue/inputswitch';
+
+</code></pre>
+
+		<h5>Import via CDN</h5>
+<pre v-code><code>
+&lt;script src="https://unpkg.com/primevue@^3/core/core.min.js"&gt;&lt;/script&gt;
+&lt;script src="https://unpkg.com/primevue@^3/inputswitch/inputswitch.min.js"&gt;&lt;/script&gt;
 
 </code></pre>
 
@@ -202,6 +209,38 @@ export default {
     }
 }
 <\\/script>
+`
+				},
+				'browser-source': {
+					tabName: 'Browser Source',
+					imports: `<script src="https://unpkg.com/primevue@^3/inputswitch/inputswitch.min.js"><\\/script>`,
+					content: `<div id="app">
+			<h5>Basic</h5>
+			<p-inputswitch v-model="checked1"></p-inputswitch>
+
+			<h5>Preselection</h5>
+			<p-inputswitch v-model="checked2"></p-inputswitch>
+		</div>
+
+		<script>
+		const { createApp, ref } = Vue;
+
+		const App = {
+			setup() {
+				const checked1 = ref(false);
+				const checked2 = ref(true);
+
+				return { checked1, checked2 }
+			},
+			components: {
+				"p-inputswitch": primevue.inputswitch
+			}
+		};
+
+		createApp(App)
+            .use(primevue.config.default)
+            .mount("#app");
+		<\\/script>
 `
 				}
 			}

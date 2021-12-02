@@ -1,8 +1,15 @@
 <template>
 	<AppDoc name="RadioButtonDemo" :sources="sources" github="radiobutton/RadioButtonDemo.vue" >
-        <h5>Import</h5>
+        <h5>Import via Module</h5>
 <pre v-code.script><code>
 import RadioButton from 'primevue/radiobutton';
+
+</code></pre>
+
+        <h5>Import via CDN</h5>
+<pre v-code><code>
+&lt;script src="https://unpkg.com/primevue@^3/core/core.min.js"&gt;&lt;/script&gt;
+&lt;script src="https://unpkg.com/primevue@^3/radiobutton/radiobutton.min.js"&gt;&lt;/script&gt;
 
 </code></pre>
 
@@ -244,6 +251,62 @@ export default {
     }
 }
 <\\/script>
+`
+                },
+                'browser-source': {
+                    tabName: 'Browser Source',
+                    imports: `<script src="https://unpkg.com/primevue@^3/radiobutton/radiobutton.min.js"><\\/script>`,
+                    content: `<div id="app">
+            <h5>Basic</h5>
+            <div class="p-field-radiobutton">
+                <p-radiobutton id="city1" name="city" value="Chicago" v-model="city"></p-radiobutton>
+                <label for="city1">Chicago</label>
+            </div>
+            <div class="p-field-radiobutton">
+                <p-radiobutton id="city2" name="city" value="Los Angeles" v-model="city"></p-radiobutton>
+                <label for="city2">Los Angeles</label>
+            </div>
+            <div class="p-field-radiobutton">
+                <p-radiobutton id="city3" name="city" value="New York" v-model="city"></p-radiobutton>
+                <label for="city3">New York</label>
+            </div>
+            <div class="p-field-radiobutton">
+                <p-radiobutton id="city4" name="city" value="San Francisco" v-model="city"></p-radiobutton>
+                <label for="city4">San Francisco</label>
+            </div>
+
+            <h5>Dynamic Values, Preselection, Value Binding and Disabled Option</h5>
+            <div v-for="category of categories" :key="category.key" class="p-field-radiobutton">
+                <p-radiobutton :id="category.key" name="category" :value="category" v-model="selectedCategory" :disabled="category.key === 'R'"></p-radiobutton>
+                <label :for="category.key">{{category.name}}</label>
+            </div>
+        </div>
+
+        <script type="module">
+        const { createApp, ref } = Vue;
+
+        const App = {
+            setup() {
+                const city = ref();
+                const categories = ref([
+                    {name: 'Accounting', key: 'A'}, 
+                    {name: 'Marketing', key: 'M'}, 
+                    {name: 'Production', key: 'P'}, 
+                    {name: 'Research', key: 'R'}
+                ]);
+                const selectedCategory = ref(categories.value[1]);
+
+                return { city, categories, selectedCategory }
+            },
+            components: {
+                "p-radiobutton": primevue.radiobutton
+            }
+        };
+
+        createApp(App)
+            .use(primevue.config.default)
+            .mount("#app");
+        <\\/script>
 `
                 }
             }

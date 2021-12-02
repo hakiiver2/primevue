@@ -1,10 +1,17 @@
 <template>
     <AppDoc name="StyleClassDemo" :sources="sources" github="styleclass/StyleClassDemo.vue">
-        <h5>Import</h5>
+        <h5>Import via Module</h5>
 <pre v-code.script><code>
 import StyleClass from 'primevue/styleclass';
 
 app.directive('styleclass', StyleClass);
+
+</code></pre>
+
+        <h5>Import via CDN</h5>
+<pre v-code><code>
+&lt;script src="https://unpkg.com/primevue@^3/core/core.min.js"&gt;&lt;/script&gt;
+&lt;script src="https://unpkg.com/primevue@^3/styleclass/styleclass.min.js"&gt;&lt;/script&gt;
 
 </code></pre>
 
@@ -245,6 +252,75 @@ export default {
     animation: my-fadeout 150ms linear;
 }
 </style>
+
+`
+                },
+                'browser-source': {
+                    tabName: 'Browser Source',
+                    imports: `<script src="https://unpkg.com/primevue@^3/styleclass/styleclass.min.js"><\\/script>`,
+                    content: `<div id="app">
+            <h5>Toggle Class</h5>
+            <p-button label="Toggle p-disabled" v-styleclass="{ selector: '@next', toggleClass: 'p-disabled' }"></p-button>
+            <p-inputtext class="p-d-block p-mt-3"></p-inputtext>
+
+            <h5>Animations</h5>
+            <p-button label="Show" class="p-mr-2" v-styleclass="{ selector: '.box', enterClass: 'p-d-none', enterActiveClass: 'my-fadein' }"></p-button>
+            <p-button label="Hide" v-styleclass="{ selector: '.box', leaveActiveClass: 'my-fadeout', leaveToClass: 'p-d-none' }"></p-button>
+            <div class="box p-d-none">Content</div>
+        </div>
+
+        <script>
+            const { createApp } = Vue;
+            const StyleClass = primevue.styleclass;
+
+            const App = {
+                components: {
+                    "p-inputtext": primevue.inputtext,
+                    "p-button": primevue.button
+                }
+            };
+
+            createApp(App)
+                .use(primevue.config.default)
+                .directive("styleclass", StyleClass)
+                .mount("#app");
+        <\\/script>
+
+        <style>
+        .box {
+            background-color: var(--green-500);
+            color: #ffffff;
+            width: 100px;
+            height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding-top: 1rem;
+            padding-bottom: 1rem;
+            border-radius: 4px;
+            margin-top: 1rem;
+            font-weight: bold;
+            box-shadow: 0 2px 1px -1px rgba(0,0,0,.2), 0 1px 1px 0 rgba(0,0,0,.14), 0 1px 3px 0 rgba(0,0,0,.12);
+        }
+
+        @keyframes my-fadein {
+            0%   { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        @keyframes my-fadeout {
+            0%   { opacity: 1; }
+            100% { opacity: 0; }
+        }
+
+        .my-fadein {
+            animation: my-fadein 150ms linear;
+        }
+                
+        .my-fadeout {
+            animation: my-fadeout 150ms linear;
+        }
+        </style>
 
 `
                 }

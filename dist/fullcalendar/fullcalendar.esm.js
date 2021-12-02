@@ -1,3 +1,4 @@
+import '@fullcalendar/core/vdom';
 import { Calendar } from '@fullcalendar/core';
 import { openBlock, createBlock } from 'vue';
 
@@ -90,4 +91,4 @@ styleInject(css_248z);
 
 script.render = render;
 
-export default script;
+export { script as default };

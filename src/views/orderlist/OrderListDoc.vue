@@ -1,8 +1,15 @@
 <template>
 	<AppDoc name="OrderListDemo" :sources="sources" :service="['ProductService']" :data="['products-small']" github="orderlist/OrderListDemo.vue" >
-        <h5>Import</h5>
+        <h5>Import via Module</h5>
 <pre v-code.script><code>
 import OrderList from 'primevue/orderlist';
+
+</code></pre>
+
+        <h5>Import via CDN</h5>
+<pre v-code><code>
+&lt;script src="https://unpkg.com/primevue@^3/core/core.min.js"&gt;&lt;/script&gt;
+&lt;script src="https://unpkg.com/primevue@^3/orderlist/orderlist.min.js"&gt;&lt;/script&gt;
 
 </code></pre>
 
@@ -56,6 +63,10 @@ import OrderList from 'primevue/orderlist';
 
         <h5>DataKey</h5>
         <p>It is recommended to provide the name of the field that uniquely identifies the a record in the data via the <i>dataKey</i> property for better performance.</p>
+
+        <h5>Templating</h5>
+        <p>In addition to the <i>item</i> template, <i>header</i> is provided to place custom content at the list header. Controls section
+        can also be customized to place content before and after the buttons with <i>controlsstart</i> and <i>controlsend</i> slots respectively.</p>
 
 		<h5>Properties</h5>
         <p>Any property as style and class are passed to the main container element. Following are the additional properties to configure the component.</p>
@@ -167,6 +178,14 @@ import OrderList from 'primevue/orderlist';
                         <td>item</td>
                         <td>item: Item of the component<br />
                             index: Index of the item</td>
+                    </tr>
+                    <tr>
+                        <td>controlsstart</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>controlsend</td>
+                        <td>-</td>
                     </tr>
 				</tbody>
 			</table>
@@ -422,6 +441,120 @@ export default {
     }
 }
 </style>`
+                },
+                'browser-source': {
+                    tabName: 'Browser Source',
+                    imports: `<script src="https://unpkg.com/primevue@^3/orderlist/orderlist.min.js"><\\/script>
+        <script src="./ProductService.js"><\\/script>`,
+                    content: `<div id="app">
+            <div class="card">
+                <p-orderlist v-model="products" list-style="height:auto" data-key="id">
+                    <template #header>
+                        List of Products
+                    </template>
+                    <template #item="slotProps">
+                        <div class="product-item">
+                            <div class="image-container">
+                                <img src="https://www.primefaces.org/wp-content/uploads/2020/05/placeholder.png" :alt="slotProps.item.name" />
+                            </div>
+                            <div class="product-list-detail">
+                                <h6 class="p-mb-2">{{slotProps.item.name}}</h6>
+                                <i class="pi pi-tag product-category-icon"></i>
+                                <span class="product-category">{{slotProps.item.category}}</span>
+                            </div>
+                            <div class="product-list-action">
+                                <h6 class="p-mb-2">\${{slotProps.item.price}}</h6>
+                                <span :class="'product-badge status-'+slotProps.item.inventoryStatus.toLowerCase()">{{slotProps.item.inventoryStatus}}</span>
+                            </div>
+                        </div>
+                    </template>
+                </p-orderlist>
+            </div>
+        </div>
+
+        <script type="module">
+        const { createApp, ref, onMounted } = Vue;
+
+        const App = {
+            setup() {
+                onMounted(() => {
+                    productService.value.getProductsSmall().then(data => products.value = data);
+                })
+
+                const products = ref(null);
+                const productService = ref(new ProductService());
+
+                return { products, productService }
+            },
+            components: {
+                "p-orderlist": primevue.orderlist
+            }
+        };
+
+        createApp(App)
+            .use(primevue.config.default)
+            .mount("#app");
+        <\\/script>
+
+        <style>
+        .card {
+            background: #ffffff;
+            padding: 2rem;
+            box-shadow: 0 2px 1px -1px rgba(0,0,0,.2), 0 1px 1px 0 rgba(0,0,0,.14), 0 1px 3px 0 rgba(0,0,0,.12);
+            border-radius: 4px;
+            margin-bottom: 2rem;
+        }
+        .product-item {
+            display: flex;
+            align-items: center;
+            padding: .5rem;
+            width: 100%;
+        }
+
+        .product-item img {
+            width: 75px;
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+            margin-right: 1rem;
+        }
+
+        .product-item .product-list-detail {
+            flex: 1 1 0;
+        }
+
+        .product-item .product-list-action {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+        }
+
+        .product-item .product-category-icon {
+            vertical-align: middle;
+            margin-right: .5rem;
+            font-size: .875rem;
+        }
+
+        .product-item .product-category {
+            vertical-align: middle;
+            line-height: 1;
+            font-size: .875rem;
+        }
+
+        @media screen and (max-width: 576px) {
+            .product-item {
+                flex-wrap: wrap;
+            }
+
+            .product-item .image-container {
+                width: 100%;
+                text-align: center;
+            }
+
+            .product-item img {
+                margin: 0 0 1rem 0;
+                width: 100px;
+            }
+        }
+        </style>`
                 }
             }
         }
