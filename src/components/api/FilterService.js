@@ -218,7 +218,57 @@ const FilterService = {
                 return false;
             }
 
-            return value.getTime() < filter.getTime();
+            const year1 = value.getFullYear()
+            const month1 = value.getMonth() + 1
+            const day1 = value.getDate()
+
+            const year2 = filter.getFullYear()
+            const month2 = filter.getMonth() + 1
+            const day2 = filter.getDate()
+
+
+            if (year1 == year2) {
+                if (month1 == month2) {
+                    return day1 < day2;
+                } else {
+                    return month1 < month2;
+                }
+            } else {
+                return year1 < year2;
+            }
+
+
+
+        },
+        dateOnOrBefore(value, filter) {
+            if (filter === undefined || filter === null) {
+                return true;
+            }
+    
+            if (value === undefined || value === null) {
+                return false;
+            }
+            const year1 = value.getFullYear()
+            const month1 = value.getMonth() + 1
+            const day1 = value.getDate()
+
+            const year2 = filter.getFullYear()
+            const month2 = filter.getMonth() + 1
+            const day2 = filter.getDate()
+
+
+            if (year1 == year2) {
+                if (month1 == month2) {
+                    return day1 <= day2;
+                } else {
+                    return month1 < month2;
+                }
+            } else {
+                return year1 < year2;
+            }
+
+
+            return value.getTime() <= filter.getTime();
         },
         dateAfter(value, filter) {
             if (filter === undefined || filter === null) {
@@ -229,7 +279,25 @@ const FilterService = {
                 return false;
             }
 
-            return value.getTime() > filter.getTime();
+            const year1 = value.getFullYear()
+            const month1 = value.getMonth() + 1
+            const day1 = value.getDate()
+
+            const year2 = filter.getFullYear()
+            const month2 = filter.getMonth() + 1
+            const day2 = filter.getDate()
+
+
+            if (year1 == year2) {
+                if (month1 == month2) {
+                    return day1 >= day2;
+                } else {
+                    return month1 > month2;
+                }
+            } else {
+                return year1 > year2;
+            }
+
         }
     },
     register(rule, fn) {

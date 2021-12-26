@@ -14,6 +14,7 @@ const FilterMatchMode = {
     DATE_IS : 'dateIs',
     DATE_IS_NOT : 'dateIsNot',
     DATE_BEFORE : 'dateBefore',
+    DATE_ON_OR_BEFORE : 'dateOnOrBefore',
     DATE_AFTER : 'dateAfter'
 }
 
