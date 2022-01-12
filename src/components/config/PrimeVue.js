@@ -38,6 +38,7 @@ const defaultOptions = {
         monthNames: ["January","February","March","April","May","June","July","August","September","October","November","December"],
         monthNamesShort: ["Jan", "Feb", "Mar", "Apr", "May", "Jun","Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
         today: 'Today',
+        now: 'Now',
         weekHeader: 'Wk',
         firstDayOfWeek: 0,
         dateFormat: 'mm/dd/yy',
