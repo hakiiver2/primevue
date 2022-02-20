@@ -20,6 +20,7 @@ this.primevue.config = (function (exports, vue, api) {
             dateIs: 'Date is',
             dateIsNot: 'Date is not',
             dateBefore: 'Date is before',
+            dateOnOrBefore: 'Date is on or before',
             dateAfter: 'Date is after',
             clear: 'Clear',
             apply: 'Apply',
@@ -38,6 +39,7 @@ this.primevue.config = (function (exports, vue, api) {
             monthNames: ["January","February","March","April","May","June","July","August","September","October","November","December"],
             monthNamesShort: ["Jan", "Feb", "Mar", "Apr", "May", "Jun","Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
             today: 'Today',
+            now: 'Now',
             weekHeader: 'Wk',
             firstDayOfWeek: 0,
             dateFormat: 'mm/dd/yy',
@@ -69,6 +71,7 @@ this.primevue.config = (function (exports, vue, api) {
                 api.FilterMatchMode.DATE_IS,
                 api.FilterMatchMode.DATE_IS_NOT,
                 api.FilterMatchMode.DATE_BEFORE,
+                api.FilterMatchMode.DATE_ON_OR_BEFORE,
                 api.FilterMatchMode.DATE_AFTER
             ]
         },

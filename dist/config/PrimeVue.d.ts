@@ -21,6 +21,7 @@ interface PrimeVueLocaleOptions {
     dateIs?: string;
     dateIsNot?: string;
     dateBefore?: string;
+    dateOnOrBefore?: string;
     dateAfter?: string;
     clear?: string;
     apply?: string;
@@ -39,6 +40,7 @@ interface PrimeVueLocaleOptions {
     monthNames: string[];
     monthNamesShort: string[];
     today?: string;
+    now?: string;
     weekHeader?: string;
     firstDayOfWeek?: number;
     dateFormat?: string;

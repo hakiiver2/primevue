@@ -109,6 +109,12 @@ var script = {
         },
         rejectClass() {
             return ['p-confirm-dialog-reject', this.confirmation ? (this.confirmation.rejectClass || 'p-button-text') : null];
+        },
+        autoFocusAccept() {
+            return (this.confirmation.defaultFocus === undefined || this.confirmation.defaultFocus === 'accept') ? true : false;
+        },
+        autoFocusReject() {
+            return this.confirmation.defaultFocus === 'reject' ? true : false;
         }
     },
     components: {
@@ -141,7 +147,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
             icon: $options.rejectIcon,
             class: $options.rejectClass,
             onClick: _cache[1] || (_cache[1] = $event => ($options.reject())),
-            autofocus: $options.autoFocus==='reject'
+            autofocus: $options.autoFocusReject
           }, null, 8, ["label", "icon", "class", "autofocus"]))
         : vue.createCommentVNode("", true),
       ($options.isShowAcceptButton)
@@ -151,7 +157,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
             icon: $options.acceptIcon,
             class: $options.acceptClass,
             onClick: _cache[2] || (_cache[2] = $event => ($options.accept())),
-            autofocus: $options.autoFocus==='accept'
+            autofocus: $options.autoFocusAccept
           }, null, 8, ["label", "icon", "class", "autofocus"]))
         : vue.createCommentVNode("", true)
     ]),
