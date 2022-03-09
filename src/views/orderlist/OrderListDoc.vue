@@ -126,6 +126,12 @@ import OrderList from 'primevue/orderlist';
                         <td>960px</td>
                         <td>The breakpoint to define the maximum width boundary when responsiveness is enabled.</td>
                     </tr>
+                    <tr>
+                        <td>stripedRows</td>
+                        <td>boolean</td>
+                        <td>false</td>
+                        <td>Whether to displays rows with alternating colors.</td>
+                    </tr>
 				</tbody>
 			</table>
 		</div>
@@ -243,12 +249,12 @@ export default {
                         <img src="https://www.primefaces.org/wp-content/uploads/2020/05/placeholder.png" :alt="slotProps.item.name" />
                     </div>
                     <div class="product-list-detail">
-                        <h6 class="p-mb-2">{{slotProps.item.name}}</h6>
+                        <h6 class="mb-2">{{slotProps.item.name}}</h6>
                         <i class="pi pi-tag product-category-icon"></i>
                         <span class="product-category">{{slotProps.item.category}}</span>
                     </div>
                     <div class="product-list-action">
-                        <h6 class="p-mb-2">\${{slotProps.item.price}}</h6>
+                        <h6 class="mb-2">\${{slotProps.item.price}}</h6>
                         <span :class="'product-badge status-'+slotProps.item.inventoryStatus.toLowerCase()">{{slotProps.item.inventoryStatus}}</span>
                     </div>
                 </div>
@@ -350,12 +356,12 @@ export default {
                         <img src="https://www.primefaces.org/wp-content/uploads/2020/05/placeholder.png" :alt="slotProps.item.name" />
                     </div>
                     <div class="product-list-detail">
-                        <h6 class="p-mb-2">{{slotProps.item.name}}</h6>
+                        <h6 class="mb-2">{{slotProps.item.name}}</h6>
                         <i class="pi pi-tag product-category-icon"></i>
                         <span class="product-category">{{slotProps.item.category}}</span>
                     </div>
                     <div class="product-list-action">
-                        <h6 class="p-mb-2">\${{slotProps.item.price}}</h6>
+                        <h6 class="mb-2">\${{slotProps.item.price}}</h6>
                         <span :class="'product-badge status-'+slotProps.item.inventoryStatus.toLowerCase()">{{slotProps.item.inventoryStatus}}</span>
                     </div>
                 </div>
@@ -458,12 +464,12 @@ export default {
                                 <img src="https://www.primefaces.org/wp-content/uploads/2020/05/placeholder.png" :alt="slotProps.item.name" />
                             </div>
                             <div class="product-list-detail">
-                                <h6 class="p-mb-2">{{slotProps.item.name}}</h6>
+                                <h6 class="mb-2">{{slotProps.item.name}}</h6>
                                 <i class="pi pi-tag product-category-icon"></i>
                                 <span class="product-category">{{slotProps.item.category}}</span>
                             </div>
                             <div class="product-list-action">
-                                <h6 class="p-mb-2">\${{slotProps.item.price}}</h6>
+                                <h6 class="mb-2">\${{slotProps.item.price}}</h6>
                                 <span :class="'product-badge status-'+slotProps.item.inventoryStatus.toLowerCase()">{{slotProps.item.inventoryStatus}}</span>
                             </div>
                         </div>

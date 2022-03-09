@@ -43,20 +43,20 @@ import 'primeicons/primeicons.css';
             <i class="pi pi-check"></i>
 
 <pre v-code><code>
-&lt;i class="pi pi-check" style="fontSize: 2rem"&gt;&lt;/i&gt;
+&lt;i class="pi pi-check" style="font-size: 2rem"&gt;&lt;/i&gt;
 
 </code></pre>
 
-            <i class="pi pi-check" style="fontSize: 2rem"></i>
+            <i class="pi pi-check" style="font-size: 2rem"></i>
 
             <h5>Spinning Animation</h5>
             <p>Special pi-spin class applies continuous rotation to an icon.</p>
 <pre v-code><code>
-&lt;i class="pi pi-spin pi-spinner" style="fontSize: 2rem"&gt;&lt;/i&gt;
+&lt;i class="pi pi-spin pi-spinner" style="font-size: 2rem"&gt;&lt;/i&gt;
 
 </code></pre>
 
-            <i class="pi pi-spin pi-spinner" style="fontSize: 2rem"></i>
+            <i class="pi pi-spin pi-spinner" style="font-size: 2rem"></i>
 
             <h5>Constants</h5>
             <p>PrimeIcons constants API is provided to easily choose an icon with typescript e.g. when defining a menu model.</p>
@@ -94,8 +94,8 @@ export default {
 
             <InputText v-model="filter" class="icon-filter" placeholder="Search an icon" />
 
-            <div class="p-grid icons-list">
-                <div class="p-col-12 p-md-2" v-for="icon of filteredIcons" :key="icon.properties.name">
+            <div class="grid icons-list">
+                <div class="col-12 md:col-2 icon" v-for="icon of filteredIcons" :key="icon.properties.name">
                     <i :class="'pi pi-' + icon.properties.name"></i>
                     <div>pi-{{icon.properties.name}}</div>
                 </div>
@@ -158,7 +158,7 @@ export default {
         margin-bottom: .5rem;
     }
 
-    .p-md-2 {
+    .icon {
         padding-bottom: 2rem;
     }
 }

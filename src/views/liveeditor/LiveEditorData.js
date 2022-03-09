@@ -32,8 +32,8 @@ export default class CustomerService {
     }
 
     getCustomers(params) {
-        const queryParams = Object.keys(params).map(k => encodeURIComponent(k) + '=' + encodeURIComponent(params[k])).join('&');
-        return fetch('https://www.primefaces.org/demo/data/customers?' + queryParams).then(res => res.json())
+        const queryParams = params ? Object.keys(params).map(k => encodeURIComponent(k) + '=' + encodeURIComponent(params[k])).join('&') : '';
+        return fetch('https://www.primefaces.org/data/customers?' + queryParams).then(res => res.json())
     }
 }
     `,
@@ -83,6 +83,48 @@ export default class ProductService {
     getProductsWithOrdersSmall() {
 		return fetch('demo/data/products-orders-small.json').then(res => res.json()).then(d => d.data);
 	}
+}
+
+    `,
+    'CarService': `
+export default class CarService {
+
+    brands = ['Vapid', 'Carson', 'Kitano', 'Dabver', 'Ibex', 'Morello', 'Akira', 'Titan', 'Dover', 'Norma'];
+
+    colors = ['Black', 'White', 'Red', 'Blue', 'Silver', 'Green', 'Yellow'];
+
+    generateCar(id) {
+        return {
+            id,
+            vin: this.generateVin(),
+            brand: this.generateBrand(),
+            color: this.generateColor(),
+            year: this.generateYear()
+        }
+    }
+
+    generateVin() {
+        let text = "";
+        let possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+        for (let i = 0; i < 5; i++) {
+            text += possible.charAt(Math.floor(Math.random() * possible.length));
+        }
+
+        return text;
+    }
+
+    generateBrand() {
+        return this.brands[Math.floor(Math.random() * Math.floor(10))];
+    }
+
+    generateColor() {
+        return this.colors[Math.floor(Math.random() * Math.floor(7))];
+    }
+
+    generateYear() {
+        return 2000 + Math.floor(Math.random() * Math.floor(19));
+    }
 }
 
     `

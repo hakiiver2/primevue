@@ -19,7 +19,7 @@
                 <h5>Grouped</h5>
                 <MultiSelect v-model="selectedGroupedCities" :options="groupedCities" optionLabel="label"  optionGroupLabel="label" optionGroupChildren="items" placeholder="Select Cities">
                     <template #optiongroup="slotProps">
-                        <div class="p-d-flex p-ai-center country-item">
+                        <div class="flex align-items-center country-item">
                             <img src="../../assets/images/flag_placeholder.png" :class="'flag flag-' + slotProps.option.code.toLowerCase()" width="18" />
                             <div>{{slotProps.option.label}}</div>
                         </div>
@@ -49,7 +49,7 @@
                 <MultiSelect placeholder="Loading..." loading></MultiSelect>
 
                 <h5>Virtual Scroll (1000 Items)</h5>
-                <MultiSelect v-model="selectedItems" :options="items" :maxSelectedLabels="3" :selectAll="selectAll" @selectall-change="onSelectAllChange($event)" @change="onChange($event)" optionLabel="label" optionValue="value" :virtualScrollerOptions="{ itemSize: 34 }" placeholder="Select Item" />
+                <MultiSelect v-model="selectedItems" :options="items" :maxSelectedLabels="3" :selectAll="selectAll" @selectall-change="onSelectAllChange($event)" @change="onChange($event)" optionLabel="label" optionValue="value" :virtualScrollerOptions="{ itemSize: 44 }" placeholder="Select Item" />
             </div>
         </div>
 

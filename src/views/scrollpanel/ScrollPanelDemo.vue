@@ -10,8 +10,8 @@
 
         <div class="content-section implementation">
             <div class="card">
-                <div class="p-grid">
-                    <div class="p-col-12 p-md-4 p-p-5">
+                <div class="grid">
+                    <div class="col-12 md:col-4 p-5">
                         <ScrollPanel style="width: 100%; height: 200px">
                             <p>
                                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
@@ -28,7 +28,7 @@
                             </p>
                         </ScrollPanel>
                     </div>
-                    <div class="p-col-12 p-md-4 p-p-5">
+                    <div class="col-12 md:col-4 p-5">
                         <ScrollPanel style="width: 100%; height: 200px" class="custombar1">
                             <p>
                                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
@@ -45,7 +45,7 @@
                             </p>
                         </ScrollPanel>
                     </div>
-                    <div class="p-col-12 p-md-4 p-p-5">
+                    <div class="col-12 md:col-4 p-5">
                         <ScrollPanel style="width: 100%; height: 200px" class="custombar2">
                             <p style="width: 600px">
                                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
@@ -89,7 +89,7 @@ export default {
 
     &.custombar1 {
         .p-scrollpanel-wrapper {
-            border-right: 9px solid var(--surface-b);
+            border-right: 9px solid var(--surface-ground);
         }
 
         .p-scrollpanel-bar {
@@ -105,12 +105,12 @@ export default {
 
     &.custombar2 {
         .p-scrollpanel-wrapper {
-            border-right: 9px solid var(--surface-b);
-            border-bottom: 9px solid var(--surface-b);
+            border-right: 9px solid var(--surface-ground);
+            border-bottom: 9px solid var(--surface-ground);
         }
 
         .p-scrollpanel-bar {
-            background-color: var(--surface-d);
+            background-color: var(--surface-border);
             border-radius: 0;
             opacity: 1;
             transition: background-color .2s;

@@ -9,7 +9,7 @@
         </div>
 
         <div class="content-section implementation">
-            <div class="card p-d-flex p-jc-center">
+            <div class="card flex justify-content-center">
                 <Chart type="doughnut" :data="chartData" :options="chartOptions" style="width: 40%" />
             </div>
         </div>
@@ -31,7 +31,7 @@ export default {
             else
                 this.chartOptions = this.getLightTheme();
         }
-        EventBus.on('change-theme', this.themeChangeListener );
+        EventBus.on('theme-change', this.themeChangeListener );
     },
     beforeUnmount() {
         EventBus.off('change-theme', this.themeChangeListener );

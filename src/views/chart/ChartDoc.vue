@@ -125,6 +125,12 @@ options: {
                         <td>Options to customize the chart.</td>
                     </tr>
                     <tr>
+                        <td>plugins</td>
+                        <td>any</td>
+                        <td>null</td>
+                        <td>Used to custom plugins of the chart.</td>
+                    </tr>
+                    <tr>
                         <td>width</td>
                         <td>number</td>
                         <td>300</td>
@@ -191,6 +197,11 @@ options: {
                             event.element._index = Index of the data in dataset
                         </td>
                         <td>Callback to invoke when a tab gets expanded.</td>
+                    </tr>
+                    <tr>
+                        <td>loaded</td>
+                        <td>chart instance</td>
+                        <td>Callback to invoke when chart is loaded.</td>
                     </tr>
                 </tbody>
             </table>

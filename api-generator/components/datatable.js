@@ -186,6 +186,12 @@ const DataTableProps = [
         description: "When enabled, background of the rows change on hover."
     },
     {
+        name: "selectAll",
+        type: "boolean",
+        default: "null",
+        description: "Whether all data is selected."
+    },
+    {
         name: "csvSeparator",
         type: "string",
         default: ",",
@@ -322,6 +328,12 @@ const DataTableProps = [
         type: "string",
         default: "null",
         description: 'Height of the scroll viewport in fixed units or the "flex" keyword for a dynamic size.'
+    },
+    {
+        name: "virtualScrollerOptions",
+        type: "object",
+        default: "null",
+        description: 'Whether to use the virtualScroller feature. The properties of VirtualScroller component can be used like an object in it. Note: Currently only vertical orientation mode is supported.'
     },
     {
         name: "frozenValue",
@@ -625,6 +637,22 @@ const DataTableEvents = [
                 type: "string",
                 description:
                     'Type of the selection, valid values are "row", "radio" or "checkbox".'
+            }
+        ]
+    },
+    {
+        name: "select-all-change",
+        description: "Callback to invoke when all data is selected.",
+        arguments: [
+            {
+                name: "event.originalEvent",
+                type: "object",
+                description: "Browser event."
+            },
+            {
+                name: "event.checked",
+                type: "object",
+                description: "Whether all data is selected."
             }
         ]
     },

@@ -17,13 +17,71 @@
                 <SplitButton label="Save" icon="pi pi-plus" @click="save" :model="nestedItems"></SplitButton>
 
                 <h5>Severities</h5>
-                <SplitButton label="Save" icon="pi pi-plus" :model="items" class="p-mb-2"></SplitButton>
-                <SplitButton label="Save" icon="pi pi-plus" :model="items" class="p-button-secondary p-mb-2"></SplitButton>
-                <SplitButton label="Save" icon="pi pi-plus" :model="items" class="p-button-success p-mb-2"></SplitButton>
-                <SplitButton label="Save" icon="pi pi-plus" :model="items" class="p-button-info p-mb-2"></SplitButton>
-                <SplitButton label="Save" icon="pi pi-plus" :model="items" class="p-button-warning p-mb-2"></SplitButton>
-                <SplitButton label="Save" icon="pi pi-plus" :model="items" class="p-button-help p-mb-2"></SplitButton>
-                <SplitButton label="Save" icon="pi pi-plus" :model="items" class="p-button-danger p-mb-2"></SplitButton>
+                <SplitButton label="Primary" :model="items" class="mb-2"></SplitButton>
+                <SplitButton label="Secondary" :model="items" class="p-button-secondary mb-2"></SplitButton>
+                <SplitButton label="Success" :model="items" class="p-button-success mb-2"></SplitButton>
+                <SplitButton label="Info" :model="items" class="p-button-info mb-2"></SplitButton>
+                <SplitButton label="Warning" :model="items" class="p-button-warning mb-2"></SplitButton>
+                <SplitButton label="Help" :model="items" class="p-button-help mb-2"></SplitButton>
+                <SplitButton label="Danger" :model="items" class="p-button-danger mb-2"></SplitButton>
+
+                <h5>Raised Buttons</h5>
+                <SplitButton label="Primary" :model="items" class="p-button-raised mb-2"></SplitButton>
+                <SplitButton label="Secondary" :model="items" class="p-button-raised p-button-secondary mb-2"></SplitButton>
+                <SplitButton label="Success" :model="items" class="p-button-raised p-button-success mb-2"></SplitButton>
+                <SplitButton label="Info" :model="items" class="p-button-raised p-button-info mb-2"></SplitButton>
+                <SplitButton label="Warning" :model="items" class="p-button-raised p-button-warning mb-2"></SplitButton>
+                <SplitButton label="Help" :model="items" class="p-button-raised p-button-help mb-2"></SplitButton>
+                <SplitButton label="Danger" :model="items" class="p-button-raised p-button-danger mb-2"></SplitButton>
+
+                <h5>Rounded Buttons</h5>
+                <SplitButton label="Primary" :model="items" class="p-button-rounded mb-2"></SplitButton>
+                <SplitButton label="Secondary" :model="items" class="p-button-rounded p-button-secondary mb-2"></SplitButton>
+                <SplitButton label="Success" :model="items" class="p-button-rounded p-button-success mb-2"></SplitButton>
+                <SplitButton label="Info" :model="items" class="p-button-rounded p-button-info mb-2"></SplitButton>
+                <SplitButton label="Warning" :model="items" class="p-button-rounded p-button-warning mb-2"></SplitButton>
+                <SplitButton label="Help" :model="items" class="p-button-rounded p-button-help mb-2"></SplitButton>
+                <SplitButton label="Danger" :model="items" class="p-button-rounded p-button-danger mb-2"></SplitButton>
+
+                <h5>Text Buttons</h5>
+                <SplitButton label="Primary" :model="items" class="p-button-text mb-2"></SplitButton>
+                <SplitButton label="Secondary" :model="items" class="p-button-text p-button-secondary mb-2"></SplitButton>
+                <SplitButton label="Success" :model="items" class="p-button-text p-button-success mb-2"></SplitButton>
+                <SplitButton label="Info" :model="items" class="p-button-text p-button-info mb-2"></SplitButton>
+                <SplitButton label="Warning" :model="items" class="p-button-text p-button-warning mb-2"></SplitButton>
+                <SplitButton label="Help" :model="items" class="p-button-text p-button-help mb-2"></SplitButton>
+                <SplitButton label="Danger" :model="items" class="p-button-text p-button-danger mb-2"></SplitButton>
+
+                <h5>Raised Text Buttons</h5>
+                <SplitButton label="Primary" :model="items" class="p-button-raised p-button-text mb-2"></SplitButton>
+                <SplitButton label="Secondary" :model="items" class="p-button-raised p-button-text p-button-secondary mb-2"></SplitButton>
+                <SplitButton label="Success" :model="items" class="p-button-raised p-button-text p-button-success mb-2"></SplitButton>
+                <SplitButton label="Info" :model="items" class="p-button-raised p-button-text p-button-info mb-2"></SplitButton>
+                <SplitButton label="Warning" :model="items" class="p-button-raised p-button-text p-button-warning mb-2"></SplitButton>
+                <SplitButton label="Help" :model="items" class="p-button-raised p-button-text p-button-help mb-2"></SplitButton>
+                <SplitButton label="Danger" :model="items" class="p-button-raised p-button-text p-button-danger mb-2"></SplitButton>
+
+                <h5>Outlined Buttons</h5>
+                <SplitButton label="Primary" :model="items" class="p-button-outlined mb-2"></SplitButton>
+                <SplitButton label="Secondary" :model="items" class="p-button-outlined p-button-secondary mb-2"></SplitButton>
+                <SplitButton label="Success" :model="items" class="p-button-outlined p-button-success mb-2"></SplitButton>
+                <SplitButton label="Info" :model="items" class="p-button-outlined p-button-info mb-2"></SplitButton>
+                <SplitButton label="Warning" :model="items" class="p-button-outlined p-button-warning mb-2"></SplitButton>
+                <SplitButton label="Help" :model="items" class="p-button-outlined p-button-help mb-2"></SplitButton>
+                <SplitButton label="Danger" :model="items" class="p-button-outlined p-button-danger mb-2"></SplitButton>
+
+                <h5>Sizes</h5>
+                <SplitButton label="Small" :model="items" class="p-button-sm mb-2"></SplitButton>
+                <SplitButton label="Normal" :model="items" class="mb-2"></SplitButton>
+                <SplitButton label="Large" :model="items" class="p-button-lg mb-2"></SplitButton>
+
+                <h5>Templating</h5>
+                <SplitButton :model="items" class="bg-primary border-round">
+                    <Button @click="save">
+                        <img alt="logo" src="../../assets/images/logo.svg" style="width: 1rem" />
+                        <span class="ml-2 flex align-items-center font-bold">PrimeVue</span>
+                    </Button>
+                </SplitButton>
             </div>
         </div>
 
@@ -73,14 +131,14 @@ export default {
                             label:'New',
                             icon:'pi pi-fw pi-plus',
                             items:[
-                               {
-                                  label:'Bookmark',
-                                  icon:'pi pi-fw pi-bookmark'
-                               },
-                               {
-                                  label:'Video',
-                                  icon:'pi pi-fw pi-video'
-                               },
+                                {
+                                    label:'Bookmark',
+                                    icon:'pi pi-fw pi-bookmark'
+                                },
+                                {
+                                    label:'Video',
+                                    icon:'pi pi-fw pi-video'
+                                },
                             ]
                         },
                         {
@@ -94,7 +152,7 @@ export default {
                             label:'Export',
                             icon:'pi pi-fw pi-external-link'
                         }
-                   ]
+                    ]
                 },
                 {
                     label:'Edit',
@@ -139,18 +197,18 @@ export default {
                                     icon:'pi pi-fw pi-filter',
                                     items:[
                                         {
-                                           label:'Print',
-                                           icon:'pi pi-fw pi-print'
+                                            label:'Print',
+                                            icon:'pi pi-fw pi-print'
                                         }
-                                   ]
+                                    ]
                                 },
                                 {
                                     icon:'pi pi-fw pi-bars',
                                     label:'List'
                                 }
-                           ]
+                            ]
                         }
-                   ]
+                    ]
                 },
                 {
                     label:'Events',
@@ -161,12 +219,12 @@ export default {
                             icon:'pi pi-fw pi-pencil',
                             items:[
                                 {
-                                   label:'Save',
-                                   icon:'pi pi-fw pi-calendar-plus'
+                                    label:'Save',
+                                    icon:'pi pi-fw pi-calendar-plus'
                                 },
                                 {
-                                   label:'Delete',
-                                   icon:'pi pi-fw pi-calendar-minus'
+                                    label:'Delete',
+                                    icon:'pi pi-fw pi-calendar-minus'
                                 }
                             ]
                         },
@@ -183,11 +241,11 @@ export default {
                     ]
                 },
                 {
-                   separator:true
+                    separator:true
                 },
                 {
-                   label:'Quit',
-                   icon:'pi pi-fw pi-power-off'
+                    label:'Quit',
+                    icon:'pi pi-fw pi-power-off'
                 }
             ]
         }
