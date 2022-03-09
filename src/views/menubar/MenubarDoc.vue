@@ -183,7 +183,7 @@ export default {
 &lt;Menubar :model="items"&gt;
     &lt;template #item="{item}"&gt;
         &lt;router-link :to="item.to" custom v-slot="{href, route, navigate, isActive, isExactActive}"&gt;
-            &lt;a :href="href" @click="navigate" :class="{'active-link': isActive, 'active-link-exact": isExactActive}&gt;{{route.fullPath}}&lt;/a&gt;
+            &lt;a :href="href" @click="navigate" :class="{'active-link': isActive, 'active-link-exact': isExactActive}"&gt;{{route.fullPath}}&lt;/a&gt;
         &lt;/router-link&gt;
     &lt;/template&gt;
 &lt;/Menubar&gt;
@@ -305,7 +305,7 @@ export default {
 			<div>
 				<Menubar :model="items">
 					<template #start>
-						<img alt="logo" src="https://www.primefaces.org/wp-content/uploads/2020/05/placeholder.png" height="40" class="p-mr-2">
+						<img alt="logo" src="https://www.primefaces.org/wp-content/uploads/2020/05/placeholder.png" height="40" class="mr-2">
 					</template>
 					<template #end>
 						<InputText placeholder="Search" type="text" />
@@ -459,7 +459,7 @@ export default {
 			<div>
 				<Menubar :model="items">
 					<template #start>
-						<img alt="logo" src="https://www.primefaces.org/wp-content/uploads/2020/05/placeholder.png" height="40" class="p-mr-2">
+						<img alt="logo" src="https://www.primefaces.org/wp-content/uploads/2020/05/placeholder.png" height="40" class="mr-2">
 					</template>
 					<template #end>
 						<InputText placeholder="Search" type="text" />
@@ -610,7 +610,7 @@ export default {
 					content: `<div id="app">
 			<p-menubar :model="items">
 				<template #start>
-					<img alt="logo" src="https://www.primefaces.org/wp-content/uploads/2020/05/placeholder.png" height="40" class="p-mr-2">
+					<img alt="logo" src="https://www.primefaces.org/wp-content/uploads/2020/05/placeholder.png" height="40" class="mr-2">
 				</template>
 				<template #end>
 					<p-inputtext placeholder="Search" type="text"></p-inputtext>

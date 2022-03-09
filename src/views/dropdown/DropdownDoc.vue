@@ -411,7 +411,7 @@ export default {
                         <td>option: OptionGroup instance <br />
                             index: Index of the option group</td>
                     </tr>
-                     <tr>
+                    <tr>
                         <td>value</td>
                         <td>value: Value of the component <br />
                             placeholder: Placeholder prop value</td>
@@ -532,7 +532,7 @@ export default {
         <h5>Grouped</h5>
         <Dropdown v-model="selectedGroupedCity" :options="groupedCities" optionLabel="label" optionGroupLabel="label" optionGroupChildren="items">
             <template #optiongroup="slotProps">
-                <div class="p-d-flex p-ai-center country-item">
+                <div class="flex align-items-center country-item">
                     <img src="https://www.primefaces.org/wp-content/uploads/2020/05/placeholder.png" width="18" />
                     <div>{{slotProps.option.label}}</div>
                 </div>
@@ -562,12 +562,12 @@ export default {
         <Dropdown placeholder="Loading..." loading></Dropdown>
 
         <h5>Virtual Scroll (1000 Items)</h5>
-        <Dropdown v-model="selectedItem1" :options="items" optionLabel="label" optionValue="value" :virtualScrollerOptions="{ itemSize: 31 }" placeholder="Select Item"></Dropdown>
+        <Dropdown v-model="selectedItem1" :options="items" optionLabel="label" optionValue="value" :virtualScrollerOptions="{ itemSize: 38 }" placeholder="Select Item"></Dropdown>
 
         <h5>Virtual Scroll (1000 Items) and Lazy</h5>
-        <Dropdown v-model="selectedItem2" :options="lazyItems" optionLabel="label" optionValue="value" :virtualScrollerOptions="{ lazy: true, onLazyLoad: onLazyLoad, itemSize: 31, showLoader: true, loading: loading, delay: 250 }" placeholder="Select Item">
+        <Dropdown v-model="selectedItem2" :options="lazyItems" optionLabel="label" optionValue="value" :virtualScrollerOptions="{ lazy: true, onLazyLoad: onLazyLoad, itemSize: 38, showLoader: true, loading: loading, delay: 250 }" placeholder="Select Item">
             <template v-slot:loader="{ options }">
-                <div class="p-d-flex p-ai-center p-p-2" style="height: 31px" >
+                <div class="flex align-items-center p-2" style="height: 38px" >
                     <Skeleton :width="options.even ? '60%' : '50%'" height="1rem" />
                 </div>
             </template>
@@ -632,8 +632,8 @@ export default {
                     {label: 'Yokohama', value: 'Yokohama'}
                 ]
             }],
-            items: Array.from({ length: 1000 }, (_, i) => ({ label: \`Item #\${i}\`, value: i })),
-            lazyItems: Array.from({ length: 1000 })
+            items: Array.from({ length: 100000 }, (_, i) => ({ label: \`Item #\${i}\`, value: i })),
+            lazyItems: Array.from({ length: 100000 })
         }
     },
     loadLazyTimeout: null,
@@ -689,7 +689,7 @@ export default {
         <h5>Grouped</h5>
         <Dropdown v-model="selectedGroupedCity" :options="groupedCities" optionLabel="label" optionGroupLabel="label" optionGroupChildren="items">
             <template #optiongroup="slotProps">
-                <div class="p-d-flex p-ai-center country-item">
+                <div class="flex align-items-center country-item">
                     <img src="https://www.primefaces.org/wp-content/uploads/2020/05/placeholder.png" width="18" />
                     <div>{{slotProps.option.label}}</div>
                 </div>
@@ -719,12 +719,12 @@ export default {
         <Dropdown placeholder="Loading..." loading></Dropdown>
 
         <h5>Virtual Scroll (1000 Items)</h5>
-        <Dropdown v-model="selectedItem1" :options="items" optionLabel="label" optionValue="value" :virtualScrollerOptions="{ itemSize: 31 }" placeholder="Select Item"></Dropdown>
+        <Dropdown v-model="selectedItem1" :options="items" optionLabel="label" optionValue="value" :virtualScrollerOptions="{ itemSize: 38 }" placeholder="Select Item"></Dropdown>
 
         <h5>Virtual Scroll (1000 Items) and Lazy</h5>
-        <Dropdown v-model="selectedItem2" :options="lazyItems" optionLabel="label" optionValue="value" :virtualScrollerOptions="{ lazy: true, onLazyLoad: onLazyLoad, itemSize: 31, showLoader: true, loading: loading, delay: 250 }" placeholder="Select Item">
+        <Dropdown v-model="selectedItem2" :options="lazyItems" optionLabel="label" optionValue="value" :virtualScrollerOptions="{ lazy: true, onLazyLoad: onLazyLoad, itemSize: 38, showLoader: true, loading: loading, delay: 250 }" placeholder="Select Item">
             <template v-slot:loader="{ options }">
-                <div class="p-d-flex p-ai-center p-p-2" style="height: 31px" >
+                <div class="flex align-items-center p-2" style="height: 38px" >
                     <Skeleton :width="options.even ? '60%' : '50%'" height="1rem" />
                 </div>
             </template>
@@ -793,8 +793,8 @@ export default {
             }
         ]);
 
-        const items = ref(Array.from({ length: 1000 }, (_, i) => ({ label: \`Item #\${i}\`, value: i })));
-        const lazyItems = ref(Array.from({ length: 1000 }));
+        const items = ref(Array.from({ length: 100000 }, (_, i) => ({ label: \`Item #\${i}\`, value: i })));
+        const lazyItems = ref(Array.from({ length: 100000 }));
 
         return { selectedCity1, selectedCity2, selectedCountry, selectedGroupedCity, cities, countries, groupedCities, selectedItem1, selectedItem2, loading, items, lazyItems}
     },
@@ -850,7 +850,7 @@ export default {
             <h5>Grouped</h5>
             <p-dropdown v-model="selectedGroupedCity" :options="groupedCities" option-label="label" option-group-label="label" option-group-children="items">
                 <template #optiongroup="slotProps">
-                    <div class="p-d-flex p-ai-center country-item">
+                    <div class="flex align-items-center country-item">
                         <img src="https://www.primefaces.org/wp-content/uploads/2020/05/placeholder.png" width="18" />
                         <div>{{slotProps.option.label}}</div>
                     </div>
@@ -880,12 +880,12 @@ export default {
             <p-dropdown placeholder="Loading..." loading></p-dropdown>
 
             <h5>Virtual Scroll (1000 Items)</h5>
-            <p-dropdown v-model="selectedItem1" :options="items" option-label="label" option-value="value" :virtual-scroller-options="{ itemSize: 31 }" placeholder="Select Item"></p-dropdown>
+            <p-dropdown v-model="selectedItem1" :options="items" option-label="label" option-value="value" :virtual-scroller-options="{ itemSize: 38 }" placeholder="Select Item"></p-dropdown>
 
             <h5>Virtual Scroll (1000 Items) and Lazy</h5>
-            <p-dropdown v-model="selectedItem2" :options="lazyItems" option-label="label" option-value="value" :virtual-scroller-options="{ lazy: true, onLazyLoad: onLazyLoad, itemSize: 31, showLoader: true, loading: loading, delay: 250 }" placeholder="Select Item">
+            <p-dropdown v-model="selectedItem2" :options="lazyItems" option-label="label" option-value="value" :virtual-scroller-options="{ lazy: true, onLazyLoad: onLazyLoad, itemSize: 38, showLoader: true, loading: loading, delay: 250 }" placeholder="Select Item">
                 <template v-slot:loader="{ options }">
-                    <div class="p-d-flex p-ai-center p-p-2" style="height: 31px" >
+                    <div class="flex align-items-center p-2" style="height: 38px" >
                         <p-skeleton :width="options.even ? '60%' : '50%'" height="1rem"></p-skeleton>
                     </div>
                 </template>
@@ -953,8 +953,8 @@ export default {
                     }
                 ]);
 
-                const items = ref(Array.from({ length: 1000 }, (_, i) => ({ label: \`Item #\${i}\`, value: i })));
-                const lazyItems = ref(Array.from({ length: 1000 }));
+                const items = ref(Array.from({ length: 100000 }, (_, i) => ({ label: \`Item #\${i}\`, value: i })));
+                const lazyItems = ref(Array.from({ length: 100000 }));
 
                 return { selectedCity1, selectedCity2, selectedCountry, selectedGroupedCity, cities, countries, groupedCities, selectedItem1, selectedItem2, loading, items, lazyItems}
             },

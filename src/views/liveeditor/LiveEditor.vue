@@ -1,5 +1,5 @@
 <template>
-    <span v-if="showEditor" class="p-d-flex p-jc-end">
+    <span v-if="showEditor" class="flex justify-content-end">
         <SplitButton :model="items" label="Edit in CodeSandbox" class="liveEditorSplitButton" @click="openDefaultCSB" v-show="false"/>
     </span>
 </template>
@@ -301,7 +301,6 @@ export default {
                     }
                 }
             }
-             
 
             return {
                 files: {
@@ -311,7 +310,7 @@ export default {
                             dependencies: {
                                 ...extDependencies,
                                 'vue': dependencies['vue'],
-                                'primevue': '^3.9.1',
+                                'primevue': '^3.10.0',
                                 'primeflex': dependencies['primeflex'],
                                 'primeicons': dependencies['primeicons'],
                                 '@babel/cli': dependencies['@babel/cli'],
@@ -416,9 +415,9 @@ export default {
         <title>${name}</title>
 
         <!-- PrimeVue -->
-        <link href="https://unpkg.com/primevue@^3/resources/themes/saga-blue/theme.css" rel="stylesheet" />
+        <link href="https://unpkg.com/primevue@^3/resources/themes/lara-light-indigo/theme.css" rel="stylesheet" />
         <link href="https://unpkg.com/primevue@^3/resources/primevue.min.css" rel="stylesheet" />
-        <link href="https://unpkg.com/primeflex@2.0.0/primeflex.min.css" rel="stylesheet" />
+        <link href="https://unpkg.com/primeflex@^3/primeflex.min.css" rel="stylesheet" />
         <link href="https://unpkg.com/primeicons/primeicons.css" rel="stylesheet" />
 
         <!-- Dependencies -->

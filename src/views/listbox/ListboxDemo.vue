@@ -16,7 +16,7 @@
                 <h5>Grouped</h5>
                 <Listbox v-model="selectedGroupedCity" :options="groupedCities" optionLabel="label" style="width:15rem" optionGroupLabel="label" optionGroupChildren="items" listStyle="max-height:250px">
                     <template #optiongroup="slotProps">
-                        <div class="p-d-flex p-ai-center country-item">
+                        <div class="flex align-items-center country-item">
                             <img src="../../assets/images/flag_placeholder.png" :class="'flag flag-' + slotProps.option.code.toLowerCase()" width="18" />
                             <div>{{slotProps.option.label}}</div>
                         </div>
@@ -33,7 +33,7 @@
                     </template>
                 </Listbox>
 
-                <h5>Virtual Scroll (1000 Items)</h5>
+                <h5>Virtual Scroll (100000 Items)</h5>
                 <Listbox v-model="selectedItem" :options="items" optionLabel="label" optionValue="value" :virtualScrollerOptions="{ itemSize: 31 }" style="width:15rem" listStyle="height:250px" />
             </div>
         </div>
@@ -98,7 +98,7 @@ export default {
                     {label: 'Yokohama', value: 'Yokohama'}
                 ]
             }],
-            items: Array.from({ length: 1000 }, (_, i) => ({ label: `Item #${i}`, value: i }))
+            items: Array.from({ length: 100000 }, (_, i) => ({ label: `Item #${i}`, value: i }))
         }
     },
     components: {

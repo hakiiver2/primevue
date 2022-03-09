@@ -1,16 +1,6 @@
 {
     "data": [
         {
-            "name": "Vue 2",
-            "meta": ["general"],
-            "children": [
-                {
-                    "name": "PrimeVue 2",
-                    "href": "https://www.primefaces.org/primevue/showcase-v2"
-                }
-            ]
-        },
-        {
             "name": "General",
             "meta": ["general"],
             "children": [
@@ -101,56 +91,28 @@
         {
             "name": "PrimeBlocks",
             "meta": ["primeblocks"],
-            "banner": true,
-            "imageLight": "demo/images/banner-primeblocks.png",
-            "imageDark": "demo/images/banner-primeblocks-dark.png",
-            "url": "https://www.primefaces.org/primeblocks-vue",
-            "children": []
+            "children": [
+                {
+                    "name": "Free Blocks",
+                    "href": "https://www.primefaces.org/primeblocks-vue/#/free"
+                },
+                {
+                    "name": "All Blocks",
+                    "href": "https://www.primefaces.org/primeblocks-vue/"
+                }
+            ]
         },
         {
-            "name": "PrimeFlex 3.0",
-            "meta": ["primeflex"],
-            "banner": true,
-            "imageLight": "demo/images/banner-primeflex.svg",
-            "imageDark": "demo/images/banner-primeflex-dark.svg",
-            "url": "https://www.primefaces.org/primeflex",
-            "children": []
-        },
-        {
-            "name": "PrimeFlex 2.0",
+            "name": "PrimeFlex",
             "meta": ["primeflex"],
             "children": [
                 {
-                    "name": "Setup",
-                    "to": "/primeflex"
+                    "name": "PrimeFlex v3",
+                    "href": "https://www.primefaces.org/primeflex"
                 },
                 {
-                    "name": "Display",
-                    "to": "/display"
-                },
-                {
-                    "name": "Elevation",
-                    "to": "/elevation"
-                },
-                {
-                    "name": "Flexbox",
-                    "to": "/flexbox"
-                },
-                {
-                    "name": "Form Layout",
-                    "to": "/formlayout"
-                },
-                {
-                    "name": "Grid System",
-                    "to": "/grid"
-                },
-                {
-                    "name": "Spacing",
-                    "to": "/spacing"
-                },
-                {
-                    "name": "Text",
-                    "to": "/text"
+                    "name": "PrimeFlex v2",
+                    "href": "https://github.com/primefaces/primeflex/wiki/PrimeFlex-v2"
                 }
             ]
         },
@@ -174,8 +136,7 @@
                 },
                 {
                     "name": "Calendar",
-                    "to": "/calendar",
-                    "badge": "Updated"
+                    "to": "/calendar"
                 },
                 {
                     "name": "CascadeSelect",
@@ -370,6 +331,10 @@
                         {
                             "name": "Scroll",
                             "to": "/datatable/scroll"
+                        },
+                        {
+                            "name": "VirtualScroll",
+                            "to": "/datatable/virtualscroll"
                         },
                         {
                             "name": "FlexScroll",

@@ -1,5 +1,144 @@
 # Changelog
 
+## [3.12.1](https://github.com/primefaces/primevue/tree/3.12.1) (2022-03-02)
+
+[Full Changelog](https://github.com/primefaces/primevue/compare/3.12.0...3.12.1)
+
+**Implemented New Features and Enhancements:**
+
+- Added InputNumber focus and blur events [\#2235](https://github.com/primefaces/primevue/issues/2235)
+- Add p-button-\* class support to SplitButton [\#2230](https://github.com/primefaces/primevue/issues/2230)
+- Calendar keydown event [\#2219](https://github.com/primefaces/primevue/issues/2219)
+- Calendar input value added blur event [\#2186](https://github.com/primefaces/primevue/issues/2186)
+- PanelMenu keyboard navigation [\#2181](https://github.com/primefaces/primevue/issues/2181)
+- Change lara to use system font [\#2180](https://github.com/primefaces/primevue/issues/2180)
+- Red Color Palette [\#1944](https://github.com/primefaces/primevue/issues/1944)
+
+**Fixed bugs:**
+
+- Galleria containerStyle and containerClass TypeScript error [\#2245](https://github.com/primefaces/primevue/issues/2245)
+- Material Calendar | Disabled Calendar getting opacity twice [\#2239](https://github.com/primefaces/primevue/issues/2239)
+- DataView DataViewLayoutType TypeScript error [\#2228](https://github.com/primefaces/primevue/issues/2228)
+- Material DataTable extension border typo fix [\#2227](https://github.com/primefaces/primevue/issues/2227)
+- Inline calendar adds autofocus [\#2212](https://github.com/primefaces/primevue/issues/2212)
+- Bug on Dark Themes related with fixed columns [\#2210](https://github.com/primefaces/primevue/issues/2210)
+- Lara Light Blue | Primary Button Hover is not Changing [\#2209](https://github.com/primefaces/primevue/issues/2209)
+- DataTableFilterMeta TypeScript error [\#2196](https://github.com/primefaces/primevue/issues/2196)
+- Toast: add missing 'top-right' ToastPositionType causing Typescript compilation errors [\#2176](https://github.com/primefaces/primevue/issues/2176)
+- \[BUG\] Advanced FileUploader in Dialog in IOS [\#2167](https://github.com/primefaces/primevue/issues/2167)
+- DataTable row-select and row-unselect index is always undefined [\#2068](https://github.com/primefaces/primevue/issues/2068)
+- Dropdown search don't work with Gboard [\#1389](https://github.com/primefaces/primevue/issues/1389)
+
+## [3.12.0](https://github.com/primefaces/primevue/tree/3.12.0) (2022-02-15)
+
+[Full Changelog](https://github.com/primefaces/primevue/compare/3.11.0...3.12.0)
+
+**Implemented New Features and Enhancements:**
+
+- New Calendar focus and blur events [\#2160](https://github.com/primefaces/primevue/issues/2160)
+- Calendar | hide timepicker on month/year select [\#2156](https://github.com/primefaces/primevue/issues/2156)
+- New stripedRows property for OrderList and PickList [\#2154](https://github.com/primefaces/primevue/issues/2154)
+- New input event for Calendar [\#2152](https://github.com/primefaces/primevue/issues/2152)
+- MultiSelect | Filter autocomplete attribute support  [\#2145](https://github.com/primefaces/primevue/issues/2145)
+- Custom Table CSV Export Headers [\#2141](https://github.com/primefaces/primevue/issues/2141)
+- Knob | replace surface letters with new surface variables [\#2132](https://github.com/primefaces/primevue/issues/2132)
+- Replace surface letters with new surface variables [\#2129](https://github.com/primefaces/primevue/issues/2129)
+
+**Fixed bugs:**
+
+- Scrollable TabView forwardIsDisabled defect [\#2169](https://github.com/primefaces/primevue/issues/2169)
+- Lara scrollable Tabview highlight defect [\#2165](https://github.com/primefaces/primevue/issues/2165)
+- MultiSelect virtual scroll with selected item [\#2158](https://github.com/primefaces/primevue/issues/2158)
+- TreeTable Typescript - 'checkbox' missing in TreeTableSelectionModeType [\#2148](https://github.com/primefaces/primevue/issues/2148)
+- FullCalendar | Bootstrap background highlight is wrong [\#2143](https://github.com/primefaces/primevue/issues/2143)
+- Wrong property name "col" in Treetable/FooterCell [\#2134](https://github.com/primefaces/primevue/issues/2134)
+- Multiple SplitterPanels created using v-for directive [\#2120](https://github.com/primefaces/primevue/issues/2120)
+- Dropdown virtual scroll and lazy load dropdown with selected item [\#2114](https://github.com/primefaces/primevue/issues/2114)
+- Incomplete prop types specified in Column [\#2097](https://github.com/primefaces/primevue/issues/2097)
+- OrganizationChart: "value" property improperly defined as "OrganizationChartNode\[\]" in OrganizationChartProps [\#2069](https://github.com/primefaces/primevue/issues/2069)
+- ConfirmDialog: 'defaultFocus' property missing from ConfirmationOptions.d.ts, causing TypeScript errors [\#2058](https://github.com/primefaces/primevue/issues/2058)
+
+## [3.11.1](https://github.com/primefaces/primevue/tree/3.11.1) (2022-01-31)
+
+[Full Changelog](https://github.com/primefaces/primevue/compare/3.11.0...3.11.1)
+
+**Implemented New Features and Enhancements:**
+
+- Update themes for datatable list shadow style [\#2025](https://github.com/primefaces/primevue/issues/2025)
+
+**Fixed bugs:**
+
+- contentStyle defect on VirtualScroller [\#2064](https://github.com/primefaces/primevue/issues/2064)
+- Sidebar: ripple appears in the wrong place [\#2039](https://github.com/primefaces/primevue/issues/2039)
+- tailwind theme - wrong styles [\#2023](https://github.com/primefaces/primevue/issues/2023)
+- TreeTable | More than 2 Frozen Columns not Compatible with Table Scroll  [\#2019](https://github.com/primefaces/primevue/issues/2019)
+- TreeTable | ColResize Expand Mode not Compatible with Table Scroll and Frozen [\#1989](https://github.com/primefaces/primevue/issues/1989)
+- DataTable Dynamic Row defect [\#1932](https://github.com/primefaces/primevue/issues/1932)
+
+## [3.11.0](https://github.com/primefaces/primevue/tree/3.11.0) (2022-01-18)
+
+[Full Changelog](https://github.com/primefaces/primevue/compare/3.10.0...3.11.0)
+
+**Implemented New Features and Enhancements:**
+
+- Move PrimeFlex v2 Docs to Github [\#2017](https://github.com/primefaces/primevue/issues/2017)
+- Update themes for list shadow style [\#2008](https://github.com/primefaces/primevue/issues/2008)
+- Improve resizable structure on DataTable [\#2001](https://github.com/primefaces/primevue/issues/2001)
+- PrimeFlex 3 update for PrimeVue showcase [\#1977](https://github.com/primefaces/primevue/issues/1977)
+- Dialog: close button cannot receive focus [\#1975](https://github.com/primefaces/primevue/issues/1975)
+- New Color Scheme for Lara Dark [\#1919](https://github.com/primefaces/primevue/issues/1919)
+- Templating for SplitButton [\#1795](https://github.com/primefaces/primevue/issues/1795)
+
+**Fixed bugs:**
+
+- Tooltip import defect [\#2013](https://github.com/primefaces/primevue/issues/2013)
+- Tree node toggler button is shrunk until not visible if label starts to not fit the node [\#2011](https://github.com/primefaces/primevue/issues/2011)
+- DataTable | Footer is not align when resize mode is enable [\#2003](https://github.com/primefaces/primevue/issues/2003)
+- Dropdown doesn't display empty string [\#1995](https://github.com/primefaces/primevue/issues/1995)
+- Tag doesn't show icon when slot is used instead of "value" attribute [\#1993](https://github.com/primefaces/primevue/issues/1993)
+- Dropdown | filled background problem [\#1980](https://github.com/primefaces/primevue/issues/1980)
+- DataTable | ColResize Expand Mode not Compatible with Table Scroll [\#1970](https://github.com/primefaces/primevue/issues/1970)
+- DataTable, TreeTable | Checkbox and RadioButton Focus Missing on Material [\#1967](https://github.com/primefaces/primevue/issues/1967)
+- Datatable: Inline filterMenuStyle doesn't add css properties [\#1966](https://github.com/primefaces/primevue/issues/1966)
+- Update type checking for class properties [\#1959](https://github.com/primefaces/primevue/issues/1959)
+- Cannot dynamically set Toast severity [\#1955](https://github.com/primefaces/primevue/issues/1955)
+- tooltip type error in SpeedDial.d.ts and Dock.d.ts [\#1945](https://github.com/primefaces/primevue/issues/1945)
+- Type definition for 'header' slot missing in TabPanel component [\#1943](https://github.com/primefaces/primevue/issues/1943)
+- Calendar: the Year is incorrect for Multiple Months mode [\#1942](https://github.com/primefaces/primevue/issues/1942)
+- DataTable: sticky column header doesn't stay fixed  [\#1938](https://github.com/primefaces/primevue/issues/1938)
+- MenuItem: type of `to` should be `RouteLocationRaw`  [\#1933](https://github.com/primefaces/primevue/issues/1933)
+- Calendar: the Year is incorrect for Multiple Months mode [\#1924](https://github.com/primefaces/primevue/issues/1924)
+- Error while dynamic remove SplitterPanel component. [\#1914](https://github.com/primefaces/primevue/issues/1914)
+- DataTable - Paginator doesn't reset on Lazy sort [\#1905](https://github.com/primefaces/primevue/issues/1905)
+- header option is missing from confirmoption [\#1902](https://github.com/primefaces/primevue/issues/1902)
+- ConfirmationService: require is not defined [\#1897](https://github.com/primefaces/primevue/issues/1897)
+- Toast: Production Typescript Build Error: Type detail [\#1856](https://github.com/primefaces/primevue/issues/1856)
+- Missing props in ConfirmationOptions.d.ts [\#1852](https://github.com/primefaces/primevue/issues/1852)
+
+## [3.10.0](https://github.com/primefaces/primevue/tree/3.10.0) (2021-12-07)
+
+[Full Changelog](https://github.com/primefaces/primevue/compare/2.7.0...3.10.0)
+
+**Implemented New Features and Enhancements:**
+
+- Calendar | Escape Support For Month and Year Picker [\#1847](https://github.com/primefaces/primevue/issues/1847)
+- Add data param to exportCSV method on DataTable [\#1845](https://github.com/primefaces/primevue/issues/1845)
+- Improve VirtualScroller implementation for Data components [\#1844](https://github.com/primefaces/primevue/issues/1844)
+- Add virtualScroller feature to DataTable [\#1843](https://github.com/primefaces/primevue/issues/1843)
+- DataTable component does not work correctly "Checkbox selection" together with "lazy" [\#1841](https://github.com/primefaces/primevue/issues/1841)
+- Provide chartjs object when Chart component is totally instantiated [\#1840](https://github.com/primefaces/primevue/issues/1840)
+- Improve TypeScript Definitions on all components  [\#1836](https://github.com/primefaces/primevue/issues/1836)
+
+**Fixed bugs:**
+
+- Calendar | Year Picker and Month Picker empty when using Range and Multiple options [\#1848](https://github.com/primefaces/primevue/issues/1848)
+- Calendar manual input doesn't work [\#1825](https://github.com/primefaces/primevue/issues/1825)
+- PanelMenu does not use unique IDs [\#1791](https://github.com/primefaces/primevue/issues/1791)
+
+**Deprecated:**
+
+- Deprecate keepInvalid of Calendar [\#1849](https://github.com/primefaces/primevue/issues/1849)
+
 ## [3.9.1](https://github.com/primefaces/primevue/tree/3.9.1) (2021-11-18)
 
 [Full Changelog](https://github.com/primefaces/primevue/compare/3.9.0...3.9.1)
@@ -811,6 +950,63 @@
 - Scrollable Table alignment improvement [\#482](https://github.com/primefaces/primevue/issues/482)
 - Button not registered in FileUpload [\#478](https://github.com/primefaces/primevue/issues/478)
 - BlockUI documentation indicates "show" event whereas the actual event is "unblock" [\#485](https://github.com/primefaces/primevue/issues/485)
+
+## [2.9.0](https://github.com/primefaces/primevue/tree/2.9.0) (2022-02-07)
+
+[Full Changelog](https://github.com/primefaces/primevue/compare/2.8.0...2.9.0)
+
+**Implemented New Features and Enhancements:**
+
+- New v2 TreeTable showGridlines property [\#2115](https://github.com/primefaces/primevue/issues/2115)
+- v2 DataTable component does not work correctly "Checkbox selection" together with "lazy" [\#2109](https://github.com/primefaces/primevue/issues/2109)
+- Dialog v2: close button cannot receive focus [\#2087](https://github.com/primefaces/primevue/issues/2087)
+- PrimeFlex 3 update for PrimeVue 2 showcase  [\#2085](https://github.com/primefaces/primevue/issues/2085)
+- v2 Update themes for datatable list shadow style [\#2072](https://github.com/primefaces/primevue/issues/2072)
+- v2 New Color Scheme for Lara Dark [\#2070](https://github.com/primefaces/primevue/issues/2070)
+- New Dialog v2 containerStyle prop and modal leave defect [\#1957](https://github.com/primefaces/primevue/issues/1957)
+
+**Fixed bugs:**
+
+- Sidebar v2: ripple appears in the wrong place [\#2105](https://github.com/primefaces/primevue/issues/2105)
+- TreeTable v2 | ColResize Expand Mode not Compatible with Table Scroll and Frozen [\#2101](https://github.com/primefaces/primevue/issues/2101)
+- v2 Dropdown doesn't display empty string [\#2095](https://github.com/primefaces/primevue/issues/2095)
+- v2 Tree node toggler button is shrunk until not visible if label starts to not fit the node [\#2093](https://github.com/primefaces/primevue/issues/2093)
+- Tag v2 doesn't show icon when slot is used instead of "value" attribute [\#2091](https://github.com/primefaces/primevue/issues/2091)
+- DataTable v2: Inline filterMenuStyle doesn't add css properties [\#2089](https://github.com/primefaces/primevue/issues/2089)
+- DataTable v2 | ColResize Expand Mode not Compatible with Table Scroll  [\#2080](https://github.com/primefaces/primevue/issues/2080)
+- v2 DataTable, TreeTable | Checkbox and RadioButton Focus Missing on Material [\#2078](https://github.com/primefaces/primevue/issues/2078)
+- Calendar v2: the Year is incorrect for Multiple Months mode [\#2076](https://github.com/primefaces/primevue/issues/2076)
+- v2 Tailwind theme - wrong styles [\#2071](https://github.com/primefaces/primevue/issues/2071)
+- bugfix panelMenuSub isActive bug in 2.8.0 [\#1986](https://github.com/primefaces/primevue/issues/1986)
+
+## [2.8.0](https://github.com/primefaces/primevue/tree/2.8.0) (2021-12-14)
+
+[Full Changelog](https://github.com/primefaces/primevue/compare/2.7.0...2.8.0)
+
+**Implemented New Features and Enhancements:**
+
+- Provide chartjs object v2 [\#1887](https://github.com/primefaces/primevue/issues/1887)
+- Calendar v2 | Escape Support For Month and Year Picker [\#1879](https://github.com/primefaces/primevue/issues/1879)
+- Constants for Toast [\#1874](https://github.com/primefaces/primevue/issues/1874)
+- Constants for PrimeIcons [\#1873](https://github.com/primefaces/primevue/issues/1873)
+- Add inputStyle to PrimeVue Config v2 [\#1871](https://github.com/primefaces/primevue/issues/1871)
+- responsiveLayout for TreeTable v2 [\#1870](https://github.com/primefaces/primevue/issues/1870)
+- Reimplemented TreeTable with new FilterService [\#1869](https://github.com/primefaces/primevue/issues/1869)
+- New Utils module [\#1867](https://github.com/primefaces/primevue/issues/1867)
+- New OverlayEventBus [\#1866](https://github.com/primefaces/primevue/issues/1866)
+- New FilterService Utility [\#1865](https://github.com/primefaces/primevue/issues/1865)
+- Reimplemented DataTable v2 [\#1864](https://github.com/primefaces/primevue/issues/1864)
+
+**Fixed bugs:**
+
+- Slider range with min/max bug [\#1882](https://github.com/primefaces/primevue/issues/1882)
+- Calendar v2 | Year Picker and Month Picker empty when using Range and Multiple options [\#1880](https://github.com/primefaces/primevue/issues/1880)
+- Calendar v2 manual input doesn't work  [\#1878](https://github.com/primefaces/primevue/issues/1878)
+- Dropdown v2 positioning issue [\#1868](https://github.com/primefaces/primevue/issues/1868)
+
+**Deprecated:**
+
+- Disable VirtualScroll DataTable v2 [\#1863](https://github.com/primefaces/primevue/issues/1863)
 
 ## [2.7.0](https://github.com/primefaces/primevue/tree/2.7.0) (2021-11-25)
 

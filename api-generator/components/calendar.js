@@ -245,16 +245,21 @@ const CalendarProps = [
         type: "any",
         default: "null",
         description: "Inline style of the component."
-    },
-    {
-        name: "keepInvalid",
-        type: "boolean",
-        default: "false",
-        description: "Keep invalid value when input blur."
     }
 ];
 
 const CalendarEvents = [
+    {
+        name: "input",
+        description: "Callback to invoke when input field is being typed.",
+        arguments: [
+            {
+                name: "event",
+                type: "object",
+                description: "New date"
+            }
+        ]
+    },
     {
         name: "date-select",
         description: "Callback to invoke when a date is selected.",
@@ -325,6 +330,44 @@ const CalendarEvents = [
                 name: "event.year",
                 type: "number",
                 description: "New year"
+            }
+        ]
+    },
+    {
+        name: "focus",
+        description: "Callback to invoke on focus of input field.",
+        arguments: [
+            {
+                name: "event",
+                type: "object",
+                description: "Focus event"
+            }
+        ]
+    },
+    {
+        name: "blur",
+        description: "Callback to invoke on blur of input field.",
+        arguments: [
+            {
+                name: "event.originalEvent",
+                type: "object",
+                description: "Browser event"
+            },
+            {
+                name: "event.value",
+                type: "string",
+                description: "Input value"
+            }
+        ]
+    },
+    {
+        name: "keydown",
+        description: "Callback to invoke when a key is pressed.",
+        arguments: [
+            {
+                name: "event",
+                type: "object",
+                description: "Keydown event"
             }
         ]
     }

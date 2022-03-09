@@ -142,13 +142,13 @@ export default {
                     </tr>
                     <tr>
                         <td>optionLabel</td>
-                        <td>string</td>
+                        <td>string | function</td>
                         <td>null</td>
                         <td>Property name or getter function to use as the label of an option.</td>
                     </tr>
                     <tr>
                         <td>optionValue</td>
-                        <td>string</td>
+                        <td>string | function</td>
                         <td>null</td>
                         <td>Property name or getter function to use as the value of an option, defaults to the option itself when not defined.</td>
                     </tr>
@@ -160,13 +160,13 @@ export default {
                     </tr>
                     <tr>
                         <td>optionGroupLabel</td>
-                        <td>string</td>
+                        <td>string | function</td>
                         <td>null</td>
                         <td>Property name or getter function to use as the label of an option group.</td>
                     </tr>
                     <tr>
                         <td>optionGroupChildren</td>
-                        <td>string</td>
+                        <td>string | function</td>
                         <td>null</td>
                         <td>Property name or getter function that refers to the children options of option group.</td>
                     </tr>
@@ -389,8 +389,8 @@ export default {
         <h5>Grouped</h5>
         <Listbox v-model="selectedGroupedCity" :options="groupedCities" optionLabel="label" style="width:15rem" optionGroupLabel="label" optionGroupChildren="items" listStyle="max-height:250px">
             <template #optiongroup="slotProps">
-                <div class="p-d-flex p-ai-center country-item">
-                    <img src="https://www.primefaces.org/wp-content/uploads/2020/05/placeholder.png" width="18" class="p-mr-2" />
+                <div class="flex align-items-center country-item">
+                    <img src="https://www.primefaces.org/wp-content/uploads/2020/05/placeholder.png" width="18" class="mr-2" />
                     <div>{{slotProps.option.label}}</div>
                 </div>
             </template>
@@ -400,7 +400,7 @@ export default {
         <Listbox v-model="selectedCountries" :options="countries" :multiple="true" :filter="true" optionLabel="name" listStyle="max-height:250px" style="width:15rem" filterPlaceholder="Search">
             <template #option="slotProps">
                 <div class="country-item">
-                    <img src="https://www.primefaces.org/wp-content/uploads/2020/05/placeholder.png" width="18" class="p-mr-2" />
+                    <img src="https://www.primefaces.org/wp-content/uploads/2020/05/placeholder.png" width="18" class="mr-2" />
                     <div>{{slotProps.option.name}}</div>
                 </div>
             </template>
@@ -465,7 +465,7 @@ export default {
                     {label: 'Yokohama', value: 'Yokohama'}
                 ]
             }],
-            items: Array.from({ length: 1000 }, (_, i) => ({ label: \`Item #\${i}\`, value: i }))
+            items: Array.from({ length: 100000 }, (_, i) => ({ label: \`Item #\${i}\`, value: i }))
         }
     }
 }
@@ -483,22 +483,22 @@ export default {
         <h5>Grouped</h5>
         <Listbox v-model="selectedGroupedCity" :options="groupedCities" optionLabel="label" style="width:15rem" optionGroupLabel="label" optionGroupChildren="items" listStyle="max-height:250px">
             <template #optiongroup="slotProps">
-                <div class="p-d-flex p-ai-center country-item">
-                    <img src="https://www.primefaces.org/wp-content/uploads/2020/05/placeholder.png" width="18" class="p-mr-2" />
+                <div class="flex align-items-center country-item">
+                    <img src="https://www.primefaces.org/wp-content/uploads/2020/05/placeholder.png" width="18" class="mr-2" />
                     <div>{{slotProps.option.label}}</div>
                 </div>
             </template>
         </Listbox>
 
-       <h5>Advanced with Templating, Filtering and Multiple Selection</h5>
-       <Listbox v-model="selectedCountries" :options="countries" :multiple="true" :filter="true" optionLabel="name" listStyle="max-height:250px" style="width:15rem" filterPlaceholder="Search">
-           <template #option="slotProps">
-               <div class="country-item">
-                   <img src="https://www.primefaces.org/wp-content/uploads/2020/05/placeholder.png" width="18" class="p-mr-2" />
-                   <div>{{slotProps.option.name}}</div>
-               </div>
-           </template>
-       </Listbox>
+        <h5>Advanced with Templating, Filtering and Multiple Selection</h5>
+        <Listbox v-model="selectedCountries" :options="countries" :multiple="true" :filter="true" optionLabel="name" listStyle="max-height:250px" style="width:15rem" filterPlaceholder="Search">
+            <template #option="slotProps">
+                <div class="country-item">
+                    <img src="https://www.primefaces.org/wp-content/uploads/2020/05/placeholder.png" width="18" class="mr-2" />
+                    <div>{{slotProps.option.name}}</div>
+                </div>
+            </template>
+        </Listbox>
 
         <h5>Virtual Scroll (1000 Items)</h5>
         <Listbox v-model="selectedItem" :options="items" optionLabel="label" optionValue="value" :virtualScrollerOptions="{ itemSize: 31 }" style="width:15rem" listStyle="height:250px" />
@@ -563,7 +563,7 @@ export default {
                 }
             ]);
 
-        const items = ref(Array.from({ length: 1000 }, (_, i) => ({ label: \`Item #\${i}\`, value: i })));
+        const items = ref(Array.from({ length: 100000 }, (_, i) => ({ label: \`Item #\${i}\`, value: i })));
 
         return { selectedCity, selectedCountries, selectedGroupedCity, cities, countries, groupedCities, items, selectedItem }
     }
@@ -581,8 +581,8 @@ export default {
             <h5>Grouped</h5>
             <p-listbox v-model="selectedGroupedCity" :options="groupedCities" option-label="label" style="width:15rem" option-group-label="label" option-group-children="items" list-style="max-height:250px">
                 <template #optiongroup="slotProps">
-                    <div class="p-d-flex p-ai-center country-item">
-                        <img src="https://www.primefaces.org/wp-content/uploads/2020/05/placeholder.png" width="18" class="p-mr-2" />
+                    <div class="flex align-items-center country-item">
+                        <img src="https://www.primefaces.org/wp-content/uploads/2020/05/placeholder.png" width="18" class="mr-2" />
                         <div>{{slotProps.option.label}}</div>
                     </div>
                 </template>
@@ -592,7 +592,7 @@ export default {
         <p-listbox v-model="selectedCountries" :options="countries" :multiple="true" :filter="true" option-label="name" list-style="max-height:250px" style="width:15rem" filter-placeholder="Search">
             <template #option="slotProps">
                 <div class="country-item">
-                    <img src="https://www.primefaces.org/wp-content/uploads/2020/05/placeholder.png" width="18" class="p-mr-2" />
+                    <img src="https://www.primefaces.org/wp-content/uploads/2020/05/placeholder.png" width="18" class="mr-2" />
                     <div>{{slotProps.option.name}}</div>
                 </div>
             </template>
@@ -660,7 +660,7 @@ export default {
                         }
                     ]);
 
-                const items = ref(Array.from({ length: 1000 }, (_, i) => ({ label: \`Item #\${i}\`, value: i })));
+                const items = ref(Array.from({ length: 100000 }, (_, i) => ({ label: \`Item #\${i}\`, value: i })));
 
                 return { selectedCity, selectedCountries, selectedGroupedCity, cities, countries, groupedCities, items, selectedItem }
             },

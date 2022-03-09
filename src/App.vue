@@ -1,13 +1,10 @@
 <template>
     <div class="layout-wrapper" :class="containerClass">
         <div class="layout-news" v-if="newsActive">
-            <div class="layout-news-container">
-                <a href="https://www.primefaces.org/primeblocks-vue" class="layouts-news-mockup" target="_blank">
-                    <img class="layouts-news-mockup-image" src="./assets/images/topbar-primeblocks-device.png">
-                </a>
-                <a href="https://www.primefaces.org/primeblocks-vue" target="_blank" tabindex="-1" style="text-decoration: none" class="layout-news-button">
-                    LEARN MORE
-                    <i class="pi pi-angle-right"></i>
+            <div class="layout-news-container" @click="redirect">
+                <img class="layout-news-logo ml-2" src="./assets/images/topbar-primeblocks-device.png">
+                <a href="https://www.primefaces.org/primeblocks-vue" target="_blank" tabindex="-1" class="layout-news-button">
+                    Read More
                 </a>
                 <a tabindex="0" class="layout-news-close" @click="hideNews">
                     <i class="pi pi-times"></i>
@@ -15,13 +12,15 @@
             </div>
         </div>
 
-        <app-topbar @menubutton-click="onMenuButtonClick" @change-theme="changeTheme" :theme="theme" />
+        <app-topbar @menubutton-click="onMenuButtonClick" />
         <app-menu :active="sidebarActive" />
-        <app-configurator @change-theme="changeTheme" :theme="theme" />
+        <app-configurator  />
         <div :class="['layout-mask', {'layout-mask-active': sidebarActive}]" @click="onMaskClick"></div>
         <div class="layout-content">
-            <router-view/>
-            <app-footer />
+            <div class="layout-content-inner">
+                <router-view/>
+                <app-footer />
+            </div>
         </div>
         <Toast />
         <Toast position="top-left" group="tl" />
@@ -36,23 +35,18 @@ import AppTopBar from '@/AppTopBar.vue';
 import AppMenu from '@/AppMenu.vue';
 import AppFooter from '@/AppFooter.vue';
 import AppConfigurator from '@/AppConfigurator.vue';
-import EventBus from '@/AppEventBus';
 
 export default {
     data() {
         return {
             sidebarActive: false,
-            newsActive: true,
-            theme: 'lara-dark-indigo'
+            newsActive: false
         }
     },
     mounted() {
         if (this.isOutdatedIE()) {
             this.$toast.add({severity: 'warn', summary: 'Limited Functionality', detail: 'Although PrimeVue supports IE11, ThemeSwitcher in this application cannot be not fully supported by your browser. Please use a modern browser for the best experience of the showcase.'});
         }
-
-        this.newsActive = this.newsActive && sessionStorage.getItem('primevue-news-hidden') == null;
-        this.initTheme();
     },
     watch: {
         $route: {
@@ -72,22 +66,6 @@ export default {
         }
     },
     methods: {
-        initTheme() {
-            let appTheme;
-            const queryString = window.location.search;
-            if (queryString)
-                appTheme = new URLSearchParams(queryString.substring(1)).get('theme');
-            else
-                appTheme = localStorage.getItem('primevue-theme');
-
-            if (appTheme) {
-                let darkTheme = this.isDarkTheme(appTheme);
-                this.changeTheme({
-                    theme: appTheme,
-                    dark: darkTheme
-                });
-            }
-        },
         onMenuButtonClick() {
             if (this.sidebarActive) {
                 this.sidebarActive = false;
@@ -102,25 +80,10 @@ export default {
             this.sidebarActive = false;
             DomHandler.removeClass(document.body, 'blocked-scroll');
         },
-        hideNews() {
+        hideNews(event) {
             this.newsActive = false;
             sessionStorage.setItem('primevue-news-hidden', 'true');
-        },
-        changeTheme(event) {
-            let themeElement = document.getElementById('theme-link');
-            themeElement.setAttribute('href', themeElement.getAttribute('href').replace(this.theme, event.theme));
-            this.theme = event.theme;
-
-            this.activeMenuIndex = null;
-
-            EventBus.emit('change-theme', event);
-            this.$appState.darkTheme = event.dark;
-
-            if (event.theme.startsWith('md')) {
-                this.$primevue.config.ripple = true;
-            }
-
-            localStorage.setItem('primevue-theme', this.theme);
+            event.stopPropagation();
         },
         addClass(element, className) {
             if (!this.hasClass(element, className)) {
@@ -150,8 +113,8 @@ export default {
 
             return false;
         },
-        isDarkTheme(theme) {
-            return theme.indexOf('dark') !== -1 || theme.indexOf('vela') !== -1 || theme.indexOf('arya') !== -1 || theme.indexOf('luna') !== -1;
+        redirect() {
+            window.location.href = 'https://www.primefaces.org/primeblocks-vue';
         }
     },
     computed: {
@@ -159,7 +122,9 @@ export default {
             return [{
                 'layout-news-active': this.newsActive,
                 'p-input-filled': this.$primevue.config.inputStyle === 'filled',
-                'p-ripple-disabled': this.$primevue.config.ripple === false
+                'p-ripple-disabled': this.$primevue.config.ripple === false,
+                'layout-wrapper-dark': this.$appState.darkTheme,
+                'layout-wrapper-light': !this.$appState.darkTheme
             }];
         }
     },
