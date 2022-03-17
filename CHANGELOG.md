@@ -1,5 +1,28 @@
 # Changelog
 
+## [3.12.2](https://github.com/primefaces/primevue/tree/3.12.2) (2022-03-16)
+
+[Full Changelog](https://github.com/primefaces/primevue/compare/3.12.1...3.12.2)
+
+**Implemented New Features and Enhancements:**
+
+- New DataTable editor callbacks [\#2312](https://github.com/primefaces/primevue/issues/2312)
+
+**Fixed bugs:**
+
+- Type declaration and export bug on ConfirmationService [\#2266](https://github.com/primefaces/primevue/issues/2266)
+- The type declaration for global property $primevue is not woking in Vue3 [\#2315](https://github.com/primefaces/primevue/issues/2315)
+- Colspan defect with hidden Columns [\#2310](https://github.com/primefaces/primevue/issues/2310)
+- DataTable with edit, sort and filter options does not work as expected [\#2271](https://github.com/primefaces/primevue/issues/2271)
+- InputSwitch TypeScript modelValue error [\#2262](https://github.com/primefaces/primevue/issues/2262)
+- Data Table row checkboxes propagate click events leading to double-handling of row select/unselect [\#2259](https://github.com/primefaces/primevue/issues/2259)
+- Pressing Enter/Return key submits form when there is a single MultiSelect and it has focus [\#2241](https://github.com/primefaces/primevue/issues/2241)
+- Multiselect with Grouped Data, select all options [\#2168](https://github.com/primefaces/primevue/issues/2168)
+- filterMatchMode option is ignored in MultiSelect [\#2162](https://github.com/primefaces/primevue/issues/2162)
+- Range slider get stuck when both handle on max value [\#2074](https://github.com/primefaces/primevue/issues/2074)
+- Bug: Tooltip shown at wrong place [\#1976](https://github.com/primefaces/primevue/issues/1976)
+- FileUpload: Custom upload bug on clear list [\#1723](https://github.com/primefaces/primevue/issues/1723)
+
 ## [3.12.1](https://github.com/primefaces/primevue/tree/3.12.1) (2022-03-02)
 
 [Full Changelog](https://github.com/primefaces/primevue/compare/3.12.0...3.12.1)
@@ -950,6 +973,30 @@
 - Scrollable Table alignment improvement [\#482](https://github.com/primefaces/primevue/issues/482)
 - Button not registered in FileUpload [\#478](https://github.com/primefaces/primevue/issues/478)
 - BlockUI documentation indicates "show" event whereas the actual event is "unblock" [\#485](https://github.com/primefaces/primevue/issues/485)
+
+## [2.9.1](https://github.com/primefaces/primevue/tree/2.9.1) (2022-03-16)
+
+[Full Changelog](https://github.com/primefaces/primevue/compare/2.9.0...2.9.1)
+
+**Implemented New Features and Enhancements:**
+
+- v2 Add p-button-\* class support to SplitButton [\#2300](https://github.com/primefaces/primevue/issues/2300)
+- Calendar v2 | hide timepicker on month/year select [\#2290](https://github.com/primefaces/primevue/issues/2290)
+- v2 New stripedRows property for OrderList and PickList [\#2288](https://github.com/primefaces/primevue/issues/2288)
+- MultiSelect v2 | Filter autocomplete attribute support [\#2286](https://github.com/primefaces/primevue/issues/2286)
+- v2 Custom Table CSV Export Headers [\#2284](https://github.com/primefaces/primevue/issues/2284)
+- Knob v2 | replace surface letters with new surface variables [\#2282](https://github.com/primefaces/primevue/issues/2282)
+- v2 Replace surface letters with new surface variables [\#2280](https://github.com/primefaces/primevue/issues/2280)
+- DataTable v2 editor templating [\#2277](https://github.com/primefaces/primevue/issues/2277)
+- InputNumber v2 | Emit focus and blur events added [\#1795](https://github.com/primefaces/primevue/issues/1935)
+
+**Fixed bugs:**
+
+- v2 Dropdown search don't work with Gboard [\#2297](https://github.com/primefaces/primevue/issues/2297)
+- v2 DataTable row-select and row-unselect index is always undefined [\#2295](https://github.com/primefaces/primevue/issues/2295)
+- v2 Scrollable TabView forwardIsDisabled defect [\#2292](https://github.com/primefaces/primevue/issues/2292)
+- Row editing does not work as expected in DataTable [\#2270](https://github.com/primefaces/primevue/issues/2270)
+- v2 DataTable ColGroup in footer/header: Cannot read properties of undefined \(reading 'tag'\) [\#2163](https://github.com/primefaces/primevue/issues/2163)
 
 ## [2.9.0](https://github.com/primefaces/primevue/tree/2.9.0) (2022-02-07)
 
