@@ -1,5 +1,6 @@
 import { VNode } from 'vue';
 import { ClassComponent, GlobalComponentConstructor } from '../ts-helpers';
+import { VirtualScrollerLoaderOptions } from '../virtualscroller';
 
 type ColumnFieldType = string | ((item: any) => string) | undefined;
 
@@ -20,6 +21,37 @@ export interface ColumnFilterModelType {
 
 export interface ColumnFilterMatchModeOptions {
     [key: string]: string;
+}
+
+export interface ColumnLoadingOptions extends VirtualScrollerLoaderOptions {
+    /**
+     * Cell index
+     */
+    cellIndex: number;
+    /**
+     * Whether the cell is first.
+     */
+    cellFirst: boolean;
+    /**
+     * Whether the cell is last.
+     */
+    cellLast: boolean;
+    /**
+     * Whether the cell is even.
+     */
+    cellEven: boolean;
+    /**
+     * Whether the item is odd.
+     */
+    cellOdd: boolean;
+    /**
+     * Column instance
+     */
+    column: Column;
+    /**
+     * Column field
+     */
+    field: string;
 }
 
 export interface ColumnProps {
@@ -65,7 +97,7 @@ export interface ColumnProps {
     /**
      * Style class of header, body and footer cells.
      */
-    class?: string | undefined;
+    class?: any;
     /**
      * Inline style of the column header.
      */
@@ -73,7 +105,7 @@ export interface ColumnProps {
     /**
      * Style class of the column header.
      */
-    headerClass?: string | undefined;
+    headerClass?: any;
     /**
      * Inline style of the column body.
      */
@@ -81,7 +113,7 @@ export interface ColumnProps {
     /**
      * Style class of the column body.
      */
-    bodyClass?: string | undefined;
+    bodyClass?: any;
     /**
      * Inline style of the column footer.
      */
@@ -89,7 +121,7 @@ export interface ColumnProps {
     /**
      * Style class of the column footer.
      */
-    footerClass?: string | undefined;
+    footerClass?: any;
     /**
      * Whether to display the filter overlay.
      * Default value is true.
@@ -140,7 +172,7 @@ export interface ColumnProps {
     /**
      * Style class of the column filter header in row filter display.
      */
-    filterHeaderClass?: string | undefined;
+    filterHeaderClass?: any;
     /**
      * Inline style of the column filter overlay.
      */
@@ -148,7 +180,7 @@ export interface ColumnProps {
     /**
      * Style class of the column filter overlay.
      */
-    filterMenuClass?: string | undefined;
+    filterMenuClass?: any;
     /**
      * Defines column based selection mode, options are 'single' and 'multiple'.
      * @see ColumnSelectionModeType
@@ -198,6 +230,10 @@ export interface ColumnProps {
      */
     exportable?: boolean | undefined;
     /**
+     * Custom export header of the column to be exported as CSV.
+     */
+    exportHeader?: string | undefined;
+    /**
      * Defines the filtering algorithm to use when searching the options.
      */
     filterMatchMode?: string | undefined;
@@ -233,6 +269,10 @@ export interface ColumnSlots {
          * Whether the row is frozen.
          */
         frozenRow: boolean;
+        /**
+         * Callback function
+         */
+        editorInitCallback: () => void;
     }) => VNode[];
     /**
      * Custom header template.
@@ -244,7 +284,7 @@ export interface ColumnSlots {
          */
         column: Column;
     }) => VNode[];
-     /**
+    /**
      * Custom footer template.
      * @param {Object} scope - footer slot's params.
      */
@@ -279,8 +319,16 @@ export interface ColumnSlots {
          * Whether the row is frozen.
          */
         frozenRow: boolean;
+        /**
+         * Callback function
+         */
+        editorSaveCallback: () => void;
+        /**
+         * Callback function
+         */
+        editorCancelCallback: () => void;
     }) => VNode[];
-     /**
+    /**
      * Custom filter template.
      * @param {Object} scope - filter slot's params.
      */
@@ -318,7 +366,7 @@ export interface ColumnSlots {
          */
         filterCallback: () => void;
     }) => VNode[];
-     /**
+    /**
      * Custom filter footer template.
      * @param {Object} scope - filter footer slot's params.
      */
@@ -374,6 +422,37 @@ export interface ColumnSlots {
          * Callback function
          */
         filterCallback: () => void;
+    }) => VNode[];
+    /**
+     * Custom loading template.
+     * @param {Object} scope - loading slot's params.
+     */
+    loading: (scope: {
+        /**
+         * Row data.
+         */
+        data: any;
+        /**
+         * Column node.
+         */
+        column: Column;
+        /**
+         * Column field.
+         */
+        field: string;
+        /**
+         * Row index.
+         */
+        index: number;
+        /**
+         * Whether the row is frozen.
+         */
+        frozenRow: boolean;
+        /**
+         * Loading options.
+         * @see ColumnLoadingOptions
+         */
+        loadingOptions: ColumnLoadingOptions;
     }) => VNode[];
 }
 

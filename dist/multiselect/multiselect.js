@@ -231,8 +231,7 @@ this.primevue.multiselect = (function (utils, OverlayEventBus, api, Ripple, Virt
                         }
                     break;
 
-                    //enter and escape
-                    case 13:
+                    //escape
                     case 27:
                         if (this.overlayVisible) {
                             this.hide();
@@ -312,19 +311,23 @@ this.primevue.multiselect = (function (utils, OverlayEventBus, api, Ripple, Virt
             onOverlayEnter(el) {
                 utils.ZIndexUtils.set('overlay', el, this.$primevue.config.zIndex.overlay);
                 this.alignOverlay();
+
+                if (!this.virtualScrollerDisabled) {
+                    const selectedIndex = this.getSelectedOptionIndex();
+                    if (selectedIndex !== -1) {
+                        setTimeout(() => {
+                            this.virtualScroller && this.virtualScroller.scrollToIndex(selectedIndex);
+                        }, 0);
+                    }
+                }
+            },
+            onOverlayAfterEnter() {
                 this.bindOutsideClickListener();
                 this.bindScrollListener();
                 this.bindResizeListener();
 
                 if (this.filter) {
                     this.$refs.filterInput.focus();
-                }
-
-                if (!this.virtualScrollerDisabled) {
-                    const selectedIndex = this.getSelectedOptionIndex();
-                    if (selectedIndex !== -1) {
-                        this.virtualScroller.scrollToIndex(selectedIndex);
-                    }
                 }
 
                 this.$emit('show');
@@ -449,7 +452,11 @@ this.primevue.multiselect = (function (utils, OverlayEventBus, api, Ripple, Virt
                     else if (this.visibleOptions) {
                         if (this.optionGroupLabel) {
                             value = [];
-                            this.visibleOptions.forEach(optionGroup => value = [...value, ...this.getOptionGroupChildren(optionGroup)]);
+                            this.visibleOptions.forEach(optionGroup => {
+                                for (let option of this.getOptionGroupChildren(optionGroup)) {
+                                    value.push(this.getOptionValue(option));
+                                }
+                            });
                         }
                         else  {
                             value = this.visibleOptions.map(option => this.getOptionValue(option));
@@ -486,7 +493,7 @@ this.primevue.multiselect = (function (utils, OverlayEventBus, api, Ripple, Virt
             }
         },
         computed: {
-             visibleOptions() {
+            visibleOptions() {
                 if (this.filterValue) {
                     if (this.optionGroupLabel) {
                         let filteredGroups = [];
@@ -499,7 +506,7 @@ this.primevue.multiselect = (function (utils, OverlayEventBus, api, Ripple, Virt
                         return filteredGroups
                     }
                     else {
-                        return api.FilterService.filter(this.options, this.searchFields, this.filterValue, 'contains', this.filterLocale);
+                        return api.FilterService.filter(this.options, this.searchFields, this.filterValue, this.filterMatchMode, this.filterLocale);
                     }
                 }
                 else {
@@ -735,6 +742,7 @@ this.primevue.multiselect = (function (utils, OverlayEventBus, api, Ripple, Virt
           vue.createVNode(vue.Transition, {
             name: "p-connected-overlay",
             onEnter: $options.onOverlayEnter,
+            onAfterEnter: $options.onOverlayAfterEnter,
             onLeave: $options.onOverlayLeave,
             onAfterLeave: $options.onOverlayAfterLeave
           }, {
@@ -785,6 +793,7 @@ this.primevue.multiselect = (function (utils, OverlayEventBus, api, Ripple, Virt
                                   type: "text",
                                   ref: "filterInput",
                                   "onUpdate:modelValue": _cache[7] || (_cache[7] = $event => ($data.filterValue = $event)),
+                                  autoComplete: "on",
                                   class: "p-multiselect-filter p-inputtext p-component",
                                   placeholder: $props.filterPlaceholder,
                                   onInput: _cache[8] || (_cache[8] = (...args) => ($options.onFilterChange && $options.onFilterChange(...args)))
@@ -814,10 +823,11 @@ this.primevue.multiselect = (function (utils, OverlayEventBus, api, Ripple, Virt
                         style: {'height': $props.scrollHeight},
                         disabled: $options.virtualScrollerDisabled
                       }), vue.createSlots({
-                        content: vue.withCtx(({ styleClass, contentRef, items, getItemOptions }) => [
+                        content: vue.withCtx(({ styleClass, contentRef, items, getItemOptions, contentStyle}) => [
                           vue.createVNode("ul", {
                             ref: contentRef,
                             class: ['p-multiselect-items p-component', styleClass],
+                            style: contentStyle,
                             role: "listbox",
                             "aria-multiselectable": "true"
                           }, [
@@ -909,7 +919,7 @@ this.primevue.multiselect = (function (utils, OverlayEventBus, api, Ripple, Virt
                                     ])
                                   ]))
                                 : vue.createCommentVNode("", true)
-                          ], 2)
+                          ], 6)
                         ]),
                         _: 2
                       }, [
@@ -931,7 +941,7 @@ this.primevue.multiselect = (function (utils, OverlayEventBus, api, Ripple, Virt
                 : vue.createCommentVNode("", true)
             ]),
             _: 3
-          }, 8, ["onEnter", "onLeave", "onAfterLeave"])
+          }, 8, ["onEnter", "onAfterEnter", "onLeave", "onAfterLeave"])
         ], 8, ["to", "disabled"]))
       ], 2))
     }

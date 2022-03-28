@@ -4,11 +4,11 @@ export interface InputSwitchProps {
     /**
      * Specifies whether a inputswitch should be checked or not.
      */
-    modelValue?: boolean | undefined;
+    modelValue?: boolean | string | undefined;
     /**
      * Inline style of the component.
      */
-    class?: string | undefined;
+    class?: any;
     /**
      * Style class of the component input field.
      */

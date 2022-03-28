@@ -21,7 +21,7 @@ this.primevue.splitter = (function (utils, vue) {
             stateStorage: {
                 type: String,
                 default: 'session'
-            }
+            },
         },
         dragging: false,
         mouseMoveListener: null,
@@ -215,7 +215,7 @@ this.primevue.splitter = (function (utils, vue) {
                         if (this.isSplitterPanel(child)) {
                             panels.push(child);
                         }
-                        else if (child.children.length > 0) {
+                        else if (child.children instanceof Array) {
                             child.children.forEach(nestedChild => {
                                 if (this.isSplitterPanel(nestedChild)) {
                                     panels.push(nestedChild);
@@ -250,6 +250,7 @@ this.primevue.splitter = (function (utils, vue) {
                   key: 0,
                   class: "p-splitter-gutter",
                   style: $options.gutterStyle,
+                  ref: "splitterGutter",
                   onMousedown: $event => ($options.onGutterMouseDown($event, i)),
                   onTouchstart: $event => ($options.onGutterTouchStart($event, i)),
                   onTouchmove: $event => ($options.onGutterTouchMove($event, i)),
