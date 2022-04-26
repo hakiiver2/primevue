@@ -127,7 +127,16 @@ function create(el) {
 
     let tooltipText = document.createElement('div');
     tooltipText.className = 'p-tooltip-text';
-    tooltipText.innerHTML = escapeHtml(el.$_ptooltipValue);
+    // tooltipText.innerHTML = escapeHtml(el.$_ptooltipValue);
+
+
+    if (el.$_ptooltipEscape) {
+        tooltipText.innerHTML = el.$_ptooltipValue;
+    }
+    else {
+        tooltipText.innerHTML = '';
+        tooltipText.appendChild(document.createTextNode(el.$_ptooltipValue));
+    }
 
     container.appendChild(tooltipText);
     document.body.appendChild(container);
@@ -305,14 +314,13 @@ const Tooltip = {
         else if (typeof options.value === 'string') {
             target.$_ptooltipValue = options.value;
             target.$_ptooltipDisabled = false;
+            target.$_ptooltipEscape = false;
             target.$_ptooltipClass = null;
         }
         else {
-            // target.$_ptooltipValue = options.value.value;
-            target.$_ptooltipValue = options.value;
-            // target.$_ptooltipDisabled = options.value.disabled || false;
-            target.$_ptooltipDisabled = options.disabled || false;
-
+            target.$_ptooltipValue = options.value.value;
+            target.$_ptooltipDisabled = options.value.disabled || false;
+            target.$_ptooltipEscape = options.value.escape || false;
             target.$_ptooltipClass = options.value.class;
         }
 
@@ -339,13 +347,13 @@ const Tooltip = {
         if (typeof options.value === 'string') {
             target.$_ptooltipValue = options.value;
             target.$_ptooltipDisabled = false;
+            target.$_ptooltipEscape = false;
             target.$_ptooltipClass = null;
         }
         else {
-            // target.$_ptooltipValue = options.value.value;
-            target.$_ptooltipValue = options.value;
-            // target.$_ptooltipDisabled = options.value.disabled || false;
-            target.$_ptooltipDisabled = options.disabled || false;
+            target.$_ptooltipValue = options.value.value;
+            target.$_ptooltipDisabled = options.value.disabled || false;
+            target.$_ptooltipEscape = options.value.escape || false;
             target.$_ptooltipClass = options.value.class;
         }
     }

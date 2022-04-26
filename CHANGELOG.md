@@ -1,5 +1,43 @@
 # Changelog
 
+## [3.12.5](https://github.com/primefaces/primevue/tree/3.12.5) (2022-04-13)
+
+[Full Changelog](https://github.com/primefaces/primevue/compare/3.12.4...3.12.5)
+
+**Fixed bugs:**
+
+- Toast | z-index shouldn't removed when other toasts are shown [\#2434](https://github.com/primefaces/primevue/issues/2434)
+- ConfirmDialog: 'position' TypeScript errors [\#2381](https://github.com/primefaces/primevue/issues/2381)
+- TreeTable and DataTable | Typescript Definition Bug for global Filters [\#2378](https://github.com/primefaces/primevue/issues/2378)
+- Timeline component: type TimelineVerticalAlignType lack of enum value of 'alternate' [\#2367](https://github.com/primefaces/primevue/issues/2367)
+- Menu | disabled property as a function is not working with command prop [\#2365](https://github.com/primefaces/primevue/issues/2365)
+
+## [3.12.4](https://github.com/primefaces/primevue/tree/3.12.4) (2022-03-31)
+
+[Full Changelog](https://github.com/primefaces/primevue/compare/3.12.3...3.12.4)
+
+**Fixed bugs:**
+
+- StyleClass may fail to enter the element defect [\#2382](https://github.com/primefaces/primevue/issues/2382)
+
+## [3.12.3](https://github.com/primefaces/primevue/tree/3.12.3) (2022-03-30)
+
+[Full Changelog](https://github.com/primefaces/primevue/compare/3.12.2...3.12.3)
+
+**Implemented New Features and Enhancements:**
+
+- Accordion | New expandIcon and collapseIcon properties [\#2373](https://github.com/primefaces/primevue/issues/2373)
+- Tooltip | Escape Support [\#2363](https://github.com/primefaces/primevue/issues/2363)
+- DataView new dataKey property [\#2361](https://github.com/primefaces/primevue/issues/2361)
+- Numpad comma separator support for Chips [\#2349](https://github.com/primefaces/primevue/issues/2349)
+
+**Fixed bugs:**
+
+- StyleClass may fail to enter the element  [\#2371](https://github.com/primefaces/primevue/issues/2371)
+- Calendar  | Loses alignment when positioned at the top of the input and the user clicks in the year/month [\#2369](https://github.com/primefaces/primevue/issues/2369)
+- The v-ripple directive breaks the behavior of list components in Firefox [\#2333](https://github.com/primefaces/primevue/issues/2333)
+- Align overlay not working correctly in ConfirmPopup [\#2038](https://github.com/primefaces/primevue/issues/2038)
+
 ## [3.12.2](https://github.com/primefaces/primevue/tree/3.12.2) (2022-03-16)
 
 [Full Changelog](https://github.com/primefaces/primevue/compare/3.12.1...3.12.2)
@@ -973,6 +1011,25 @@
 - Scrollable Table alignment improvement [\#482](https://github.com/primefaces/primevue/issues/482)
 - Button not registered in FileUpload [\#478](https://github.com/primefaces/primevue/issues/478)
 - BlockUI documentation indicates "show" event whereas the actual event is "unblock" [\#485](https://github.com/primefaces/primevue/issues/485)
+
+## [2.9.2](https://github.com/primefaces/primevue/tree/2.9.2) (2022-04-13)
+
+[Full Changelog](https://github.com/primefaces/primevue/compare/2.9.1...2.9.2)
+
+**Implemented New Features and Enhancements:**
+
+- Tooltip v2 | Escape Support [\#2432](https://github.com/primefaces/primevue/issues/2432)
+- Accordion v2 | New expandIcon and collapseIcon properties [\#2418](https://github.com/primefaces/primevue/issues/2418)
+
+**Fixed bugs:**
+
+- Ripple v2 directive breaks the behavior of list components in Firefox [\#2430](https://github.com/primefaces/primevue/issues/2430)
+- Calendar | Loses alignment when positioned at the top of the input and the user clicks in the year/month [\#2422](https://github.com/primefaces/primevue/issues/2422)
+- StyleClass v2 may fail to enter the element [\#2420](https://github.com/primefaces/primevue/issues/2420)
+- Tooltip v2 shown at wrong place [\#2416](https://github.com/primefaces/primevue/issues/2416)
+- Slider v2 | Range slider get stuck when both handle on max value [\#2414](https://github.com/primefaces/primevue/issues/2414)
+- FileUpload v2: Custom upload bug on clear list  [\#2412](https://github.com/primefaces/primevue/issues/2412)
+- DataTable v2 | Colspan defect with hidden Columns [\#2410](https://github.com/primefaces/primevue/issues/2410)
 
 ## [2.9.1](https://github.com/primefaces/primevue/tree/2.9.1) (2022-03-16)
 

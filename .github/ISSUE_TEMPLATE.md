@@ -21,8 +21,9 @@ With PRO Support: 1 hour
 **CodeSandbox Case (Bug Reports)**
 Please demonstrate your case at CodeSandbox by using the issue template below. Issues without a test case have much less possibility to be reviewed in detail and assisted.
 
-https://codesandbox.io/s/primevue-issue-template-v3-5tlbl
-https://codesandbox.io/s/github/cagataycivici/primevue-issue-template-v2
+https://codesandbox.io/s/primevue-3-issue-template-ip3vm
+https://codesandbox.io/s/primevue-3-typescript-issue-template-z1f6e2
+https://codesandbox.io/s/primevue-2-issue-template-dw7jd7
 
 **Current behavior**
 <!-- Describe how the bug manifests. -->
@@ -46,7 +47,7 @@ codesandbox or similar (you can use this template as a starting point: https://c
 * **Vue version:** 3.X
 <!-- Check whether this is still an issue in the most recent Vue version -->
 
-* **PrimeVue version:** 3.4.X
+* **PrimeVue version:** 3.12.X
 <!-- Check whether this is still an issue in the most recent PrimeVue version -->
 
 * **Browser:** [all | Chrome XX | Firefox XX | IE XX | Safari XX | Mobile Chrome XX | Android X.X Web Browser | iOS XX Safari | iOS XX UIWebView | iOS XX WKWebView ]
