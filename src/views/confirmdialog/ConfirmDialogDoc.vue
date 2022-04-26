@@ -32,6 +32,7 @@ import ConfirmDialog from 'primevue/confirmdialog';
 &lt;ConfirmDialog&gt;&lt;/ConfirmDialog&gt;
 
 &lt;Button @click="delete()" icon="pi pi-check" label="Confirm"&gt;&lt;/Button&gt;
+
 </code></pre>
 
 <pre v-code.script><code>
@@ -139,6 +140,12 @@ export default {
                         <td>Header text of the dialog.</td>
                     </tr>
                     <tr>
+                        <td>position</td>
+                        <td>string</td>
+                        <td>center</td>
+                        <td>Position of the dialog, options are "center", "top", "bottom", "left", "right", "topleft", "topright", "bottomleft" or "bottomright".</td>
+                    </tr>
+                    <tr>
                         <td>accept</td>
                         <td>Function</td>
                         <td>null</td>
@@ -197,6 +204,31 @@ export default {
                         <td>string</td>
                         <td>accept</td>
                         <td>Element to receive the focus when the dialog gets visible, valid values are "accept" and "reject".</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h5>ConfirmationService</h5>
+        <div class="doc-tablewrapper">
+            <table class="doc-table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Parameters</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>require</td>
+                        <td>confirm: Confirmation Object</td>
+                        <td>Displays the dialog using the confirmation object options.</td>
+                    </tr>
+                    <tr>
+                        <td>close</td>
+                        <td>-</td>
+                        <td>Hides the dialog without invoking accept or reject callbacks.</td>
                     </tr>
                 </tbody>
             </table>

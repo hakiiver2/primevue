@@ -85,7 +85,7 @@ export default {
     methods: {
         itemClick(event) {
             const item = event.item;
-            if (item.disabled) {
+            if (this.disabled(item)) {
                 return;
             }
 
@@ -188,11 +188,14 @@ export default {
                 this.resizeListener = null;
             }
         },
-        isTargetClicked() {
+        isTargetClicked(event) {
             return this.target && (this.target === event.target || this.target.contains(event.target));
         },
         visible(item) {
             return (typeof item.visible === 'function' ? item.visible() : item.visible !== false);
+        },
+        disabled(item) {
+            return (typeof item.disabled === 'function' ? item.disabled() : item.disabled);
         },
         label(item) {
             return (typeof item.label === 'function' ? item.label() : item.label);
