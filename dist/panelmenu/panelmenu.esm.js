@@ -1,4 +1,5 @@
-import { resolveComponent, openBlock, createBlock, Fragment, renderList, withCtx, createVNode, toDisplayString, createCommentVNode, resolveDynamicComponent, Transition, withDirectives, vShow } from 'vue';
+import Tooltip from 'primevue/tooltip';
+import { resolveComponent, resolveDirective, openBlock, createBlock, Fragment, renderList, withCtx, createVNode, toDisplayString, withDirectives, createCommentVNode, resolveDynamicComponent, Transition, vShow } from 'vue';
 import { UniqueComponentId } from 'primevue/utils';
 
 var script$1 = {
@@ -87,6 +88,9 @@ var script$1 = {
         label(item) {
             return (typeof item.label === 'function' ? item.label() : item.label);
         }
+    },
+    directives: {
+        "tooltip": Tooltip                                                                                                                                                                            
     }
 };
 
@@ -95,12 +99,23 @@ const _hoisted_1$1 = {
   role: "tree"
 };
 const _hoisted_2$1 = { class: "p-menuitem-text" };
-const _hoisted_3$1 = { class: "p-menuitem-text" };
-const _hoisted_4$1 = { class: "p-toggleable-content" };
+const _hoisted_3$1 = {
+  key: 0,
+  class: "pi pi-info-circle p-panelmenu-info-icon",
+  style: {}
+};
+const _hoisted_4$1 = { class: "p-menuitem-text" };
+const _hoisted_5$1 = {
+  key: 1,
+  class: "pi pi-info-circle p-panelmenu-info-icon",
+  style: {}
+};
+const _hoisted_6$1 = { class: "p-toggleable-content" };
 
 function render$1(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_router_link = resolveComponent("router-link");
   const _component_PanelMenuSub = resolveComponent("PanelMenuSub", true);
+  const _directive_tooltip = resolveDirective("tooltip");
 
   return (openBlock(), createBlock("ul", _hoisted_1$1, [
     (openBlock(true), createBlock(Fragment, null, renderList($props.model, (item, i) => {
@@ -133,7 +148,12 @@ function render$1(_ctx, _cache, $props, $setup, $data, $options) {
                               createVNode("span", {
                                 class: ['p-menuitem-icon', item.icon]
                               }, null, 2),
-                              createVNode("span", _hoisted_2$1, toDisplayString($options.label(item)), 1)
+                              createVNode("span", _hoisted_2$1, toDisplayString($options.label(item)), 1),
+                              (item.info)
+                                ? withDirectives((openBlock(), createBlock("i", _hoisted_3$1, null, 512)), [
+                                    [_directive_tooltip, item.info]
+                                  ])
+                                : createCommentVNode("", true)
                             ], 10, ["href", "onClick", "aria-expanded"])
                           ]),
                           _: 2
@@ -158,7 +178,12 @@ function render$1(_ctx, _cache, $props, $setup, $data, $options) {
                           createVNode("span", {
                             class: ['p-menuitem-icon', item.icon]
                           }, null, 2),
-                          createVNode("span", _hoisted_3$1, toDisplayString($options.label(item)), 1)
+                          createVNode("span", _hoisted_4$1, toDisplayString($options.label(item)), 1),
+                          (item.info)
+                            ? withDirectives((openBlock(), createBlock("i", _hoisted_5$1, null, 512)), [
+                                [_directive_tooltip, item.info]
+                              ])
+                            : createCommentVNode("", true)
                         ], 42, ["href", "target", "onClick", "onKeydown", "aria-expanded", "tabindex"]))
                   ], 64))
                 : (openBlock(), createBlock(resolveDynamicComponent($props.template), {
@@ -167,7 +192,7 @@ function render$1(_ctx, _cache, $props, $setup, $data, $options) {
                   }, null, 8, ["item"])),
               createVNode(Transition, { name: "p-toggleable-content" }, {
                 default: withCtx(() => [
-                  withDirectives(createVNode("div", _hoisted_4$1, [
+                  withDirectives(createVNode("div", _hoisted_6$1, [
                     ($options.visible(item) && item.items)
                       ? (openBlock(), createBlock(_component_PanelMenuSub, {
                           model: item.items,
@@ -308,13 +333,26 @@ var script = {
         ariaId() {
             return UniqueComponentId();
         }
+    },
+    directives: {
+        "tooltip": Tooltip                                                                                                                                                                            
     }
 };
 
 const _hoisted_1 = { class: "p-panelmenu p-component" };
 const _hoisted_2 = { class: "p-menuitem-text" };
-const _hoisted_3 = { class: "p-menuitem-text" };
-const _hoisted_4 = {
+const _hoisted_3 = {
+  key: 1,
+  class: "pi pi-info-circle p-panelmenu-info-icon",
+  style: {}
+};
+const _hoisted_4 = { class: "p-menuitem-text" };
+const _hoisted_5 = {
+  key: 2,
+  class: "pi pi-info-circle p-panelmenu-info-icon",
+  style: {}
+};
+const _hoisted_6 = {
   key: 0,
   class: "p-panelmenu-content"
 };
@@ -322,6 +360,7 @@ const _hoisted_4 = {
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_router_link = resolveComponent("router-link");
   const _component_PanelMenuSub = resolveComponent("PanelMenuSub");
+  const _directive_tooltip = resolveDirective("tooltip");
 
   return (openBlock(), createBlock("div", _hoisted_1, [
     (openBlock(true), createBlock(Fragment, null, renderList($props.model, (item, index) => {
@@ -359,7 +398,12 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                                       class: $options.getPanelIcon(item)
                                     }, null, 2))
                                   : createCommentVNode("", true),
-                                createVNode("span", _hoisted_2, toDisplayString($options.label(item)), 1)
+                                createVNode("span", _hoisted_2, toDisplayString($options.label(item)), 1),
+                                (item.info)
+                                  ? withDirectives((openBlock(), createBlock("i", _hoisted_3, null, 512)), [
+                                      [_directive_tooltip, item.info]
+                                    ])
+                                  : createCommentVNode("", true)
                               ], 10, ["href", "onClick"])
                             ]),
                             _: 2
@@ -387,7 +431,12 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                                   class: $options.getPanelIcon(item)
                                 }, null, 2))
                               : createCommentVNode("", true),
-                            createVNode("span", _hoisted_3, toDisplayString($options.label(item)), 1)
+                            createVNode("span", _hoisted_4, toDisplayString($options.label(item)), 1),
+                            (item.info)
+                              ? withDirectives((openBlock(), createBlock("i", _hoisted_5, null, 512)), [
+                                  [_directive_tooltip, item.info]
+                                ])
+                              : createCommentVNode("", true)
                           ], 42, ["href", "onClick", "onKeydown", "tabindex", "aria-expanded", "id", "aria-controls"]))
                     ], 64))
                   : (openBlock(), createBlock(resolveDynamicComponent(_ctx.$slots.item), {
@@ -404,7 +453,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                     "aria-labelledby": $options.ariaId +'_header_' + index
                   }, [
                     (item.items)
-                      ? (openBlock(), createBlock("div", _hoisted_4, [
+                      ? (openBlock(), createBlock("div", _hoisted_6, [
                           createVNode(_component_PanelMenuSub, {
                             model: item.items,
                             class: "p-panelmenu-root-submenu",

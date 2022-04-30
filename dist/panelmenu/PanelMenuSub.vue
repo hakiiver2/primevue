@@ -7,6 +7,7 @@
                         <a :href="href" :class="linkClass(item, {isRouterActive, isExactActive})" @click="onItemClick($event, item, navigate)" role="treeitem" :aria-expanded="isActive(item)">
                             <span :class="['p-menuitem-icon', item.icon]"></span>
                             <span class="p-menuitem-text">{{label(item)}}</span>
+                            <i v-if="item.info" v-tooltip="item.info" class="pi pi-info-circle p-panelmenu-info-icon" style=""></i>
                         </a>
                     </router-link>
                     <a v-else :href="item.url" :class="linkClass(item)" :target="item.target" @click="onItemClick($event, item)" @keydown="onItemKeydown($event, item)"
@@ -14,6 +15,7 @@
                         <span :class="getSubmenuIcon(item)" v-if="item.items"></span>
                         <span :class="['p-menuitem-icon', item.icon]"></span>
                         <span class="p-menuitem-text">{{label(item)}}</span>
+                        <i v-if="item.info" v-tooltip="item.info" class="pi pi-info-circle p-panelmenu-info-icon" style=""></i>
                     </a>
                 </template>
                 <component v-else :is="template" :item="item"></component>
@@ -30,6 +32,8 @@
 </template>
 
 <script>
+import Tooltip from 'primevue/tooltip';
+
 export default {
     name: 'PanelMenuSub',
     emits: ['item-toggle'],
@@ -116,6 +120,9 @@ export default {
         label(item) {
             return (typeof item.label === 'function' ? item.label() : item.label);
         }
+    },
+    directives: {
+        "tooltip": Tooltip                                                                                                                                                                            
     }
 }
 </script>

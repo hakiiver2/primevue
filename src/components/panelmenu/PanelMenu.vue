@@ -8,7 +8,7 @@
                             <a :href="href" :class="getHeaderLinkClass(item, {isActive, isExactActive})" @click="onItemClick($event, item, navigate)" role="treeitem">
                                 <span v-if="item.icon" :class="getPanelIcon(item)"></span>
                                 <span class="p-menuitem-text">{{label(item)}}</span>
-                                <i v-if="item.info" v-tooltip="item.info" class="pi pi-info-circle" style=""></i>
+                                <i v-if="item.info" v-tooltip="item.info" class="pi pi-info-circle p-panelmenu-info-icon" style=""></i>
                             </a>
                         </router-link>
                         <a v-else :href="item.url" :class="getHeaderLinkClass(item)" @click="onItemClick($event, item)" @keydown="onItemKeydown($event, item)" :tabindex="disabled(item) ? null : '0'"
@@ -16,7 +16,7 @@
                             <span v-if="item.items" :class="getPanelToggleIcon(item)"></span>
                             <span v-if="item.icon" :class="getPanelIcon(item)"></span>
                             <span class="p-menuitem-text">{{label(item)}}</span>
-                            <i v-if="item.info" v-tooltip="item.info" class="pi pi-info-circle" style=""></i>
+                            <i v-if="item.info" v-tooltip="item.info" class="pi pi-info-circle p-panelmenu-info-icon" style=""></i>
                         </a>
                     </template>
                     <component v-else :is="$slots.item" :item="item"></component>

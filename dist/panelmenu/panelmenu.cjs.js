@@ -1,7 +1,12 @@
 'use strict';
 
+var Tooltip = require('primevue/tooltip');
 var vue = require('vue');
 var utils = require('primevue/utils');
+
+function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
+
+var Tooltip__default = /*#__PURE__*/_interopDefaultLegacy(Tooltip);
 
 var script$1 = {
     name: 'PanelMenuSub',
@@ -89,6 +94,9 @@ var script$1 = {
         label(item) {
             return (typeof item.label === 'function' ? item.label() : item.label);
         }
+    },
+    directives: {
+        "tooltip": Tooltip__default['default']                                                                                                                                                                            
     }
 };
 
@@ -97,12 +105,23 @@ const _hoisted_1$1 = {
   role: "tree"
 };
 const _hoisted_2$1 = { class: "p-menuitem-text" };
-const _hoisted_3$1 = { class: "p-menuitem-text" };
-const _hoisted_4$1 = { class: "p-toggleable-content" };
+const _hoisted_3$1 = {
+  key: 0,
+  class: "pi pi-info-circle p-panelmenu-info-icon",
+  style: {}
+};
+const _hoisted_4$1 = { class: "p-menuitem-text" };
+const _hoisted_5$1 = {
+  key: 1,
+  class: "pi pi-info-circle p-panelmenu-info-icon",
+  style: {}
+};
+const _hoisted_6$1 = { class: "p-toggleable-content" };
 
 function render$1(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_router_link = vue.resolveComponent("router-link");
   const _component_PanelMenuSub = vue.resolveComponent("PanelMenuSub", true);
+  const _directive_tooltip = vue.resolveDirective("tooltip");
 
   return (vue.openBlock(), vue.createBlock("ul", _hoisted_1$1, [
     (vue.openBlock(true), vue.createBlock(vue.Fragment, null, vue.renderList($props.model, (item, i) => {
@@ -135,7 +154,12 @@ function render$1(_ctx, _cache, $props, $setup, $data, $options) {
                               vue.createVNode("span", {
                                 class: ['p-menuitem-icon', item.icon]
                               }, null, 2),
-                              vue.createVNode("span", _hoisted_2$1, vue.toDisplayString($options.label(item)), 1)
+                              vue.createVNode("span", _hoisted_2$1, vue.toDisplayString($options.label(item)), 1),
+                              (item.info)
+                                ? vue.withDirectives((vue.openBlock(), vue.createBlock("i", _hoisted_3$1, null, 512)), [
+                                    [_directive_tooltip, item.info]
+                                  ])
+                                : vue.createCommentVNode("", true)
                             ], 10, ["href", "onClick", "aria-expanded"])
                           ]),
                           _: 2
@@ -160,7 +184,12 @@ function render$1(_ctx, _cache, $props, $setup, $data, $options) {
                           vue.createVNode("span", {
                             class: ['p-menuitem-icon', item.icon]
                           }, null, 2),
-                          vue.createVNode("span", _hoisted_3$1, vue.toDisplayString($options.label(item)), 1)
+                          vue.createVNode("span", _hoisted_4$1, vue.toDisplayString($options.label(item)), 1),
+                          (item.info)
+                            ? vue.withDirectives((vue.openBlock(), vue.createBlock("i", _hoisted_5$1, null, 512)), [
+                                [_directive_tooltip, item.info]
+                              ])
+                            : vue.createCommentVNode("", true)
                         ], 42, ["href", "target", "onClick", "onKeydown", "aria-expanded", "tabindex"]))
                   ], 64))
                 : (vue.openBlock(), vue.createBlock(vue.resolveDynamicComponent($props.template), {
@@ -169,7 +198,7 @@ function render$1(_ctx, _cache, $props, $setup, $data, $options) {
                   }, null, 8, ["item"])),
               vue.createVNode(vue.Transition, { name: "p-toggleable-content" }, {
                 default: vue.withCtx(() => [
-                  vue.withDirectives(vue.createVNode("div", _hoisted_4$1, [
+                  vue.withDirectives(vue.createVNode("div", _hoisted_6$1, [
                     ($options.visible(item) && item.items)
                       ? (vue.openBlock(), vue.createBlock(_component_PanelMenuSub, {
                           model: item.items,
@@ -310,13 +339,26 @@ var script = {
         ariaId() {
             return utils.UniqueComponentId();
         }
+    },
+    directives: {
+        "tooltip": Tooltip__default['default']                                                                                                                                                                            
     }
 };
 
 const _hoisted_1 = { class: "p-panelmenu p-component" };
 const _hoisted_2 = { class: "p-menuitem-text" };
-const _hoisted_3 = { class: "p-menuitem-text" };
-const _hoisted_4 = {
+const _hoisted_3 = {
+  key: 1,
+  class: "pi pi-info-circle p-panelmenu-info-icon",
+  style: {}
+};
+const _hoisted_4 = { class: "p-menuitem-text" };
+const _hoisted_5 = {
+  key: 2,
+  class: "pi pi-info-circle p-panelmenu-info-icon",
+  style: {}
+};
+const _hoisted_6 = {
   key: 0,
   class: "p-panelmenu-content"
 };
@@ -324,6 +366,7 @@ const _hoisted_4 = {
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_router_link = vue.resolveComponent("router-link");
   const _component_PanelMenuSub = vue.resolveComponent("PanelMenuSub");
+  const _directive_tooltip = vue.resolveDirective("tooltip");
 
   return (vue.openBlock(), vue.createBlock("div", _hoisted_1, [
     (vue.openBlock(true), vue.createBlock(vue.Fragment, null, vue.renderList($props.model, (item, index) => {
@@ -361,7 +404,12 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                                       class: $options.getPanelIcon(item)
                                     }, null, 2))
                                   : vue.createCommentVNode("", true),
-                                vue.createVNode("span", _hoisted_2, vue.toDisplayString($options.label(item)), 1)
+                                vue.createVNode("span", _hoisted_2, vue.toDisplayString($options.label(item)), 1),
+                                (item.info)
+                                  ? vue.withDirectives((vue.openBlock(), vue.createBlock("i", _hoisted_3, null, 512)), [
+                                      [_directive_tooltip, item.info]
+                                    ])
+                                  : vue.createCommentVNode("", true)
                               ], 10, ["href", "onClick"])
                             ]),
                             _: 2
@@ -389,7 +437,12 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                                   class: $options.getPanelIcon(item)
                                 }, null, 2))
                               : vue.createCommentVNode("", true),
-                            vue.createVNode("span", _hoisted_3, vue.toDisplayString($options.label(item)), 1)
+                            vue.createVNode("span", _hoisted_4, vue.toDisplayString($options.label(item)), 1),
+                            (item.info)
+                              ? vue.withDirectives((vue.openBlock(), vue.createBlock("i", _hoisted_5, null, 512)), [
+                                  [_directive_tooltip, item.info]
+                                ])
+                              : vue.createCommentVNode("", true)
                           ], 42, ["href", "onClick", "onKeydown", "tabindex", "aria-expanded", "id", "aria-controls"]))
                     ], 64))
                   : (vue.openBlock(), vue.createBlock(vue.resolveDynamicComponent(_ctx.$slots.item), {
@@ -406,7 +459,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                     "aria-labelledby": $options.ariaId +'_header_' + index
                   }, [
                     (item.items)
-                      ? (vue.openBlock(), vue.createBlock("div", _hoisted_4, [
+                      ? (vue.openBlock(), vue.createBlock("div", _hoisted_6, [
                           vue.createVNode(_component_PanelMenuSub, {
                             model: item.items,
                             class: "p-panelmenu-root-submenu",
