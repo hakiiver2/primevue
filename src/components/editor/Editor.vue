@@ -58,7 +58,13 @@ export default {
         placeholder: String,
         readonly: Boolean,
         formats: Array,
-        editorStyle: null
+        editorStyle: null,
+        quillHandlers: {
+            type: Object,
+            default: function() {
+                return {}
+            }
+        },
     },
     quill: null,
     watch: {
@@ -69,6 +75,7 @@ export default {
         }
     },
     mounted() {
+        this.$refs.toolbarElement = {...this.$refs.toolbarElement, ...this.quillHandlers}
         this.quill = new Quill(this.$refs.editorElement, {
             modules: {
                 toolbar: this.$refs.toolbarElement
