@@ -49,6 +49,10 @@
 
 <script>
 import Quill from "quill";
+import QuillImageDropAndPaste from 'quill-image-drop-and-paste'
+
+Quill.register('modules/imageDropAndPaste', QuillImageDropAndPaste)
+
 
 export default {
     name: 'Editor',
@@ -65,6 +69,12 @@ export default {
                 return {}
             }
         },
+        quillImageHandler: {
+            type: Function,
+        },
+        quillImageDropAndPaste: {
+            type: Function,
+        },
     },
     quill: null,
     watch: {
@@ -75,11 +85,32 @@ export default {
         }
     },
     mounted() {
-        this.$refs.toolbarElement = {...this.$refs.toolbarElement, ...this.quillHandlers}
+        let handlers = {}
+        console.log(this.quillImageHandler)
+        console.log(this.quillImageDropAndPaste)
+        if(this.quillImageHandler) {
+            handlers = {
+                image: this.quillImageHandler
+            }
+        }
+
+        let toolbar = {
+            container: this.$refs.toolbarElement,
+        }
+        if(Object.keys(handlers).length) {
+            toolbar.handlers = handlers
+        }
+
+        let modules = {
+            toolbar: toolbar,
+        }
+        if(this.quillImageDropAndPaste) {
+            modules.imageDropAndPaste = {
+                handler: this.quillImageDropAndPaste
+            }
+        }
         this.quill = new Quill(this.$refs.editorElement, {
-            modules: {
-                toolbar: this.$refs.toolbarElement
-            },
+            modules: modules,
             readOnly: this.readonly,
             theme: 'snow',
             formats: this.formats,
@@ -108,6 +139,15 @@ export default {
         });
     },
     methods: {
+        imageHandler() {
+            var range = this.quill.getSelection();
+            var value = prompt('please copy paste the image url here.');
+            if(value){
+                this.quill.insertEmbed(range.index, 'image', value, Quill.sources.USER);
+            }
+
+        },
+
         renderValue(value) {
             if (this.quill) {
                 if (value)
