@@ -101,7 +101,8 @@ export default {
             return ['p-menuitem-link', {
                 'p-disabled': this.disabled(item),
                 'router-link-active': routerProps && routerProps.isActive,
-                'router-link-active-exact': this.exact && routerProps && routerProps.isExactActive
+                'router-link-active-exact': this.exact && routerProps && routerProps.isExactActive,
+                // item.linkClass: item.linkClass != undefined
             }];
         },
         isActive(item) {

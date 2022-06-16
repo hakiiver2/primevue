@@ -123,7 +123,8 @@ export default {
         getHeaderLinkClass(item, routerProps) {
             return ['p-panelmenu-header-link', {
                 'router-link-active': routerProps && routerProps.isActive,
-                'router-link-active-exact': this.exact && routerProps && routerProps.isExactActive
+                'router-link-active-exact': this.exact && routerProps && routerProps.isExactActive,
+                // item.headerLinkClass: item.headerLinkClass != undefined
             }];
         },
         isActive(item) {
