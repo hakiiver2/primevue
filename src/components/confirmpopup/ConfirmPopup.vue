@@ -9,8 +9,9 @@
                     </div>
                 </template>
                 <component v-else :is="$slots.message" :message="confirmation"></component>
-                <div class="p-confirm-popup-footer">
+                <div class="p-confirm-popup-footer" :class="flexFooterClass">
                     <CPButton :label="rejectLabel" :icon="rejectIcon" :class="rejectClass" @click="reject()"/>
+                    <div v-if="isFlexFooter" style="flex: 1" />
                     <CPButton :label="acceptLabel" :icon="acceptIcon" :class="acceptClass" @click="accept()" autofocus />
                 </div>
             </div>
@@ -203,6 +204,9 @@ export default {
         iconClass() {
             return ['p-confirm-popup-icon', this.confirmation ? this.confirmation.icon : null];
         },
+        flexFooterClass() {
+            return ['p-confirm-popup-flex-footer', this.confirmation ? this.confirmation.isFlexFooter : null];
+        },
         acceptLabel() {
             return this.confirmation ? (this.confirmation.acceptLabel || this.$primevue.config.locale.accept) : null;
         },
@@ -295,5 +299,8 @@ export default {
 .p-confirm-popup .p-confirm-popup-content {
     display: flex;
     align-items: center;
+}
+.p-confirm-popup-flex-footer {
+    display: flex;
 }
 </style>
