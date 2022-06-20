@@ -10,7 +10,7 @@
                 </template>
                 <component v-else :is="$slots.message" :message="confirmation"></component>
                 <div class="p-confirm-popup-footer" :class="flexFooterClass">
-                    <CPButton :label="rejectLabel" :icon="rejectIcon" :class="rejectClass" @click="reject()"/>
+                    <CPButton :label="rejectLabel" :icon="rejectIcon" :class="rejectClass" @click="reject()" v-if="showReject"/>
                     <div v-if="isFlexFooter" style="flex: 1" />
                     <CPButton :label="acceptLabel" :icon="acceptIcon" :class="acceptClass" @click="accept()" autofocus />
                 </div>
@@ -29,7 +29,11 @@ export default {
     name: 'ConfirmPopup',
     inheritAttrs: false,
     props: {
-        group: String
+        group: String,
+        showReject: {
+            type: Boolean,
+            default: true
+        }
     },
     data() {
         return {
