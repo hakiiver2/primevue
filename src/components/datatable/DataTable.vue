@@ -527,7 +527,7 @@ export default {
 
                         this.$emit('update:sortField', this.d_sortField);
                         this.$emit('update:sortOrder', this.d_sortOrder);
-                        this.resetPage();
+                        // this.resetPage();
                     }
                     else if (this.sortMode === 'multiple') {
                         let metaKey = event.metaKey || event.ctrlKey;
