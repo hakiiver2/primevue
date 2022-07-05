@@ -266,7 +266,7 @@ function isOutOfBounds(el) {
 }
 
 function getTarget(el) {
-    return DomHandler.hasClass(el, 'p-inputwrapper') ? DomHandler.findSingle(el, 'input'): el;
+    return DomHandler.hasClass(el, 'p-inputwrapper') && !DomHandler.hasClass(el, 'p-dropdown') ? DomHandler.findSingle(el, 'input'): el;
 }
 
 function getModifiers(options) {
@@ -289,7 +289,9 @@ function getModifiers(options) {
 const Tooltip = {
     beforeMount(el, options) {
         let target = getTarget(el);
+        console.log(target)
         target.$_ptooltipModifiers = getModifiers(options);
+        console.log(options)
 
         if (!options.value) return;
         else if (typeof options.value === 'string') {
