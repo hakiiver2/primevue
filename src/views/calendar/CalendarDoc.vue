@@ -91,7 +91,7 @@ export default {
 </code></pre>
 
         <h5>Date Restriction</h5>
-        <p>To disable entering dates manually, set <i>manualInput</i> to true and to restrict selectable dates with the <i>minDate</i>
+        <p>To disable entering dates manually, set <i>manualInput</i> to false and to restrict selectable dates with the <i>minDate</i>
             and <i>maxDate</i> options.</p>
 <pre v-code><code>
 &lt;Calendar v-model="value" :minDate="minDateValue" maxDate="maxDateValue" /&gt;
@@ -140,7 +140,7 @@ export default {
 &lt;Calendar v-model="value"&gt;
     &lt;template #date="slotProps"&gt;
         &lt;strong v-if="slotProps.date.day &gt; 10 && slotProps.date.day &lt; 15" class="special-day"&gt;{{slotProps.date.day}}&lt;/strong&gt;
-        &lt;template v-else&gt;&#123;&#123;slotProps.date.day&#125;&#125;}&lt;/template&gt;
+        &lt;template v-else&gt;&#123;&#123;slotProps.date.day&#125;&#125;&lt;/template&gt;
     &lt;/template&gt;
 &lt;/Calendar&gt;
 </template>
@@ -397,6 +397,12 @@ export default {
                         <td>boolean</td>
                         <td>false</td>
                         <td>Whether to hide the overlay on date selection when showTime is enabled.</td>
+                    </tr>
+                    <tr>
+                        <td>hideOnRangeSelection</td>
+                        <td>boolean</td>
+                        <td>false</td>
+                        <td>Whether to hide the overlay on date selection is completed when selectionMode is range.</td>
                     </tr>
                     <tr>
                         <td>timeSeparator</td>

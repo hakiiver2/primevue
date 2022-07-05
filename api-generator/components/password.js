@@ -6,6 +6,12 @@ const PasswordProps = [
         description: "Value of the component."
     },
     {
+        name: "inputId",
+        type: "string",
+        default: "null",
+        description: "Identifier of the underlying input element."
+    },
+    {
         name: "promptLabel",
         type: "string",
         default: "null",
