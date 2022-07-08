@@ -312,9 +312,7 @@ function getModifiers(options) {
 const Tooltip = {
     beforeMount(el, options) {
         let target = getTarget(el);
-        console.log(target)
         target.$_ptooltipModifiers = getModifiers(options);
-        console.log(options)
 
         if (!options.value) return;
         else if (typeof options.value === 'string') {

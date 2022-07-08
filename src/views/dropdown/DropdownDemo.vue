@@ -11,7 +11,7 @@
         <div class="content-section implementation">
             <div class="card">
                 <h5>Basic</h5>
-                <Dropdown v-model="selectedCity1" :options="cities" optionLabel="name" optionValue="code" placeholder="Select a City" />
+                <Dropdown v-model="selectedCity1" :options="cities" optionLabel="name" optionValue="code" placeholder="Select a City"/>
 
                 <h5>Editable</h5>
                 <Dropdown v-model="selectedCity2" :options="cities" optionLabel="name" :editable="true"/>
