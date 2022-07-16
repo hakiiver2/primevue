@@ -1,6 +1,7 @@
 import { DomHandler, ZIndexUtils } from 'primevue/utils';
 import Ripple from 'primevue/ripple';
-import { resolveComponent, resolveDirective, openBlock, createBlock, Transition, withCtx, createElementBlock, normalizeClass, Fragment, renderList, normalizeStyle, withDirectives, createElementVNode, toDisplayString, createCommentVNode, resolveDynamicComponent, Teleport, createVNode, mergeProps } from 'vue';
+import { resolveComponent, resolveDirective, openBlock, createBlock, Transition, withCtx, createElementBlock, normalizeClass, Fragment, renderList, normalizeStyle, withDirectives, createCommentVNode, createElementVNode, toDisplayString, resolveDynamicComponent, createVNode, mergeProps } from 'vue';
+import Portal from 'primevue/portal';
 
 var script$1 = {
     name: 'ContextMenuSub',
@@ -65,7 +66,7 @@ var script$1 = {
                 if (this.activeItem && item === this.activeItem)
                     this.activeItem = null;
                 else
-                   this.activeItem = item;
+                    this.activeItem = item;
             }
 
             if (!item.items) {
@@ -139,7 +140,7 @@ const _hoisted_3 = { class: "p-menuitem-text" };
 const _hoisted_4 = ["href", "target", "onClick", "aria-haspopup", "aria-expanded", "tabindex"];
 const _hoisted_5 = { class: "p-menuitem-text" };
 const _hoisted_6 = {
-  key: 0,
+  key: 1,
   class: "p-submenu-icon pi pi-angle-right"
 };
 
@@ -187,9 +188,12 @@ function render$1(_ctx, _cache, $props, $setup, $data, $options) {
                                       class: normalizeClass($options.linkClass(item, {isActive, isExactActive})),
                                       role: "menuitem"
                                     }, [
-                                      createElementVNode("span", {
-                                        class: normalizeClass(['p-menuitem-icon', item.icon])
-                                      }, null, 2),
+                                      (item.icon)
+                                        ? (openBlock(), createElementBlock("span", {
+                                            key: 0,
+                                            class: normalizeClass(['p-menuitem-icon', item.icon])
+                                          }, null, 2))
+                                        : createCommentVNode("", true),
                                       createElementVNode("span", _hoisted_3, toDisplayString($options.label(item)), 1)
                                     ], 10, _hoisted_2)), [
                                       [_directive_ripple]
@@ -208,9 +212,12 @@ function render$1(_ctx, _cache, $props, $setup, $data, $options) {
                                   role: "menuitem",
                                   tabindex: $options.disabled(item) ? null : '0'
                                 }, [
-                                  createElementVNode("span", {
-                                    class: normalizeClass(['p-menuitem-icon', item.icon])
-                                  }, null, 2),
+                                  (item.icon)
+                                    ? (openBlock(), createElementBlock("span", {
+                                        key: 0,
+                                        class: normalizeClass(['p-menuitem-icon', item.icon])
+                                      }, null, 2))
+                                    : createCommentVNode("", true),
                                   createElementVNode("span", _hoisted_5, toDisplayString($options.label(item)), 1),
                                   (item.items)
                                     ? (openBlock(), createElementBlock("span", _hoisted_6))
@@ -410,7 +417,7 @@ var script = {
         bindResizeListener() {
             if (!this.resizeListener) {
                 this.resizeListener = () => {
-                    if (this.visible) {
+                    if (this.visible && !DomHandler.isTouchDevice()) {
                         this.hide();
                     }
                 };
@@ -451,40 +458,45 @@ var script = {
         }
     },
     components: {
-        'ContextMenuSub': script$1
+        'ContextMenuSub': script$1,
+        'Portal': Portal
     }
 };
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_ContextMenuSub = resolveComponent("ContextMenuSub");
+  const _component_Portal = resolveComponent("Portal");
 
-  return (openBlock(), createBlock(Teleport, { to: $props.appendTo }, [
-    createVNode(Transition, {
-      name: "p-contextmenu",
-      onEnter: $options.onEnter,
-      onLeave: $options.onLeave,
-      onAfterLeave: $options.onAfterLeave
-    }, {
-      default: withCtx(() => [
-        ($data.visible)
-          ? (openBlock(), createElementBlock("div", mergeProps({
-              key: 0,
-              ref: $options.containerRef,
-              class: $options.containerClass
-            }, _ctx.$attrs), [
-              createVNode(_component_ContextMenuSub, {
-                model: $props.model,
-                root: true,
-                onLeafClick: $options.onLeafClick,
-                template: _ctx.$slots.item,
-                exact: $props.exact
-              }, null, 8, ["model", "onLeafClick", "template", "exact"])
-            ], 16))
-          : createCommentVNode("", true)
-      ]),
-      _: 1
-    }, 8, ["onEnter", "onLeave", "onAfterLeave"])
-  ], 8, ["to"]))
+  return (openBlock(), createBlock(_component_Portal, { appendTo: $props.appendTo }, {
+    default: withCtx(() => [
+      createVNode(Transition, {
+        name: "p-contextmenu",
+        onEnter: $options.onEnter,
+        onLeave: $options.onLeave,
+        onAfterLeave: $options.onAfterLeave
+      }, {
+        default: withCtx(() => [
+          ($data.visible)
+            ? (openBlock(), createElementBlock("div", mergeProps({
+                key: 0,
+                ref: $options.containerRef,
+                class: $options.containerClass
+              }, _ctx.$attrs), [
+                createVNode(_component_ContextMenuSub, {
+                  model: $props.model,
+                  root: true,
+                  onLeafClick: $options.onLeafClick,
+                  template: _ctx.$slots.item,
+                  exact: $props.exact
+                }, null, 8, ["model", "onLeafClick", "template", "exact"])
+              ], 16))
+            : createCommentVNode("", true)
+        ]),
+        _: 1
+      }, 8, ["onEnter", "onLeave", "onAfterLeave"])
+    ]),
+    _: 1
+  }, 8, ["appendTo"]))
 }
 
 function styleInject(css, ref) {

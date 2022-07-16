@@ -2,7 +2,8 @@ import ConfirmationEventBus from 'primevue/confirmationeventbus';
 import { ZIndexUtils, DomHandler, ConnectedOverlayScrollHandler } from 'primevue/utils';
 import OverlayEventBus from 'primevue/overlayeventbus';
 import Button from 'primevue/button';
-import { resolveComponent, openBlock, createBlock, Teleport, createVNode, Transition, withCtx, createElementBlock, mergeProps, createElementVNode, normalizeClass, toDisplayString, resolveDynamicComponent, createCommentVNode } from 'vue';
+import Portal from 'primevue/portal';
+import { resolveComponent, openBlock, createBlock, withCtx, createVNode, Transition, createElementBlock, mergeProps, createElementVNode, normalizeClass, toDisplayString, resolveDynamicComponent, createCommentVNode } from 'vue';
 
 var script = {
     name: 'ConfirmPopup',
@@ -148,7 +149,7 @@ var script = {
         bindResizeListener() {
             if (!this.resizeListener) {
                 this.resizeListener = () => {
-                    if (this.visible) {
+                    if (this.visible && !DomHandler.isTouchDevice()) {
                         this.visible = false;
                     }
                 };
@@ -210,7 +211,8 @@ var script = {
         }
     },
     components: {
-        'CPButton': Button
+        'CPButton': Button,
+        'Portal': Portal
     }
 };
 
@@ -226,63 +228,67 @@ const _hoisted_3 = {
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_CPButton = resolveComponent("CPButton");
+  const _component_Portal = resolveComponent("Portal");
 
-  return (openBlock(), createBlock(Teleport, { to: "body" }, [
-    createVNode(Transition, {
-      name: "p-confirm-popup",
-      onEnter: $options.onEnter,
-      onLeave: $options.onLeave,
-      onAfterLeave: $options.onAfterLeave
-    }, {
-      default: withCtx(() => [
-        ($data.visible)
-          ? (openBlock(), createElementBlock("div", mergeProps({
-              key: 0,
-              class: $options.containerClass,
-              ref: $options.containerRef
-            }, _ctx.$attrs, {
-              onClick: _cache[2] || (_cache[2] = (...args) => ($options.onOverlayClick && $options.onOverlayClick(...args)))
-            }), [
-              (!_ctx.$slots.message)
-                ? (openBlock(), createElementBlock("div", _hoisted_1, [
-                    createElementVNode("i", {
-                      class: normalizeClass($options.iconClass)
-                    }, null, 2),
-                    createElementVNode("span", _hoisted_2, toDisplayString($data.confirmation.message), 1)
-                  ]))
-                : (openBlock(), createBlock(resolveDynamicComponent(_ctx.$slots.message), {
-                    key: 1,
-                    message: $data.confirmation
-                  }, null, 8, ["message"])),
-              createElementVNode("div", {
-                class: normalizeClass(["p-confirm-popup-footer", $options.flexFooterClass])
-              }, [
-                ($props.showReject)
-                  ? (openBlock(), createBlock(_component_CPButton, {
-                      key: 0,
-                      label: $options.rejectLabel,
-                      icon: $options.rejectIcon,
-                      class: normalizeClass($options.rejectClass),
-                      onClick: _cache[0] || (_cache[0] = $event => ($options.reject()))
-                    }, null, 8, ["label", "icon", "class"]))
-                  : createCommentVNode("", true),
-                (_ctx.isFlexFooter)
-                  ? (openBlock(), createElementBlock("div", _hoisted_3))
-                  : createCommentVNode("", true),
-                createVNode(_component_CPButton, {
-                  label: $options.acceptLabel,
-                  icon: $options.acceptIcon,
-                  class: normalizeClass($options.acceptClass),
-                  onClick: _cache[1] || (_cache[1] = $event => ($options.accept())),
-                  autofocus: ""
-                }, null, 8, ["label", "icon", "class"])
-              ], 2)
-            ], 16))
-          : createCommentVNode("", true)
-      ]),
-      _: 1
-    }, 8, ["onEnter", "onLeave", "onAfterLeave"])
-  ]))
+  return (openBlock(), createBlock(_component_Portal, null, {
+    default: withCtx(() => [
+      createVNode(Transition, {
+        name: "p-confirm-popup",
+        onEnter: $options.onEnter,
+        onLeave: $options.onLeave,
+        onAfterLeave: $options.onAfterLeave
+      }, {
+        default: withCtx(() => [
+          ($data.visible)
+            ? (openBlock(), createElementBlock("div", mergeProps({
+                key: 0,
+                class: $options.containerClass,
+                ref: $options.containerRef
+              }, _ctx.$attrs, {
+                onClick: _cache[2] || (_cache[2] = (...args) => ($options.onOverlayClick && $options.onOverlayClick(...args)))
+              }), [
+                (!_ctx.$slots.message)
+                  ? (openBlock(), createElementBlock("div", _hoisted_1, [
+                      createElementVNode("i", {
+                        class: normalizeClass($options.iconClass)
+                      }, null, 2),
+                      createElementVNode("span", _hoisted_2, toDisplayString($data.confirmation.message), 1)
+                    ]))
+                  : (openBlock(), createBlock(resolveDynamicComponent(_ctx.$slots.message), {
+                      key: 1,
+                      message: $data.confirmation
+                    }, null, 8, ["message"])),
+                createElementVNode("div", {
+                  class: normalizeClass(["p-confirm-popup-footer", $options.flexFooterClass])
+                }, [
+                  ($props.showReject)
+                    ? (openBlock(), createBlock(_component_CPButton, {
+                        key: 0,
+                        label: $options.rejectLabel,
+                        icon: $options.rejectIcon,
+                        class: normalizeClass($options.rejectClass),
+                        onClick: _cache[0] || (_cache[0] = $event => ($options.reject()))
+                      }, null, 8, ["label", "icon", "class"]))
+                    : createCommentVNode("", true),
+                  (_ctx.isFlexFooter)
+                    ? (openBlock(), createElementBlock("div", _hoisted_3))
+                    : createCommentVNode("", true),
+                  createVNode(_component_CPButton, {
+                    label: $options.acceptLabel,
+                    icon: $options.acceptIcon,
+                    class: normalizeClass($options.acceptClass),
+                    onClick: _cache[1] || (_cache[1] = $event => ($options.accept())),
+                    autofocus: ""
+                  }, null, 8, ["label", "icon", "class"])
+                ], 2)
+              ], 16))
+            : createCommentVNode("", true)
+        ]),
+        _: 1
+      }, 8, ["onEnter", "onLeave", "onAfterLeave"])
+    ]),
+    _: 1
+  }))
 }
 
 function styleInject(css, ref) {

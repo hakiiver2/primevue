@@ -112,6 +112,9 @@ this.primevue.confirmdialog = (function (ConfirmationEventBus, Dialog, Button, v
             },
             autoFocusReject() {
                 return this.confirmation.defaultFocus === 'reject' ? true : false;
+            },
+            closeOnEscape() {
+                return this.confirmation ? this.confirmation.closeOnEscape : true;
             }
         },
         components: {
@@ -134,7 +137,8 @@ this.primevue.confirmdialog = (function (ConfirmationEventBus, Dialog, Button, v
         blockScroll: $options.blockScroll,
         position: $options.position,
         class: "p-confirm-dialog",
-        breakpoints: $props.breakpoints
+        breakpoints: $props.breakpoints,
+        closeOnEscape: $options.closeOnEscape
       }, {
         footer: vue.withCtx(() => [
           ($options.isShowRejectButton)
@@ -165,7 +169,7 @@ this.primevue.confirmdialog = (function (ConfirmationEventBus, Dialog, Button, v
           vue.createElementVNode("span", _hoisted_1, vue.toDisplayString($options.message), 1)
         ]),
         _: 1
-      }, 8, ["visible", "header", "blockScroll", "position", "breakpoints"]))
+      }, 8, ["visible", "header", "blockScroll", "position", "breakpoints", "closeOnEscape"]))
     }
 
     script.render = render;

@@ -1,7 +1,8 @@
 import { DomHandler, ZIndexUtils, ConnectedOverlayScrollHandler } from 'primevue/utils';
 import OverlayEventBus from 'primevue/overlayeventbus';
+import Portal from 'primevue/portal';
 import Ripple from 'primevue/ripple';
-import { resolveComponent, resolveDirective, openBlock, createElementBlock, normalizeClass, Fragment, renderList, normalizeStyle, createBlock, withCtx, withDirectives, createElementVNode, toDisplayString, createCommentVNode, resolveDynamicComponent, Teleport, createVNode, Transition, mergeProps } from 'vue';
+import { resolveComponent, resolveDirective, openBlock, createElementBlock, normalizeClass, Fragment, renderList, normalizeStyle, createBlock, withCtx, withDirectives, createCommentVNode, createElementVNode, toDisplayString, resolveDynamicComponent, createVNode, Transition, mergeProps } from 'vue';
 
 var script$1 = {
     name: 'TieredMenuSub',
@@ -86,7 +87,7 @@ var script$1 = {
                 if (this.activeItem && item === this.activeItem)
                     this.activeItem = null;
                 else
-                   this.activeItem = item;
+                    this.activeItem = item;
             }
 
             if (!item.items) {
@@ -225,7 +226,7 @@ const _hoisted_3 = { class: "p-menuitem-text" };
 const _hoisted_4 = ["href", "target", "aria-haspopup", "aria-expanded", "onClick", "onKeydown", "tabindex"];
 const _hoisted_5 = { class: "p-menuitem-text" };
 const _hoisted_6 = {
-  key: 0,
+  key: 1,
   class: "p-submenu-icon pi pi-angle-right"
 };
 
@@ -268,9 +269,12 @@ function render$1(_ctx, _cache, $props, $setup, $data, $options) {
                               onKeydown: $event => ($options.onItemKeyDown($event, item)),
                               role: "menuitem"
                             }, [
-                              createElementVNode("span", {
-                                class: normalizeClass(['p-menuitem-icon', item.icon])
-                              }, null, 2),
+                              (item.icon)
+                                ? (openBlock(), createElementBlock("span", {
+                                    key: 0,
+                                    class: normalizeClass(['p-menuitem-icon', item.icon])
+                                  }, null, 2))
+                                : createCommentVNode("", true),
                               createElementVNode("span", _hoisted_3, toDisplayString($options.label(item)), 1)
                             ], 42, _hoisted_2)), [
                               [_directive_ripple]
@@ -290,9 +294,12 @@ function render$1(_ctx, _cache, $props, $setup, $data, $options) {
                           role: "menuitem",
                           tabindex: $options.disabled(item) ? null : '0'
                         }, [
-                          createElementVNode("span", {
-                            class: normalizeClass(['p-menuitem-icon', item.icon])
-                          }, null, 2),
+                          (item.icon)
+                            ? (openBlock(), createElementBlock("span", {
+                                key: 0,
+                                class: normalizeClass(['p-menuitem-icon', item.icon])
+                              }, null, 2))
+                            : createCommentVNode("", true),
                           createElementVNode("span", _hoisted_5, toDisplayString($options.label(item)), 1),
                           (item.items)
                             ? (openBlock(), createElementBlock("span", _hoisted_6))
@@ -467,7 +474,7 @@ var script = {
         bindResizeListener() {
             if (!this.resizeListener) {
                 this.resizeListener = () => {
-                    if (this.visible) {
+                    if (this.visible && !DomHandler.isTouchDevice()) {
                         this.hide();
                     }
                 };
@@ -508,46 +515,51 @@ var script = {
         }
     },
     components: {
-        'TieredMenuSub': script$1
+        'TieredMenuSub': script$1,
+        'Portal': Portal
     }
 };
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_TieredMenuSub = resolveComponent("TieredMenuSub");
+  const _component_Portal = resolveComponent("Portal");
 
-  return (openBlock(), createBlock(Teleport, {
-    to: $props.appendTo,
+  return (openBlock(), createBlock(_component_Portal, {
+    appendTo: $props.appendTo,
     disabled: !$props.popup
-  }, [
-    createVNode(Transition, {
-      name: "p-connected-overlay",
-      onEnter: $options.onEnter,
-      onLeave: $options.onLeave,
-      onAfterLeave: $options.onAfterLeave
-    }, {
-      default: withCtx(() => [
-        ($props.popup ? $data.visible : true)
-          ? (openBlock(), createElementBlock("div", mergeProps({
-              key: 0,
-              ref: $options.containerRef,
-              class: $options.containerClass
-            }, _ctx.$attrs, {
-              onClick: _cache[0] || (_cache[0] = (...args) => ($options.onOverlayClick && $options.onOverlayClick(...args)))
-            }), [
-              createVNode(_component_TieredMenuSub, {
-                model: $props.model,
-                root: true,
-                popup: $props.popup,
-                onLeafClick: $options.onLeafClick,
-                template: _ctx.$slots.item,
-                exact: $props.exact
-              }, null, 8, ["model", "popup", "onLeafClick", "template", "exact"])
-            ], 16))
-          : createCommentVNode("", true)
-      ]),
-      _: 1
-    }, 8, ["onEnter", "onLeave", "onAfterLeave"])
-  ], 8, ["to", "disabled"]))
+  }, {
+    default: withCtx(() => [
+      createVNode(Transition, {
+        name: "p-connected-overlay",
+        onEnter: $options.onEnter,
+        onLeave: $options.onLeave,
+        onAfterLeave: $options.onAfterLeave
+      }, {
+        default: withCtx(() => [
+          ($props.popup ? $data.visible : true)
+            ? (openBlock(), createElementBlock("div", mergeProps({
+                key: 0,
+                ref: $options.containerRef,
+                class: $options.containerClass
+              }, _ctx.$attrs, {
+                onClick: _cache[0] || (_cache[0] = (...args) => ($options.onOverlayClick && $options.onOverlayClick(...args)))
+              }), [
+                createVNode(_component_TieredMenuSub, {
+                  model: $props.model,
+                  root: true,
+                  popup: $props.popup,
+                  onLeafClick: $options.onLeafClick,
+                  template: _ctx.$slots.item,
+                  exact: $props.exact
+                }, null, 8, ["model", "popup", "onLeafClick", "template", "exact"])
+              ], 16))
+            : createCommentVNode("", true)
+        ]),
+        _: 1
+      }, 8, ["onEnter", "onLeave", "onAfterLeave"])
+    ]),
+    _: 1
+  }, 8, ["appendTo", "disabled"]))
 }
 
 function styleInject(css, ref) {

@@ -426,7 +426,7 @@ this.primevue.carousel = (function (utils, Ripple, vue) {
 		},
 		computed: {
 			totalIndicators() {
-				return this.value ? Math.ceil((this.value.length - this.d_numVisible) / this.d_numScroll) + 1 : 0;
+				return this.value ? Math.max(Math.ceil((this.value.length - this.d_numVisible) / this.d_numScroll) + 1, 0) : 0;
 			},
 			backwardIsDisabled() {
 				return (this.value && (!this.circular || this.value.length < this.d_numVisible) && this.d_page === 0);

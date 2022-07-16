@@ -1,14 +1,18 @@
 import { ZIndexUtils, DomHandler, ConnectedOverlayScrollHandler } from 'primevue/utils';
 import OverlayEventBus from 'primevue/overlayeventbus';
 import InputText from 'primevue/inputtext';
-import { resolveComponent, openBlock, createElementBlock, normalizeClass, normalizeStyle, createVNode, mergeProps, createCommentVNode, createBlock, Teleport, Transition, withCtx, renderSlot, createElementVNode, toDisplayString } from 'vue';
+import Portal from 'primevue/portal';
+import { resolveComponent, openBlock, createElementBlock, normalizeClass, createVNode, mergeProps, createCommentVNode, createElementVNode, toDisplayString, withCtx, Transition, renderSlot, normalizeStyle } from 'vue';
 
 var script = {
     name: 'Password',
-    emits: ['update:modelValue'],
-    inheritAttrs: false,
+    emits: ['update:modelValue', 'change', 'focus', 'blur'],
     props: {
         modelValue: String,
+        inputId: {
+            type: String,
+            default: null
+        },
         promptLabel: {
             type: String,
             default: null
@@ -53,11 +57,12 @@ var script = {
             type: String,
             default: 'pi pi-eye'
         },
-        inputClass: null,
-        inputStyle: null,
-        style: null,
-        class: String,
-        panelClass: String
+        panelClass: String,
+        disabled: {
+            type: Boolean,
+            default: false
+        },
+        inputProps: null
     },
     data() {
         return {
@@ -106,7 +111,7 @@ var script = {
             ZIndexUtils.clear(el);
         },
         alignOverlay() {
-            if (this.appendDisabled) {
+            if (this.appendTo === 'self') {
                 DomHandler.relativePosition(this.overlay, this.$refs.input.$el);
             }
             else {
@@ -129,17 +134,21 @@ var script = {
         onInput(event)  {
             this.$emit('update:modelValue', event.target.value);
         },
-        onFocus() {
+        onFocus(event) {
             this.focused = true;
             if (this.feedback) {
                 this.overlayVisible = true;
             }
+
+            this.$emit('focus', event);
         },
-        onBlur() {
+        onBlur(event) {
             this.focused = false;
             if (this.feedback) {
                 this.overlayVisible = false;
             }
+
+            this.$emit('blur', event);
         },
         onKeyUp(event) {
             if (this.feedback) {
@@ -181,6 +190,12 @@ var script = {
                 this.meter = meter;
                 this.infoText = label;
 
+                //escape
+                if (event.which === 27) {
+                    this.overlayVisible && (this.overlayVisible = false);
+                    return;
+                }
+
                 if (!this.overlayVisible) {
                     this.overlayVisible = true;
                 }
@@ -205,7 +220,7 @@ var script = {
         bindResizeListener() {
             if (!this.resizeListener) {
                 this.resizeListener = () => {
-                    if (this.overlayVisible) {
+                    if (this.overlayVisible && !DomHandler.isTouchDevice()) {
                         this.overlayVisible = false;
                     }
                 };
@@ -233,15 +248,15 @@ var script = {
     },
     computed: {
         containerClass() {
-            return ['p-password p-component p-inputwrapper', this.class, {
+            return ['p-password p-component p-inputwrapper', {
                 'p-inputwrapper-filled': this.filled,
                 'p-inputwrapper-focus': this.focused,
                 'p-input-icon-right': this.toggleMask
             }];
         },
         inputFieldClass() {
-            return ['p-password-input', this.inputClass, {
-                'p-disabled': this.$attrs.disabled
+            return ['p-password-input', {
+                'p-disabled': this.disabled
             }];
         },
         panelStyleClass() {
@@ -273,40 +288,38 @@ var script = {
         },
         promptText() {
             return this.promptLabel || this.$primevue.config.locale.passwordPrompt;
-        },
-        appendDisabled() {
-            return this.appendTo === 'self';
-        },
-        appendTarget() {
-            return this.appendDisabled ? null : this.appendTo;
         }
     },
     components: {
-        'PInputText': InputText
+        'PInputText': InputText,
+        'Portal': Portal
     }
 };
 
-const _hoisted_1 = { class: "p-password-meter" };
-const _hoisted_2 = { class: "p-password-info" };
+const _hoisted_1 = {
+  class: "p-hidden-accessible",
+  "aria-live": "polite"
+};
+const _hoisted_2 = { class: "p-password-meter" };
+const _hoisted_3 = { class: "p-password-info" };
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_PInputText = resolveComponent("PInputText");
+  const _component_Portal = resolveComponent("Portal");
 
   return (openBlock(), createElementBlock("div", {
-    class: normalizeClass($options.containerClass),
-    style: normalizeStyle($props.style)
+    class: normalizeClass($options.containerClass)
   }, [
     createVNode(_component_PInputText, mergeProps({
       ref: "input",
-      class: $options.inputFieldClass,
-      style: $props.inputStyle,
+      id: $props.inputId,
       type: $options.inputType,
       value: $props.modelValue,
       onInput: $options.onInput,
       onFocus: $options.onFocus,
       onBlur: $options.onBlur,
       onKeyup: $options.onKeyUp
-    }, _ctx.$attrs), null, 16, ["class", "style", "type", "value", "onInput", "onFocus", "onBlur", "onKeyup"]),
+    }, $props.inputProps), null, 16, ["id", "type", "value", "onInput", "onFocus", "onBlur", "onKeyup"]),
     ($props.toggleMask)
       ? (openBlock(), createElementBlock("i", {
           key: 0,
@@ -314,42 +327,43 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
           onClick: _cache[0] || (_cache[0] = (...args) => ($options.onMaskToggle && $options.onMaskToggle(...args)))
         }, null, 2))
       : createCommentVNode("", true),
-    (openBlock(), createBlock(Teleport, {
-      to: $options.appendTarget,
-      disabled: $options.appendDisabled
-    }, [
-      createVNode(Transition, {
-        name: "p-connected-overlay",
-        onEnter: $options.onOverlayEnter,
-        onLeave: $options.onOverlayLeave,
-        onAfterLeave: $options.onOverlayAfterLeave
-      }, {
-        default: withCtx(() => [
-          ($data.overlayVisible)
-            ? (openBlock(), createElementBlock("div", {
-                key: 0,
-                ref: $options.overlayRef,
-                class: normalizeClass($options.panelStyleClass),
-                onClick: _cache[1] || (_cache[1] = (...args) => ($options.onOverlayClick && $options.onOverlayClick(...args)))
-              }, [
-                renderSlot(_ctx.$slots, "header"),
-                renderSlot(_ctx.$slots, "content", {}, () => [
-                  createElementVNode("div", _hoisted_1, [
-                    createElementVNode("div", {
-                      class: normalizeClass($options.strengthClass),
-                      style: normalizeStyle({'width': $data.meter ? $data.meter.width : ''})
-                    }, null, 6)
+    createElementVNode("span", _hoisted_1, toDisplayString($data.infoText), 1),
+    createVNode(_component_Portal, { appendTo: $props.appendTo }, {
+      default: withCtx(() => [
+        createVNode(Transition, {
+          name: "p-connected-overlay",
+          onEnter: $options.onOverlayEnter,
+          onLeave: $options.onOverlayLeave,
+          onAfterLeave: $options.onOverlayAfterLeave
+        }, {
+          default: withCtx(() => [
+            ($data.overlayVisible)
+              ? (openBlock(), createElementBlock("div", {
+                  key: 0,
+                  ref: $options.overlayRef,
+                  class: normalizeClass($options.panelStyleClass),
+                  onClick: _cache[1] || (_cache[1] = (...args) => ($options.onOverlayClick && $options.onOverlayClick(...args)))
+                }, [
+                  renderSlot(_ctx.$slots, "header"),
+                  renderSlot(_ctx.$slots, "content", {}, () => [
+                    createElementVNode("div", _hoisted_2, [
+                      createElementVNode("div", {
+                        class: normalizeClass($options.strengthClass),
+                        style: normalizeStyle({'width': $data.meter ? $data.meter.width : ''})
+                      }, null, 6)
+                    ]),
+                    createElementVNode("div", _hoisted_3, toDisplayString($data.infoText), 1)
                   ]),
-                  createElementVNode("div", _hoisted_2, toDisplayString($data.infoText), 1)
-                ]),
-                renderSlot(_ctx.$slots, "footer")
-              ], 2))
-            : createCommentVNode("", true)
-        ]),
-        _: 3
-      }, 8, ["onEnter", "onLeave", "onAfterLeave"])
-    ], 8, ["to", "disabled"]))
-  ], 6))
+                  renderSlot(_ctx.$slots, "footer")
+                ], 2))
+              : createCommentVNode("", true)
+          ]),
+          _: 3
+        }, 8, ["onEnter", "onLeave", "onAfterLeave"])
+      ]),
+      _: 3
+    }, 8, ["appendTo"])
+  ], 2))
 }
 
 function styleInject(css, ref) {

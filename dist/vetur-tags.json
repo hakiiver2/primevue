@@ -39,6 +39,7 @@
       "class",
       "style",
       "panelClass",
+      "loadingIcon",
       "virtualScrollerOptions"
     ]
   },
@@ -125,6 +126,7 @@
       "stepSeconds",
       "showSeconds",
       "hideOnDateTimeSelect",
+      "hideOnRangeSelection",
       "timeSeparator",
       "showWeek",
       "manualInput",
@@ -743,6 +745,7 @@
       "maxSelectedLabels",
       "selectedItemsLabel",
       "selectAll",
+      "resetFilterOnHide",
       "virtualScrollerOptions"
     ]
   },
@@ -814,6 +817,7 @@
     "description": "Password displays strength indicator for password fields.",
     "attributes": [
       "modelValue",
+      "inputId",
       "promptLabel",
       "mediumRegex",
       "strongRegex",
@@ -842,7 +846,16 @@
       "listStyle",
       "responsive",
       "breakpoint",
-      "stripedRows"
+      "stripedRows",
+      "showSourceControls",
+      "showTargetControls"
+    ]
+  },
+  "Portal": {
+    "description": "Portal moves its container to a specific location based on target elements. Basically it uses <Teleport> in the background.",
+    "attributes": [
+      "appendTo",
+      "disabled"
     ]
   },
   "ProgressBar": {
@@ -937,7 +950,9 @@
       "step",
       "range",
       "disabled",
-      "ariaLabelledBy"
+      "tabindex",
+      "aria-labelledby",
+      "aria-label"
     ]
   },
   "SpeedDial": {

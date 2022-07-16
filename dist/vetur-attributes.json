@@ -107,6 +107,10 @@
     "description": "Style class of the overlay panel.",
     "type": "string"
   },
+  "autocomplete/loadingIcon": {
+    "description": "Icon to display in loading state.",
+    "type": "string"
+  },
   "autocomplete/virtualScrollerOptions": {
     "description": "Whether to use the virtualScroller feature. The properties of VirtualScroller component can be used like an object in it.",
     "type": "object"
@@ -329,6 +333,10 @@
   },
   "calendar/hideOnDateTimeSelect": {
     "description": "Whether to hide the overlay on date selection when showTime is enabled.",
+    "type": "boolean"
+  },
+  "calendar/hideOnRangeSelection": {
+    "description": "Whether to hide the overlay on date selection is completed when selectionMode is range.",
     "type": "boolean"
   },
   "calendar/timeSeparator": {
@@ -825,7 +833,7 @@
   },
   "datatable/dataKey": {
     "description": "Name of the field that uniquely identifies the a record in the data.",
-    "type": "string"
+    "type": "string|function"
   },
   "datatable/rows": {
     "description": "Number of rows to display per page.",
@@ -2083,6 +2091,10 @@
     "description": "Whether all data is selected.",
     "type": "boolean"
   },
+  "multiselect/resetFilterOnHide": {
+    "description": "Clears the filter value when hiding the dropdown.",
+    "type": "boolean"
+  },
   "multiselect/virtualScrollerOptions": {
     "description": "Whether to use the virtualScroller feature. The properties of VirtualScroller component can be used like an object in it.",
     "type": "object"
@@ -2217,7 +2229,7 @@
   },
   "panelmenu/expandedKeys": {
     "description": "A map of keys to represent the expansion state in controlled mode.",
-    "type": "array"
+    "type": "object"
   },
   "panelmenu/exact": {
     "description": "Whether to apply 'router-link-active-exact' class if route exactly matches the item path.",
@@ -2226,6 +2238,10 @@
   "password/modelValue": {
     "description": "Value of the component.",
     "type": "any"
+  },
+  "password/inputId": {
+    "description": "Identifier of the underlying input element.",
+    "type": "string"
   },
   "password/promptLabel": {
     "description": "Text to prompt password entry. Defaults to PrimeVue Locale configuration.",
@@ -2321,6 +2337,22 @@
   },
   "picklist/stripedRows": {
     "description": "Whether to displays rows with alternating colors.",
+    "type": "boolean"
+  },
+  "picklist/showSourceControls": {
+    "description": "Whether to show buttons of source list.",
+    "type": "boolean"
+  },
+  "picklist/showTargetControls": {
+    "description": "Whether to show buttons of target list.",
+    "type": "boolean"
+  },
+  "portal/appendTo": {
+    "description": "A valid query selector or an HTMLElement to specify where the dialog gets attached. Special keywords are \"body\" for document body and \"self\" for the element itself.",
+    "type": "string"
+  },
+  "portal/disabled": {
+    "description": "If disabled, the Portal feature is eliminated and the content is displayed directly.",
     "type": "boolean"
   },
   "progressbar/value": {
@@ -2519,8 +2551,16 @@
     "description": "When present, it specifies that the component should be disabled.",
     "type": "boolean"
   },
-  "slider/ariaLabelledBy": {
+  "slider/tabindex": {
+    "description": "Index of the element in tabbing order.",
+    "type": "number"
+  },
+  "slider/aria-labelledby": {
     "description": "Establishes relationships between the component and label(s) where its value should be one or more element IDs.",
+    "type": "string"
+  },
+  "slider/aria-label": {
+    "description": "Used to define a string that labels the element.",
     "type": "string"
   },
   "speeddial/model": {

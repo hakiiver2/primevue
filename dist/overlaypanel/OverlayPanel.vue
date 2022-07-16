@@ -1,5 +1,5 @@
 <template>
-    <Teleport :to="appendTo">
+    <Portal :appendTo="appendTo">
         <transition name="p-overlaypanel" @enter="onEnter" @leave="onLeave" @after-leave="onAfterLeave">
             <div :class="containerClass" v-if="visible" :ref="containerRef" v-bind="$attrs" @click="onOverlayClick">
                 <div class="p-overlaypanel-content" @click="onContentClick" @mousedown="onContentClick">
@@ -10,17 +10,19 @@
                 </button>
             </div>
         </transition>
-    </Teleport>
+    </Portal>
 </template>
 
 <script>
 import {UniqueComponentId,DomHandler,ConnectedOverlayScrollHandler,ZIndexUtils} from 'primevue/utils';
 import OverlayEventBus from 'primevue/overlayeventbus';
 import Ripple from 'primevue/ripple';
+import Portal from 'primevue/portal';
 
 export default {
     name: 'OverlayPanel',
     inheritAttrs: false,
+    emits: ['show', 'hide'],
     props: {
 		dismissable: {
 			type: Boolean,
@@ -51,10 +53,21 @@ export default {
             default: null
         }
     },
-    emits: ['show', 'hide'],
     data() {
         return {
             visible: false
+        }
+    },
+    watch: {
+        dismissable: {
+            immediate: true,
+            handler(newValue) {
+                if (newValue) {
+                    this.bindOutsideClickListener();
+                } else {
+                    this.unbindOutsideClickListener();
+                }
+            }
         }
     },
     selfClick: false,
@@ -202,7 +215,7 @@ export default {
         bindResizeListener() {
             if (!this.resizeListener) {
                 this.resizeListener = () => {
-                    if (this.visible && !DomHandler.isAndroid()) {
+                    if (this.visible && !DomHandler.isTouchDevice()) {
                         this.visible = false;
                     }
                 };
@@ -267,6 +280,9 @@ export default {
     },
     directives: {
         'ripple': Ripple
+    },
+    components: {
+        'Portal': Portal
     }
 }
 </script>

@@ -4,6 +4,7 @@ var ConfirmationEventBus = require('primevue/confirmationeventbus');
 var utils = require('primevue/utils');
 var OverlayEventBus = require('primevue/overlayeventbus');
 var Button = require('primevue/button');
+var Portal = require('primevue/portal');
 var vue = require('vue');
 
 function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
@@ -11,6 +12,7 @@ function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'defau
 var ConfirmationEventBus__default = /*#__PURE__*/_interopDefaultLegacy(ConfirmationEventBus);
 var OverlayEventBus__default = /*#__PURE__*/_interopDefaultLegacy(OverlayEventBus);
 var Button__default = /*#__PURE__*/_interopDefaultLegacy(Button);
+var Portal__default = /*#__PURE__*/_interopDefaultLegacy(Portal);
 
 var script = {
     name: 'ConfirmPopup',
@@ -156,7 +158,7 @@ var script = {
         bindResizeListener() {
             if (!this.resizeListener) {
                 this.resizeListener = () => {
-                    if (this.visible) {
+                    if (this.visible && !utils.DomHandler.isTouchDevice()) {
                         this.visible = false;
                     }
                 };
@@ -218,7 +220,8 @@ var script = {
         }
     },
     components: {
-        'CPButton': Button__default["default"]
+        'CPButton': Button__default["default"],
+        'Portal': Portal__default["default"]
     }
 };
 
@@ -234,63 +237,67 @@ const _hoisted_3 = {
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_CPButton = vue.resolveComponent("CPButton");
+  const _component_Portal = vue.resolveComponent("Portal");
 
-  return (vue.openBlock(), vue.createBlock(vue.Teleport, { to: "body" }, [
-    vue.createVNode(vue.Transition, {
-      name: "p-confirm-popup",
-      onEnter: $options.onEnter,
-      onLeave: $options.onLeave,
-      onAfterLeave: $options.onAfterLeave
-    }, {
-      default: vue.withCtx(() => [
-        ($data.visible)
-          ? (vue.openBlock(), vue.createElementBlock("div", vue.mergeProps({
-              key: 0,
-              class: $options.containerClass,
-              ref: $options.containerRef
-            }, _ctx.$attrs, {
-              onClick: _cache[2] || (_cache[2] = (...args) => ($options.onOverlayClick && $options.onOverlayClick(...args)))
-            }), [
-              (!_ctx.$slots.message)
-                ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_1, [
-                    vue.createElementVNode("i", {
-                      class: vue.normalizeClass($options.iconClass)
-                    }, null, 2),
-                    vue.createElementVNode("span", _hoisted_2, vue.toDisplayString($data.confirmation.message), 1)
-                  ]))
-                : (vue.openBlock(), vue.createBlock(vue.resolveDynamicComponent(_ctx.$slots.message), {
-                    key: 1,
-                    message: $data.confirmation
-                  }, null, 8, ["message"])),
-              vue.createElementVNode("div", {
-                class: vue.normalizeClass(["p-confirm-popup-footer", $options.flexFooterClass])
-              }, [
-                ($props.showReject)
-                  ? (vue.openBlock(), vue.createBlock(_component_CPButton, {
-                      key: 0,
-                      label: $options.rejectLabel,
-                      icon: $options.rejectIcon,
-                      class: vue.normalizeClass($options.rejectClass),
-                      onClick: _cache[0] || (_cache[0] = $event => ($options.reject()))
-                    }, null, 8, ["label", "icon", "class"]))
-                  : vue.createCommentVNode("", true),
-                (_ctx.isFlexFooter)
-                  ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_3))
-                  : vue.createCommentVNode("", true),
-                vue.createVNode(_component_CPButton, {
-                  label: $options.acceptLabel,
-                  icon: $options.acceptIcon,
-                  class: vue.normalizeClass($options.acceptClass),
-                  onClick: _cache[1] || (_cache[1] = $event => ($options.accept())),
-                  autofocus: ""
-                }, null, 8, ["label", "icon", "class"])
-              ], 2)
-            ], 16))
-          : vue.createCommentVNode("", true)
-      ]),
-      _: 1
-    }, 8, ["onEnter", "onLeave", "onAfterLeave"])
-  ]))
+  return (vue.openBlock(), vue.createBlock(_component_Portal, null, {
+    default: vue.withCtx(() => [
+      vue.createVNode(vue.Transition, {
+        name: "p-confirm-popup",
+        onEnter: $options.onEnter,
+        onLeave: $options.onLeave,
+        onAfterLeave: $options.onAfterLeave
+      }, {
+        default: vue.withCtx(() => [
+          ($data.visible)
+            ? (vue.openBlock(), vue.createElementBlock("div", vue.mergeProps({
+                key: 0,
+                class: $options.containerClass,
+                ref: $options.containerRef
+              }, _ctx.$attrs, {
+                onClick: _cache[2] || (_cache[2] = (...args) => ($options.onOverlayClick && $options.onOverlayClick(...args)))
+              }), [
+                (!_ctx.$slots.message)
+                  ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_1, [
+                      vue.createElementVNode("i", {
+                        class: vue.normalizeClass($options.iconClass)
+                      }, null, 2),
+                      vue.createElementVNode("span", _hoisted_2, vue.toDisplayString($data.confirmation.message), 1)
+                    ]))
+                  : (vue.openBlock(), vue.createBlock(vue.resolveDynamicComponent(_ctx.$slots.message), {
+                      key: 1,
+                      message: $data.confirmation
+                    }, null, 8, ["message"])),
+                vue.createElementVNode("div", {
+                  class: vue.normalizeClass(["p-confirm-popup-footer", $options.flexFooterClass])
+                }, [
+                  ($props.showReject)
+                    ? (vue.openBlock(), vue.createBlock(_component_CPButton, {
+                        key: 0,
+                        label: $options.rejectLabel,
+                        icon: $options.rejectIcon,
+                        class: vue.normalizeClass($options.rejectClass),
+                        onClick: _cache[0] || (_cache[0] = $event => ($options.reject()))
+                      }, null, 8, ["label", "icon", "class"]))
+                    : vue.createCommentVNode("", true),
+                  (_ctx.isFlexFooter)
+                    ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_3))
+                    : vue.createCommentVNode("", true),
+                  vue.createVNode(_component_CPButton, {
+                    label: $options.acceptLabel,
+                    icon: $options.acceptIcon,
+                    class: vue.normalizeClass($options.acceptClass),
+                    onClick: _cache[1] || (_cache[1] = $event => ($options.accept())),
+                    autofocus: ""
+                  }, null, 8, ["label", "icon", "class"])
+                ], 2)
+              ], 16))
+            : vue.createCommentVNode("", true)
+        ]),
+        _: 1
+      }, 8, ["onEnter", "onLeave", "onAfterLeave"])
+    ]),
+    _: 1
+  }))
 }
 
 function styleInject(css, ref) {

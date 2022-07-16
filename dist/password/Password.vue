@@ -1,8 +1,11 @@
 <template>
-    <div :class="containerClass" :style="style">
-        <PInputText ref="input" :class="inputFieldClass" :style="inputStyle" :type="inputType" :value="modelValue" @input="onInput" @focus="onFocus" @blur="onBlur" @keyup="onKeyUp" v-bind="$attrs" />
+    <div :class="containerClass">
+        <PInputText ref="input" :id="inputId" :type="inputType" :value="modelValue" @input="onInput" @focus="onFocus" @blur="onBlur" @keyup="onKeyUp" v-bind="inputProps" />
         <i v-if="toggleMask" :class="toggleIconClass" @click="onMaskToggle" />
-        <Teleport :to="appendTarget" :disabled="appendDisabled">
+        <span class="p-hidden-accessible" aria-live="polite">
+            {{infoText}}
+        </span>
+        <Portal :appendTo="appendTo">
             <transition name="p-connected-overlay" @enter="onOverlayEnter" @leave="onOverlayLeave" @after-leave="onOverlayAfterLeave">
                 <div :ref="overlayRef" :class="panelStyleClass" v-if="overlayVisible" @click="onOverlayClick">
                     <slot name="header"></slot>
@@ -15,7 +18,7 @@
                     <slot name="footer"></slot>
                 </div>
             </transition>
-        </Teleport>
+        </Portal>
     </div>
 </template>
 
@@ -23,13 +26,17 @@
 import {ConnectedOverlayScrollHandler,DomHandler,ZIndexUtils} from 'primevue/utils';
 import OverlayEventBus from 'primevue/overlayeventbus';
 import InputText from 'primevue/inputtext';
+import Portal from 'primevue/portal';
 
 export default {
     name: 'Password',
-    emits: ['update:modelValue'],
-    inheritAttrs: false,
+    emits: ['update:modelValue', 'change', 'focus', 'blur'],
     props: {
         modelValue: String,
+        inputId: {
+            type: String,
+            default: null
+        },
         promptLabel: {
             type: String,
             default: null
@@ -74,11 +81,12 @@ export default {
             type: String,
             default: 'pi pi-eye'
         },
-        inputClass: null,
-        inputStyle: null,
-        style: null,
-        class: String,
-        panelClass: String
+        panelClass: String,
+        disabled: {
+            type: Boolean,
+            default: false
+        },
+        inputProps: null
     },
     data() {
         return {
@@ -127,7 +135,7 @@ export default {
             ZIndexUtils.clear(el);
         },
         alignOverlay() {
-            if (this.appendDisabled) {
+            if (this.appendTo === 'self') {
                 DomHandler.relativePosition(this.overlay, this.$refs.input.$el);
             }
             else {
@@ -150,17 +158,21 @@ export default {
         onInput(event)  {
             this.$emit('update:modelValue', event.target.value)
         },
-        onFocus() {
+        onFocus(event) {
             this.focused = true;
             if (this.feedback) {
                 this.overlayVisible = true;
             }
+
+            this.$emit('focus', event);
         },
-        onBlur() {
+        onBlur(event) {
             this.focused = false;
             if (this.feedback) {
                 this.overlayVisible = false;
             }
+
+            this.$emit('blur', event);
         },
         onKeyUp(event) {
             if (this.feedback) {
@@ -202,6 +214,12 @@ export default {
                 this.meter = meter;
                 this.infoText = label;
 
+                //escape
+                if (event.which === 27) {
+                    this.overlayVisible && (this.overlayVisible = false);
+                    return;
+                }
+
                 if (!this.overlayVisible) {
                     this.overlayVisible = true;
                 }
@@ -226,7 +244,7 @@ export default {
         bindResizeListener() {
             if (!this.resizeListener) {
                 this.resizeListener = () => {
-                    if (this.overlayVisible) {
+                    if (this.overlayVisible && !DomHandler.isTouchDevice()) {
                         this.overlayVisible = false;
                     }
                 };
@@ -254,15 +272,15 @@ export default {
     },
     computed: {
         containerClass() {
-            return ['p-password p-component p-inputwrapper', this.class, {
+            return ['p-password p-component p-inputwrapper', {
                 'p-inputwrapper-filled': this.filled,
                 'p-inputwrapper-focus': this.focused,
                 'p-input-icon-right': this.toggleMask
             }];
         },
         inputFieldClass() {
-            return ['p-password-input', this.inputClass, {
-                'p-disabled': this.$attrs.disabled
+            return ['p-password-input', {
+                'p-disabled': this.disabled
             }];
         },
         panelStyleClass() {
@@ -294,16 +312,11 @@ export default {
         },
         promptText() {
             return this.promptLabel || this.$primevue.config.locale.passwordPrompt;
-        },
-        appendDisabled() {
-            return this.appendTo === 'self';
-        },
-        appendTarget() {
-            return this.appendDisabled ? null : this.appendTo;
         }
     },
     components: {
-        'PInputText': InputText
+        'PInputText': InputText,
+        'Portal': Portal
     }
 }
 </script>

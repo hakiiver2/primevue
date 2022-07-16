@@ -1,5 +1,5 @@
 <template>
-    <Teleport to="body">
+    <Portal>
         <transition name="p-confirm-popup" @enter="onEnter" @leave="onLeave" @after-leave="onAfterLeave">
             <div :class="containerClass" v-if="visible" :ref="containerRef" v-bind="$attrs" @click="onOverlayClick">
                 <template v-if="!$slots.message">
@@ -16,7 +16,7 @@
                 </div>
             </div>
         </transition>
-    </Teleport>
+    </Portal>
 </template>
 
 <script>
@@ -24,6 +24,7 @@ import ConfirmationEventBus from 'primevue/confirmationeventbus';
 import {ConnectedOverlayScrollHandler,DomHandler,ZIndexUtils} from 'primevue/utils';
 import OverlayEventBus from 'primevue/overlayeventbus';
 import Button from 'primevue/button';
+import Portal from 'primevue/portal';
 
 export default {
     name: 'ConfirmPopup',
@@ -169,7 +170,7 @@ export default {
         bindResizeListener() {
             if (!this.resizeListener) {
                 this.resizeListener = () => {
-                    if (this.visible) {
+                    if (this.visible && !DomHandler.isTouchDevice()) {
                         this.visible = false;
                     }
                 };
@@ -231,7 +232,8 @@ export default {
         }
     },
     components: {
-        'CPButton': Button
+        'CPButton': Button,
+        'Portal': Portal
     }
 }
 </script>
