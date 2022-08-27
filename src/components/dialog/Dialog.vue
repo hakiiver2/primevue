@@ -187,7 +187,7 @@ export default {
             }
         },
         onMaskContextMenu(event) {
-            if (this.contextmenuNone) {
+            if (this.dismissableMask && this.closable && this.modal && this.mask === event.target && this.contextmenuNone) {
                 event.preventDefault();
             }
         },
