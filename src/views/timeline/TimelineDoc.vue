@@ -47,7 +47,7 @@ export default {
 		<h5>Layout</h5>
 		<p>Default layout of the timeline is vertical, setting <i>layout</i> to "horizontal" displays the items horizontally.</p>
 <pre v-code><code><template v-pre>
-&lt;Timeline :value="events"&gt;
+&lt;Timeline :value="events" layout="horizontal&gt;
 	&lt;template #content="slotProps"&gt;
 		&#123;&#123;slotProps.item.status&#125;&#125;
 	&lt;/template&gt;
@@ -419,7 +419,7 @@ export default {
     z-index: 1;
 }
 
-::v-deep(.p-timeline-event-content)
+::v-deep(.p-timeline-event-content),
 ::v-deep(.p-timeline-event-opposite) {
     line-height: 1;
 }
@@ -577,7 +577,7 @@ export default {
     z-index: 1;
 }
 
-::v-deep(.p-timeline-event-content)
+::v-deep(.p-timeline-event-content),
 ::v-deep(.p-timeline-event-opposite) {
     line-height: 1;
 }

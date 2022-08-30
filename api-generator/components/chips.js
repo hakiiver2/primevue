@@ -30,16 +30,40 @@ const ChipsProps = [
         description: "Whether to allow duplicate values or not."
     },
     {
-        name: "class",
-        type: "string",
-        default: "null",
-        description: "Style class of the component."
+        name: "disabled",
+        type: "boolean",
+        default: "false",
+        description: "When present, it specifies that the element should be disabled."
     },
     {
-        name: "style",
+        name: "placeholder",
+        type: "string",
+        default: "null",
+        description: "Placeholder text for the input."
+    },
+    {
+        name: "inputId",
+        type: "string",
+        default: "null",
+        description: "Identifier of the focus input to match a label defined for the chips."
+    },
+    {
+        name: "inputClass",
+        type: "string",
+        default: "null",
+        description: "Style class of the input field."
+    },
+    {
+        name: "inputStyle",
         type: "any",
         default: "null",
-        description: "Inline of the component."
+        description: "Inline style of the input field."
+    },
+    {
+        name: "inputProps",
+        type: "object",
+        default: "null",
+        description: "Uses to pass all properties of the HTMLInputElement to the focusable input element inside the component."
     }
 ];
 

@@ -382,6 +382,12 @@ export default {
                             <td>Custom export header of the column to be exported as CSV.</td>
                         </tr>
                         <tr>
+                            <td>exportFooter</td>
+                            <td>string</td>
+                            <td>null</td>
+                            <td>Custom export footer of the column to be exported as CSV.</td>
+                        </tr>
+                        <tr>
                             <td>filterMatchMode</td>
                             <td>string</td>
                             <td>null</td>
@@ -1242,7 +1248,7 @@ export default {
 
 </code></pre>
 
-            <p>Row Editing is specified by setting <i>cellEdit</i> as <b>row</b>, defining <i>editingRows</i> with the v-model directive to hold the reference of the editing rows,
+            <p>Row Editing is specified by setting <i>editMode</i> as <b>row</b>, defining <i>editingRows</i> with the v-model directive to hold the reference of the editing rows,
             adding a row editor column to provide the editing controls and implementing <i>@row-edit-save</i> to update the original row data. Note that
             since <i>editingRows</i> is two-way binding enabled, you may use it to initially display one or more rows in editing more or programmatically toggle row editing.</p>
 <pre v-code><code><template v-pre>

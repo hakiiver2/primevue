@@ -48,15 +48,23 @@
 </template>
 
 <script>
-import Quill from "quill";
 import QuillImageDropAndPaste from 'quill-image-drop-and-paste'
 
 Quill.register('modules/imageDropAndPaste', QuillImageDropAndPaste)
 
+import { DomHandler } from 'primevue/utils';
+
+const QuillJS = (function () {
+    try {
+        return window.Quill;
+    } catch {
+        return null;
+    }
+})();
 
 export default {
     name: 'Editor',
-    emits: ['update:modelValue', 'text-change'],
+    emits: ['update:modelValue', 'text-change', 'selection-change', 'load'],
     props: {
         modelValue: String,
         placeholder: String,
@@ -75,6 +83,7 @@ export default {
         quillImageDropAndPaste: {
             type: Function,
         },
+        modules: null
     },
     quill: null,
     watch: {
@@ -109,34 +118,41 @@ export default {
                 handler: this.quillImageDropAndPaste
             }
         }
-        this.quill = new Quill(this.$refs.editorElement, {
-            modules: modules,
+        const configuration = {
+            modules: {
+                toolbar: this.$refs.toolbarElement,
+                ...this.modules
+            },
             readOnly: this.readonly,
             theme: 'snow',
             formats: this.formats,
             placeholder: this.placeholder
-        });
+        };
 
-        this.renderValue(this.modelValue);
+        if (QuillJS) {
+            // Loaded by script only
+            this.quill = new QuillJS(this.$refs.editorElement, configuration);
+            this.initQuill();
+            this.handleLoad();
+        } else {
+            import('quill')
+                .then((module) => {
+                    if (module && DomHandler.isExist(this.$refs.editorElement)) {
+                        if (module.default) {
+                            // webpack
+                            this.quill = new module.default(this.$refs.editorElement, configuration);
+                        } else {
+                            // parceljs
+                            this.quill = new module(this.$refs.editorElement, configuration);
+                        }
 
-        this.quill.on('text-change', (delta, oldContents, source) => {
-            if (source === 'user') {
-                let html = this.$refs.editorElement.children[0].innerHTML;
-                let text = this.quill.getText().trim();
-                if (html === '<p><br></p>') {
-                    html = '';
-                }
-
-                this.$emit('update:modelValue', html);
-                this.$emit('text-change', {
-                    htmlValue: html,
-                    textValue: text,
-                    delta: delta,
-                    source: source,
-                    instance: this.quill
+                        this.initQuill();
+                    }
+                })
+                .then(() => {
+                    this.handleLoad();
                 });
-            }
-        });
+        }
     },
     methods: {
         imageHandler() {
@@ -151,9 +167,50 @@ export default {
         renderValue(value) {
             if (this.quill) {
                 if (value)
-                    this.quill.pasteHTML(value);
+                    this.quill.setContents(this.quill.clipboard.convert(value));
                 else
                     this.quill.setText('');
+            }
+        },
+        initQuill() {
+            this.renderValue(this.modelValue);
+
+            this.quill.on('text-change', (delta, oldContents, source) => {
+                if (source === 'user') {
+                    let html = this.$refs.editorElement.children[0].innerHTML;
+                    let text = this.quill.getText().trim();
+                    if (html === '<p><br></p>') {
+                        html = '';
+                    }
+
+                    this.$emit('update:modelValue', html);
+                    this.$emit('text-change', {
+                        htmlValue: html,
+                        textValue: text,
+                        delta: delta,
+                        source: source,
+                        instance: this.quill
+                    });
+                }
+            });
+
+            this.quill.on('selection-change', (range, oldRange, source) => {
+                let html = this.$refs.editorElement.children[0].innerHTML;
+                let text = this.quill.getText().trim();
+
+                this.$emit('selection-change', {
+                    htmlValue: html,
+                    textValue: text,
+                    range: range,
+                    oldRange: oldRange,
+                    source: source,
+                    instance: this.quill
+                })
+            });
+        },
+        handleLoad() {
+            if (this.quill && this.quill.getModule('toolbar')) {
+                this.$emit('load', { instance: this.quill });
             }
         }
     },

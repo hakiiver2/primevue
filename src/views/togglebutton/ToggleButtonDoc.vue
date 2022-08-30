@@ -88,6 +88,42 @@ export default {
                         <td>left</td>
                         <td>Position of the icon, valid values are "left" and "right".</td>
                     </tr>
+                    <tr>
+                        <td>disabled</td>
+                        <td>boolean</td>
+                        <td>false</td>
+                        <td>When present, it specifies that the component should be disabled.</td>
+                    </tr>
+                    <tr>
+                        <td>tabindex</td>
+                        <td>number</td>
+                        <td>null</td>
+                        <td>Index of the element in tabbing order.</td>
+                    </tr>
+                    <tr>
+                        <td>inputId</td>
+                        <td>string</td>
+                        <td>null</td>
+                        <td>Style class of the component input field.</td>
+                    </tr>
+                    <tr>
+                        <td>inputClass</td>
+                        <td>string</td>
+                        <td>null</td>
+                        <td>Style class of the input field.</td>
+                    </tr>
+                    <tr>
+                        <td>inputStyle</td>
+                        <td>any</td>
+                        <td>null</td>
+                        <td>Inline style of the input field.</td>
+                    </tr>
+                    <tr>
+                        <td>inputProps</td>
+                        <td>object</td>
+                        <td>null</td>
+                        <td>Uses to pass all properties of the HTMLInputElement to the focusable input element inside the component.</td>
+                    </tr>
 				</tbody>
 			</table>
 		</div>
@@ -150,10 +186,9 @@ export default {
 		</div>
 
         <h5>Accessibility</h5>
-        <DevelopmentSection>
-            <h6>Screen Reader</h6>
-            <p>ToggleButton component uses an element with <i>button</i> role and updates <i>aria-pressed</i> state for screen readers. Value to describe the component can be defined with <i>aria-labelledby</i> or <i>aria-label</i> props, it is highly suggested to use
-            either of these props as the component changes the label displayed which will result in screen readers to read different labels when the component receives focus. To prevent this, always provide an aria label that does not change related to state.</p>
+        <h6>Screen Reader</h6>
+        <p>ToggleButton component uses an element with <i>button</i> role and updates <i>aria-pressed</i> state for screen readers. Value to describe the component can be defined with <i>aria-labelledby</i> or <i>aria-label</i> props, it is highly suggested to use
+        either of these props as the component changes the label displayed which will result in screen readers to read different labels when the component receives focus. To prevent this, always provide an aria label that does not change related to state.</p>
 
 <pre v-code><code>
 &lt;span id="rememberme"&gt;Remember Me&lt;/span&gt;
@@ -163,28 +198,28 @@ export default {
 
 </code></pre>
 
-            <h6>Keyboard Support</h6>
-            <div class="doc-tablewrapper">
-                <table class="doc-table">
-                    <thead>
-                        <tr>
-                            <th>Key</th>
-                            <th>Function</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><i>tab</i></td>
-                            <td>Moves focus to the button.</td>
-                        </tr>
-                        <tr>
-                            <td><i>space</i></td>
-                            <td>Toggles the checked state.</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </DevelopmentSection>
+        <h6>Keyboard Support</h6>
+        <p>Keyboard interaction is derived from the native browser handling of checkboxs in a group.</p>
+        <div class="doc-tablewrapper">
+            <table class="doc-table">
+                <thead>
+                    <tr>
+                        <th>Key</th>
+                        <th>Function</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><i>tab</i></td>
+                        <td>Moves focus to the button.</td>
+                    </tr>
+                    <tr>
+                        <td><i>space</i></td>
+                        <td>Toggles the checked state.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
 
 		<h5>Dependencies</h5>
 		<p>None.</p>
@@ -205,7 +240,7 @@ export default {
         <ToggleButton v-model="checked1" onIcon="pi pi-check" offIcon="pi pi-times" class="w-full sm:w-10rem" aria-label="Confirmation" />
 
         <h5>Customized</h5>
-        <ToggleButton v-model="checked2" onLabel="I confirm" offLabel="I reject" onIcon="pi pi-check" offIcon="pi pi-times" class="w-full sm:w-10rem" aria-label="Confirmation" />
+        <ToggleButton v-model="checked2" onLabel="I confirm" offLabel="I reject" onIcon="pi pi-check" offIcon="pi pi-times" class="w-full sm:w-10rem" aria-label="do you confirm" />
     </div>
 </template>
 
@@ -230,7 +265,7 @@ export default {
         <ToggleButton v-model="checked1" onIcon="pi pi-check" offIcon="pi pi-times" class="w-full sm:w-10rem" aria-label="Confirmation" />
 
         <h5>Customized</h5>
-        <ToggleButton v-model="checked2" onLabel="I confirm" offLabel="I reject" onIcon="pi pi-check" offIcon="pi pi-times" class="w-full sm:w-10rem" aria-label="Confirmation" />
+        <ToggleButton v-model="checked2" onLabel="I confirm" offLabel="I reject" onIcon="pi pi-check" offIcon="pi pi-times" class="w-full sm:w-10rem" aria-label="do you confirm" />
     </div>
 </template>
 
@@ -256,7 +291,7 @@ export default {
             <p-togglebutton v-model="checked1" on-icon="pi pi-check" off-icon="pi pi-times" class="w-full sm:w-10rem" aria-label="Confirmation"></p-togglebutton>
 
             <h5>Customized</h5>
-            <p-togglebutton v-model="checked2" on-label="I confirm" off-label="I reject" on-icon="pi pi-check" off-icon="pi pi-times" class="w-full sm:w-10rem" aria-label="Confirmation"></p-togglebutton>
+            <p-togglebutton v-model="checked2" on-label="I confirm" off-label="I reject" on-icon="pi pi-check" off-icon="pi pi-times" class="w-full sm:w-10rem" aria-label="do you confirm"></p-togglebutton>
         </div>
 
         <script type="module">

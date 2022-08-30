@@ -70,22 +70,16 @@ export default {
                         <td>Value binding of the checkbox.</td>
                     </tr>
                     <tr>
+                        <td>name</td>
+                        <td>string</td>
+                        <td>null</td>
+                        <td>Name of the input element.</td>
+                    </tr>
+                    <tr>
                         <td>binary</td>
                         <td>boolean</td>
                         <td>false</td>
                         <td>Allows to select a boolean value instead of multiple values.</td>
-                    </tr>
-                    <tr>
-                        <td>style</td>
-                        <td>any</td>
-                        <td>null</td>
-                        <td>Style class of the component input field.</td>
-                    </tr>
-                    <tr>
-                        <td>class</td>
-                        <td>string</td>
-                        <td>null</td>
-                        <td>Inline style of the component.</td>
                     </tr>
                     <tr>
                         <td>trueValue</td>
@@ -98,6 +92,54 @@ export default {
                         <td>any</td>
                         <td>null</td>
                         <td>Value in unchecked state.</td>
+                    </tr>
+                    <tr>
+                        <td>disabled</td>
+                        <td>boolean</td>
+                        <td>false</td>
+                        <td>When present, it specifies that the element should be disabled.</td>
+                    </tr>
+                    <tr>
+                        <td>readonly</td>
+                        <td>boolean</td>
+                        <td>false</td>
+                        <td>When present, it specifies that an input field is read-only.</td>
+                    </tr>
+                    <tr>
+                        <td>required</td>
+                        <td>boolean</td>
+                        <td>false</td>
+                        <td>When present, it specifies that the element is required.</td>
+                    </tr>
+                    <tr>
+                        <td>tabindex</td>
+                        <td>number</td>
+                        <td>null</td>
+                        <td>Index of the element in tabbing order.</td>
+                    </tr>
+                    <tr>
+                        <td>inputId</td>
+                        <td>string</td>
+                        <td>null</td>
+                        <td>Identifier of the underlying input element.</td>
+                    </tr>
+                    <tr>
+                        <td>inputClass</td>
+                        <td>any</td>
+                        <td>null</td>
+                        <td>Style class of the input field.</td>
+                    </tr>
+                    <tr>
+                        <td>inputStyle</td>
+                        <td>any</td>
+                        <td>null</td>
+                        <td>Inline style of the input field.</td>
+                    </tr>
+                    <tr>
+                        <td>inputProps</td>
+                        <td>object</td>
+                        <td>null</td>
+                        <td>Uses to pass all properties of the HTMLInputElement to the focusable input element inside the component.</td>
                     </tr>
 				</tbody>
 			</table>
@@ -162,9 +204,8 @@ export default {
 		</div>
 
         <h5>Accessibility</h5>
-        <DevelopmentSection>
-            <h6>Screen Reader</h6>
-            <p>Checkbox component uses a hidden native checkbox element internally that is only visible to screen readers. Value to describe the component can either be provided via <i>label</i> tag combined with <i>id</i> prop or using <i>aria-labelledby</i>, <i>aria-label</i> props.</p>
+        <h6>Screen Reader</h6>
+        <p>Checkbox component uses a hidden native checkbox element internally that is only visible to screen readers. Value to describe the component can either be provided via <i>label</i> tag combined with <i>id</i> prop or using <i>aria-labelledby</i>, <i>aria-label</i> props.</p>
 
 <pre v-code><code>
 &lt;label for="chkbox1"&gt;Remember Me&lt;/label&gt;
@@ -177,28 +218,28 @@ export default {
 
 </code></pre>
 
-            <h6>Keyboard Support</h6>
-            <div class="doc-tablewrapper">
-                <table class="doc-table">
-                    <thead>
-                        <tr>
-                            <th>Key</th>
-                            <th>Function</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><i>tab</i></td>
-                            <td>Moves focus to the checkbox.</td>
-                        </tr>
-                        <tr>
-                            <td><i>space</i></td>
-                            <td>Toggles the checked state.</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </DevelopmentSection>
+        <h6>Keyboard Support</h6>
+        <div class="doc-tablewrapper">
+            <table class="doc-table">
+                <thead>
+                    <tr>
+                        <th>Key</th>
+                        <th>Function</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><i>tab</i></td>
+                        <td>Moves focus to the checkbox.</td>
+                    </tr>
+                    <tr>
+                        <td><i>space</i></td>
+                        <td>Toggles the checked state.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
 
 		<h5>Dependencies</h5>
 		<p>None.</p>

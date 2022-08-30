@@ -68,16 +68,40 @@ export default {
                         <td>Value binding of the checkbox.</td>
                     </tr>
                     <tr>
-                        <td>style</td>
-                        <td>any</td>
+                        <td>name</td>
+                        <td>string</td>
+                        <td>null</td>
+                        <td>Name of the input element.</td>
+                    </tr>
+                    <tr>
+                        <td>disabled</td>
+                        <td>boolean</td>
+                        <td>false</td>
+                        <td>When present, it specifies that the element should be disabled.</td>
+                    </tr>
+                    <tr>
+                        <td>inputId</td>
+                        <td>string</td>
                         <td>null</td>
                         <td>Style class of the component input field.</td>
                     </tr>
                     <tr>
-                        <td>class</td>
+                        <td>inputClass</td>
                         <td>string</td>
                         <td>null</td>
-                        <td>Inline style of the component.</td>
+                        <td>Style class of the input field.</td>
+                    </tr>
+                    <tr>
+                        <td>inputStyle</td>
+                        <td>any</td>
+                        <td>null</td>
+                        <td>Inline style of the input field.</td>
+                    </tr>
+                    <tr>
+                        <td>inputProps</td>
+                        <td>object</td>
+                        <td>null</td>
+                        <td>Uses to pass all properties of the HTMLInputElement to the focusable input element inside the component.</td>
                     </tr>
 				</tbody>
 			</table>
@@ -137,9 +161,8 @@ export default {
 		</div>
 
         <h5>Accessibility</h5>
-        <DevelopmentSection>
-            <h6>Screen Reader</h6>
-            <p>RadioButton component uses a hidden native radio button element internally that is only visible to screen readers. Value to describe the component can either be provided via <i>label</i> tag combined with <i>id</i> prop or using <i>aria-labelledby</i>, <i>aria-label</i> props.</p>
+        <h6>Screen Reader</h6>
+        <p>RadioButton component uses a hidden native radio button element internally that is only visible to screen readers. Value to describe the component can either be provided via <i>label</i> tag combined with <i>id</i> prop or using <i>aria-labelledby</i>, <i>aria-label</i> props.</p>
 
 <pre v-code><code>
 &lt;label for="rb1"&gt;One&lt;/label&gt;
@@ -152,46 +175,45 @@ export default {
 
 </code></pre>
 
-            <h6>Keyboard Support</h6>
-            <div class="doc-tablewrapper">
-                <table class="doc-table">
-                    <thead>
-                        <tr>
-                            <th>Key</th>
-                            <th>Function</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><i>tab</i></td>
-                            <td>Moves focus to the checked radio button, if there is none within the group then first radio button receives the focus.</td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <span class="inline-flex flex-column">
-                                    <i class="mb-1">left arrow</i>
-                                    <i>up arrow</i>
-                                </span>
-                            </td>
-                            <td>Moves focus to the previous radio button, if there is none then last radio button receives the focus.</td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <span class="inline-flex flex-column">
-                                    <i class="mb-1">right arrow</i>
-                                    <i>down arrow</i>
-                                </span>
-                            </td>
-                            <td>Moves focus to the next radio button, if there is none then first radio button receives the focus.</td>
-                        </tr>
-                        <tr>
-                            <td><i>space</i></td>
-                            <td>If the focused radio button is unchecked, changes the state to checked.</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </DevelopmentSection>
+        <h6>Keyboard Support</h6>
+        <div class="doc-tablewrapper">
+            <table class="doc-table">
+                <thead>
+                    <tr>
+                        <th>Key</th>
+                        <th>Function</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><i>tab</i></td>
+                        <td>Moves focus to the checked radio button, if there is none within the group then first radio button receives the focus.</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span class="inline-flex flex-column">
+                                <i class="mb-1">left arrow</i>
+                                <i>up arrow</i>
+                            </span>
+                        </td>
+                        <td>Moves focus to the previous radio button, if there is none then last radio button receives the focus.</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span class="inline-flex flex-column">
+                                <i class="mb-1">right arrow</i>
+                                <i>down arrow</i>
+                            </span>
+                        </td>
+                        <td>Moves focus to the next radio button, if there is none then first radio button receives the focus.</td>
+                    </tr>
+                    <tr>
+                        <td><i>space</i></td>
+                        <td>If the focused radio button is unchecked, changes the state to checked.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
 
 		<h5>Dependencies</h5>
 		<p>None.</p>
@@ -249,7 +271,7 @@ export default {
         }
     },
     created() {
-        this.selectedCategory = this.categories[1];
+        this.selectedCategory = this.categories[1].name;
     }
 }
 <\\/script>
@@ -298,7 +320,7 @@ export default {
             {name: 'Production', key: 'P'}, 
             {name: 'Research', key: 'R'}
         ]);
-        const selectedCategory = ref(categories.value[1]);
+        const selectedCategory = ref(categories.value[1].name);
 
         return { city, categories, selectedCategory }
     }
@@ -347,7 +369,7 @@ export default {
                     {name: 'Production', key: 'P'}, 
                     {name: 'Research', key: 'R'}
                 ]);
-                const selectedCategory = ref(categories.value[1]);
+                const selectedCategory = ref(categories.value[1].name);
 
                 return { city, categories, selectedCategory }
             },

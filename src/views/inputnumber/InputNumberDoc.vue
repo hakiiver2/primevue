@@ -273,10 +273,28 @@ Vertical
                         <td>Determines whether the input field is empty.</td>
                     </tr>
                     <tr>
+                        <td>disabled</td>
+                        <td>boolean</td>
+                        <td>false</td>
+                        <td>When present, it specifies that the element should be disabled.</td>
+                    </tr>
+                    <tr>
                         <td>readonly</td>
                         <td>boolean</td>
                         <td>false</td>
                         <td>When present, it specifies that an input field is read-only.</td>
+                    </tr>
+                    <tr>
+                        <td>placeholder</td>
+                        <td>string</td>
+                        <td>null</td>
+                        <td>Placeholder text for the input.</td>
+                    </tr>
+                    <tr>
+                        <td>inputId</td>
+                        <td>string</td>
+                        <td>null</td>
+                        <td>Style class of the component input field.</td>
                     </tr>
                     <tr>
                         <td>inputStyle</td>
@@ -291,16 +309,22 @@ Vertical
                         <td>Style class of the input field.</td>
                     </tr>
                     <tr>
-                        <td>style</td>
-                        <td>any</td>
+                        <td>inputProps</td>
+                        <td>object</td>
                         <td>null</td>
-                        <td>Inline style of the component.</td>
+                        <td>Uses to pass all properties of the HTMLInputElement to the focusable input element inside the component.</td>
                     </tr>
                     <tr>
-                        <td>class</td>
-                        <td>string</td>
+                        <td>incrementButtonProps</td>
+                        <td>object</td>
                         <td>null</td>
-                        <td>Style class of the element.</td>
+                        <td>Uses to pass all properties of the HTMLButtonElement to increment button inside the component.</td>
+                    </tr>
+                    <tr>
+                        <td>decrementButtonProps</td>
+                        <td>object</td>
+                        <td>null</td>
+                        <td>Uses to pass all properties of the HTMLButtonElement to decrement button inside the component.</td>
                     </tr>
                 </tbody>
             </table>
@@ -412,10 +436,9 @@ Vertical
 		</div>
 
         <h5>Accessibility</h5>
-        <DevelopmentSection>
-            <h6>Screen Reader</h6>
-            <p>Value to describe the component can either be provided via <i>label</i> tag combined with <i>inputId</i> prop or using <i>aria-labelledby</i>, <i>aria-label</i> props.
-            The input element uses <i>spinbutton</i> role in addition to the <i>aria-valuemin</i>, <i>aria-valuemax</i> and <i>aria-valuenow</i> attributes.</p>
+        <h6>Screen Reader</h6>
+        <p>Value to describe the component can either be provided via <i>label</i> tag combined with <i>inputId</i> prop or using <i>aria-labelledby</i>, <i>aria-label</i> props.
+        The input element uses <i>spinbutton</i> role in addition to the <i>aria-valuemin</i>, <i>aria-valuemax</i> and <i>aria-valuenow</i> attributes.</p>
 
 <pre v-code><code>
 &lt;label for="price"&gt;Price&lt;/label&gt;
@@ -428,40 +451,39 @@ Vertical
 
 </code></pre>
 
-            <h6>Keyboard Support</h6>
-            <div class="doc-tablewrapper">
-                <table class="doc-table">
-                    <thead>
-                        <tr>
-                            <th>Key</th>
-                            <th>Function</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><i>tab</i></td>
-                            <td>Moves focus to the input.</td>
-                        </tr>
-                        <tr>
-                            <td><i>up arrow</i></td>
-                            <td>Increments the value.</td>
-                        </tr>
-                        <tr>
-                            <td><i>down arrow</i></td>
-                            <td>Decrements the value.</td>
-                        </tr>
-                        <tr>
-                            <td><i>home</i></td>
-                            <td>Set the minimum value if provided.</td>
-                        </tr>
-                        <tr>
-                            <td><i>end</i></td>
-                            <td>Set the maximum value if provided.</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </DevelopmentSection>
+        <h6>Keyboard Support</h6>
+        <div class="doc-tablewrapper">
+            <table class="doc-table">
+                <thead>
+                    <tr>
+                        <th>Key</th>
+                        <th>Function</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><i>tab</i></td>
+                        <td>Moves focus to the input.</td>
+                    </tr>
+                    <tr>
+                        <td><i>up arrow</i></td>
+                        <td>Increments the value.</td>
+                    </tr>
+                    <tr>
+                        <td><i>down arrow</i></td>
+                        <td>Decrements the value.</td>
+                    </tr>
+                    <tr>
+                        <td><i>home</i></td>
+                        <td>Set the minimum value if provided.</td>
+                    </tr>
+                    <tr>
+                        <td><i>end</i></td>
+                        <td>Set the maximum value if provided.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
 
 		<h5>Dependencies</h5>
 		<p>None.</p>
