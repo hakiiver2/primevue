@@ -2,7 +2,7 @@ import { VNode } from 'vue';
 import { ClassComponent, GlobalComponentConstructor } from '../ts-helpers';
 import { MenuItem } from '../menuitem';
 
-type MenuAppendToType = 'body' | 'self' | string | undefined;
+type MenuAppendToType = 'body' | 'self' | string | undefined | HTMLElement;
 
 export interface MenuProps {
     /**
@@ -60,7 +60,6 @@ declare class Menu extends ClassComponent<MenuProps, MenuSlots, MenuEmits> {
     /**
      * Shows the overlay.
      * @param {Event} event - Browser event.
-     * @param {*} [target] - Optional target if event.target would not be used.
      *
      * @memberof Menu
      */

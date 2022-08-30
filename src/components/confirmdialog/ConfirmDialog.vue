@@ -1,8 +1,11 @@
 <template>
     <CDialog v-model:visible="visible" :modal="true" :header="header" :blockScroll="blockScroll" :position="position" class="p-confirm-dialog"
-        :breakpoints="breakpoints">
-        <i :class="iconClass" />
-        <span class="p-confirm-dialog-message">{{message}}</span>
+        :breakpoints="breakpoints" :closeOnEscape="closeOnEscape">
+        <template v-if="!$slots.message">
+            <i :class="iconClass" />
+            <span class="p-confirm-dialog-message">{{ message }}</span>
+        </template>
+        <component v-else :is="$slots.message" :message="confirmation"></component>
         <template #footer>
             <CDButton :label="rejectLabel" :icon="rejectIcon" :class="rejectClass" @click="reject()" :autofocus="autoFocusReject"  v-if="isShowRejectButton"/>
             <CDButton :label="acceptLabel" :icon="acceptIcon" :class="acceptClass" @click="accept()" :autofocus="autoFocusAccept"   v-if="isShowAcceptButton"/>
@@ -119,6 +122,9 @@ export default {
         },
         autoFocusReject() {
             return this.confirmation.defaultFocus === 'reject' ? true : false;
+        },
+        closeOnEscape() {
+            return this.confirmation ? this.confirmation.closeOnEscape : true;
         }
     },
     components: {

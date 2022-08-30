@@ -80,7 +80,18 @@
                 },
                 {
                     "name": "SASS API",
-                    "href": "https://www.primefaces.org/designer/api/primevue/3.5.0"
+                    "href": "https://www.primefaces.org/designer/api/primevue/3.12.0"
+                }
+            ]
+        },
+        {
+            "name": "UI Kit",
+            "meta": ["ui kit"],
+            "children": [
+                {
+                    "name": "Figma",
+                    "to": "/uikit",
+                    "badge": "NEW"
                 }
             ]
         },
@@ -579,6 +590,11 @@
                 {
                     "name": "Dialog",
                     "to": "/dialog"
+                },
+                {
+                    "name": "DynamicDialog",
+                    "to": "/dynamicdialog",
+                    "badge": "NEW"
                 },
                 {
                     "name": "OverlayPanel",

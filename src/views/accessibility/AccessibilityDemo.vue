@@ -8,9 +8,9 @@
         </div>
 
         <div class="content-section documentation">
-            <p class="line-height-3 bg-indigo-600 text-white p-3 text-lg" style="border-radius:10px">Accessibility is a majorn concern of the Prime UI libraries and PrimeVue is no exception. <a href="https://www.primetek.com.tr" class="text-white">PrimeTek</a> teams have initiated a significant process to review and enhance the accessibility features of the components. This guide
+            <p class="line-height-3 bg-indigo-600 text-white p-3 text-lg" style="border-radius:10px">Accessibility is a major concern of the Prime UI libraries and PrimeVue is no exception. <a href="https://www.primetek.com.tr" class="text-white">PrimeTek</a> teams have initiated a significant process to review and enhance the accessibility features of the components. This guide
                 documents the foundation of the general guidelines that PrimeVue will follow and each component documentation will have a separate <b>Accessibility</b> section that states the keyboard support, screen reader compatibility, the implementation details along
-                    with tips to achieve WCAG compliancy. This work has been initiated in Q2 2022 and planned to be completed by early Q3. PrimeReact will be the reference implementation which then will be ported to PrimeFaces, PrimeNG and PrimeVue. 
+                    with tips to achieve WCAG compliancy. This work has been initiated in Q2 2022 and planned to be completed by early Q3. PrimeVue will be the reference implementation which then will be ported to PrimeFaces, PrimeNG and PrimeReact. 
             </p>
             
             <h3>Introduction</h3>
@@ -149,7 +149,7 @@
 
 </code></pre>
 
-            <p>One alternative is using ARIA roles for readers and use javascript for keyboard support. Notice the usage of <i>aria-labelledby</i> as a replacement of the <i>label</i> tag with htmlFor.</p>
+            <p>One alternative is using ARIA roles for readers and use javascript for keyboard support. Notice the usage of <i>aria-labelledby</i> as a replacement of the <i>label</i> tag with for.</p>
 <pre v-code.script><code>
 &lt;span id="chk-label"&gt;Remember Me&lt;/span&gt;
 &lt;div class="fancy-checkbox" role="checkbox" aria-checked="false" tabindex="0" aria-labelledby="chk-label"

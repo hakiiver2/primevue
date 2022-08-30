@@ -58,7 +58,7 @@ export default {
 </code></pre>
 
 		<h5>Properties</h5>
-        <p>Any property as style and class are passed to the main container element. Following are the additional properties to configure the component.</p>
+        <p>Any valid attribute is passed to the root element implicitly, extended properties are as follows;</p>
 		<div class="doc-tablewrapper">
 			<table class="doc-table">
 				<thead>
@@ -107,6 +107,12 @@ export default {
                         <td>When specified, allows selecting multiple values.</td>
                     </tr>
                     <tr>
+                        <td>unselectable</td>
+                        <td>boolean</td>
+                        <td>true</td>
+                        <td>Whether selection can be cleared.</td>
+                    </tr>
+                    <tr>
                         <td>disabled</td>
                         <td>boolean</td>
                         <td>false</td>
@@ -117,12 +123,6 @@ export default {
                         <td>string</td>
                         <td>null</td>
                         <td>A property to uniquely identify an option.</td>
-                    </tr>
-                    <tr>
-                        <td>ariaLabelledBy</td>
-                        <td>string</td>
-                        <td>null</td>
-                        <td>Establishes relationships between the component and label(s) where its value should be one or more element IDs.</td>
                     </tr>
 				</tbody>
 			</table>
@@ -178,6 +178,52 @@ export default {
 			</table>
         </div>
 
+        <h5>Accessibility</h5>
+        <h6>Screen Reader</h6>
+        <p>SelectButton component uses hidden native checkbox role for multiple selection and hidden radio role for single selection that is only visible to screen readers.
+        Value to describe the component can be provided via <i>aria-labelledby</i> property.</p>
+
+        <h6>Keyboard Support</h6>
+        <p>Keyboard interaction is derived from the native browser handling of checkboxs in a group.</p>
+        <div class="doc-tablewrapper">
+            <table class="doc-table">
+                <thead>
+                    <tr>
+                        <th>Key</th>
+                        <th>Function</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><i>tab</i></td>
+                        <td>Moves focus to the first selected option, if there is none then first option receives the focus.</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span class="inline-flex flex-column">
+                                <i class="mb-1">right arrow</i>
+                                <i>up arrow</i>
+                            </span>
+                        </td>
+                        <td>Moves focus to the previous option.</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span class="inline-flex flex-column">
+                                <i class="mb-1">left arrow</i>
+                                <i>down arrow</i>
+                            </span>
+                        </td>
+                        <td>Moves focus to the next option.</td>
+                    </tr>
+                    <tr>
+                        <td><i>space</i></td>
+                        <td>Toggles the checked state of a button.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
 		<h5>Dependencies</h5>
 		<p>None.</p>
     </AppDoc>
@@ -193,14 +239,14 @@ export default {
                     content: `
 <template>
     <div>
-        <h5>Single Selection</h5>
-        <SelectButton v-model="value1" :options="options" />
+        <h5 id="single">Single Selection</h5>
+        <SelectButton v-model="value1" :options="options" aria-labelledby="single" />
 
-        <h5>Multiple Selection</h5>
-        <SelectButton v-model="value2" :options="paymentOptions" optionLabel="name" multiple />
+        <h5 id="multiple">Multiple Selection</h5>
+        <SelectButton v-model="value2" :options="paymentOptions" optionLabel="name" multiple aria-labelledby="multiple" />
 
-        <h5>Custom Content</h5>
-        <SelectButton v-model="value3" :options="justifyOptions" dataKey="value">
+        <h5 id="custom">Custom Content</h5>
+        <SelectButton v-model="value3" :options="justifyOptions" optionLabel="value" dataKey="value" aria-labelledby="custom">
             <template #option="slotProps">
                 <i :class="slotProps.option.icon"></i>
             </template>
@@ -222,7 +268,7 @@ export default {
                 {name: 'Option 3', value: 3}
             ],
             justifyOptions: [
-                {icon: 'pi pi-align-left', value: 'left'},
+                {icon: 'pi pi-align-left', value: 'Left'},
                 {icon: 'pi pi-align-right', value: 'Right'},
                 {icon: 'pi pi-align-center', value: 'Center'},
                 {icon: 'pi pi-align-justify', value: 'Justify'}]
@@ -237,14 +283,14 @@ export default {
                     content: `
 <template>
     <div>
-        <h5>Single Selection</h5>
-        <SelectButton v-model="value1" :options="options" />
+        <h5 id="single">Single Selection</h5>
+        <SelectButton v-model="value1" :options="options" aria-labelledby="single" />
 
-        <h5>Multiple Selection</h5>
-        <SelectButton v-model="value2" :options="paymentOptions" optionLabel="name" multiple />
+        <h5 id="multiple">Multiple Selection</h5>
+        <SelectButton v-model="value2" :options="paymentOptions" optionLabel="name" multiple aria-labelledby="multiple" />
 
-        <h5>Custom Content</h5>
-        <SelectButton v-model="value3" :options="justifyOptions" dataKey="value">
+        <h5 id="custom">Custom Content</h5>
+        <SelectButton v-model="value3" :options="justifyOptions" optionLabel="value" dataKey="value" aria-labelledby="custom">
             <template #option="slotProps">
                 <i :class="slotProps.option.icon"></i>
             </template>
@@ -267,7 +313,7 @@ export default {
             {name: 'Option 3', value: 3}
         ]);
         const justifyOptions = ref([
-            {icon: 'pi pi-align-left', value: 'left'},
+            {icon: 'pi pi-align-left', value: 'Left'},
             {icon: 'pi pi-align-right', value: 'Right'},
             {icon: 'pi pi-align-center', value: 'Center'},
             {icon: 'pi pi-align-justify', value: 'Justify'}
@@ -283,14 +329,14 @@ export default {
                     tabName: 'Browser Source',
                     imports: `<script src="https://unpkg.com/primevue@^3/selectbutton/selectbutton.min.js"><\\/script>`,
                     content: `<div id="app">
-            <h5>Single Selection</h5>
-            <p-selectbutton v-model="value1" :options="options"></p-selectbutton>
+            <h5 id="single">Single Selection</h5>
+            <p-selectbutton v-model="value1" :options="options" aria-labelledby="single"></p-selectbutton>
 
-            <h5>Multiple Selection</h5>
-            <p-selectbutton v-model="value2" :options="paymentOptions" option-label="name" multiple></p-selectbutton>
+            <h5 id="multiple">Multiple Selection</h5>
+            <p-selectbutton v-model="value2" :options="paymentOptions" option-label="name" multiple aria-labelledby="multiple"></p-selectbutton>
 
-            <h5>Custom Content</h5>
-            <p-selectbutton v-model="value3" :options="justifyOptions" data-key="value">
+            <h5 id="custom">Custom Content</h5>
+            <p-selectbutton v-model="value3" :options="justifyOptions" option-label="value" data-key="value" aria-labelledby="custom">
                 <template #option="slotProps">
                     <i :class="slotProps.option.icon"></i>
                 </template>
@@ -312,7 +358,7 @@ export default {
                     {name: 'Option 3', value: 3}
                 ]);
                 const justifyOptions = ref([
-                    {icon: 'pi pi-align-left', value: 'left'},
+                    {icon: 'pi pi-align-left', value: 'Left'},
                     {icon: 'pi pi-align-right', value: 'Right'},
                     {icon: 'pi pi-align-center', value: 'Center'},
                     {icon: 'pi pi-align-justify', value: 'Justify'}

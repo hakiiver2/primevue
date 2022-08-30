@@ -6,6 +6,12 @@ const PasswordProps = [
         description: "Value of the component."
     },
     {
+        name: "inputId",
+        type: "string",
+        default: "null",
+        description: "Identifier of the underlying input element."
+    },
+    {
         name: "promptLabel",
         type: "string",
         default: "null",
@@ -72,6 +78,18 @@ const PasswordProps = [
         description: "Icon to show displaying the password as plain text."
     },
     {
+        name: "placeholder",
+        type: "string",
+        default: "null",
+        description: "Placeholder text for the input."
+    },
+    {
+        name: "inputId",
+        type: "string",
+        default: "null",
+        description: "Identifier of the underlying input element."
+    },
+    {
         name: "inputStyle",
         type: "any",
         default: "null",
@@ -84,22 +102,34 @@ const PasswordProps = [
         description: "Style class of the input field."
     },
     {
-        name: "class",
-        type: "string",
+        name: "inputProps",
+        type: "object",
         default: "null",
-        description: "Style class of the component."
+        description: "Uses to pass all properties of the HTMLInputElement to the focusable input element inside the component."
     },
     {
-        name: "style",
-        type: "any",
+        name: "panelId",
+        type: "string",
         default: "null",
-        description: "Inline of the component."
+        description: "Identifier of the underlying overlay panel element."
     },
     {
         name: "panelClass",
         type: "string",
         default: "null",
         description: "Style class of the overlay panel."
+    },
+    {
+        name: "panelStyle",
+        type: "string",
+        default: "null",
+        description: "Inline style of the overlay panel."
+    },
+    {
+        name: "panelProps",
+        type: "object",
+        default: "null",
+        description: "Uses to pass all properties of the HTMLDivElement to the overlay panel inside the component."
     }
 ];
 

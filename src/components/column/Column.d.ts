@@ -234,6 +234,10 @@ export interface ColumnProps {
      */
     exportHeader?: string | undefined;
     /**
+     * Custom export footer of the column to be exported as CSV.
+     */
+    exportFooter?: string | undefined;
+    /**
      * Defines the filtering algorithm to use when searching the options.
      */
     filterMatchMode?: string | undefined;
@@ -253,6 +257,10 @@ export interface ColumnSlots {
          * Row data.
          */
         data: any;
+        /**
+         * Row node data.
+         */
+        node: any;
         /**
          * Column node.
          */

@@ -48,10 +48,16 @@ const SelectButtonProps = [
         description: "A property to uniquely identify an option."
     },
     {
-        name: "ariaLabelledBy",
+        name: "unselectable",
+        type: "boolean",
+        default: "true",
+        description: "Whether selection can be cleared."
+    },
+    {
+        name: "aria-labelledby",
         type: "string",
         default: "null",
-        description: "Establishes relationships between the component and label(s) where its value should be one or more element IDs."
+        description: "Identifier of the underlying element."
     }
 ];
 

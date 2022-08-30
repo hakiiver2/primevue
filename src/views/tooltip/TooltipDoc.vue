@@ -94,8 +94,14 @@ directives: {
                     <tr>
                         <td>escape</td>
                         <td>boolean</td>
+                        <td>false</td>
+                        <td>By default the tooltip contents are not rendered as text. Set to true to support html tags in the content.</td>
+                    </tr>
+                    <tr>
+                        <td>fitContent</td>
+                        <td>boolean</td>
                         <td>true</td>
-                        <td>By default the tooltip contents are rendered as text. Set to true to support html tags in the content.</td>
+                        <td>Automatically adjusts the element position when there is not enough space on the selected position.</td>
                     </tr>
                 </tbody>
             </table>

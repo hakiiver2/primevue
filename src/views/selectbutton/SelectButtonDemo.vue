@@ -10,14 +10,14 @@
 
         <div class="content-section implementation">
             <div class="card">
-                <h5>Single Selection</h5>
-                <SelectButton v-model="value1" :options="options" />
+                <h5 id="single">Single Selection</h5>
+                <SelectButton v-model="value1" :options="options" aria-labelledby="single" />
 
-                <h5>Multiple Selection</h5>
-                <SelectButton v-model="value2" :options="paymentOptions" optionLabel="name" multiple />
+                <h5 id="multiple">Multiple Selection</h5>
+                <SelectButton v-model="value2" :options="paymentOptions" optionLabel="name" multiple aria-labelledby="multiple"  />
 
-                <h5>Custom Content</h5>
-                <SelectButton v-model="value3" :options="justifyOptions" dataKey="value">
+                <h5 id="custom">Custom Content</h5>
+                <SelectButton v-model="value3" :options="justifyOptions" optionLabel="value" dataKey="value" aria-labelledby="custom"  >
                     <template #option="slotProps">
                         <i :class="slotProps.option.icon"></i>
                     </template>
@@ -45,10 +45,11 @@ export default {
                 {name: 'Option 3', value: 3}
             ],
             justifyOptions: [
-                {icon: 'pi pi-align-left', value: 'left'},
+                {icon: 'pi pi-align-left', value: 'Left'},
                 {icon: 'pi pi-align-right', value: 'Right'},
                 {icon: 'pi pi-align-center', value: 'Center'},
-                {icon: 'pi pi-align-justify', value: 'Justify'}]
+                {icon: 'pi pi-align-justify', value: 'Justify'}
+            ]
         }
     },
     components: {

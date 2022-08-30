@@ -52,9 +52,13 @@ export interface SelectButtonProps {
      */
     dataKey?: string | undefined;
     /**
-     * Establishes relationships between the component and label(s) where its value should be one or more element IDs.
+     * Whether selection can be cleared.
      */
-    ariaLabelledBy?: string | undefined;
+    unselectable?: boolean | undefined;
+    /**
+     * Identifier of the underlying element.
+     */
+    "aria-labelledby"?: string | undefined;
 }
 
 export interface SelectButtonSlots {

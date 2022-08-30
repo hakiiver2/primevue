@@ -8,6 +8,8 @@
 import EventBus from '@/AppEventBus';
 import { services, data } from './LiveEditorData';
 
+const sourceTypes = ['options-api', 'composition-api', 'browser-source'];
+
 export default {
     data() {
         return {
@@ -80,8 +82,10 @@ export default {
         },
 
         createSandboxParameters(sourceType, nameWithExt, files, extDependencies) {
-            const boolExtFiles = !this.extFiles;
-            let extFiles = !boolExtFiles ? {...this.extFiles} : {};
+            /* eslint-disable */
+            let extFiles = this.extFiles ? (this.extFiles[sourceType] ? {...this.extFiles[sourceType]} : Object.keys(this.extFiles).filter(k => !sourceTypes.includes(k)).reduce((result, current) => (result[current] = this.extFiles[current]) && result, {})) : {};
+            Object.entries(extFiles).forEach(([key, value]) => extFiles[key].content && (extFiles[key].content = value.content.replaceAll('<\\/script>', '<\/script>')));
+
             let extIndexCSS = extFiles['index.css'] || '';
             delete extFiles['index.css'];
 
@@ -93,10 +97,10 @@ export default {
     }
 
     body {
-        background-color: #ffffff;
-        font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
+        background-color: var(--surface-ground);
+        font-family: var(--font-family);
         font-weight: normal;
-        color: #495057;
+        color: var(--text-color);
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
         padding: .5em;
@@ -123,6 +127,9 @@ export default {
     }
 
     .card {
+        background: var(--surface-card);
+        padding: 2rem;
+        border-radius: 10px;
         margin-bottom: 2rem;
     }
 
@@ -292,7 +299,7 @@ export default {
     ${extIndexCSS}
     `
 };
-            
+
             if (sourceType === 'browser-source') {
                 return {
                     files: {
@@ -310,7 +317,7 @@ export default {
                             dependencies: {
                                 ...extDependencies,
                                 'vue': dependencies['vue'],
-                                'primevue': '^3.12.5',
+                                'primevue': '^3.16.2',
                                 'primeflex': dependencies['primeflex'],
                                 'primeicons': dependencies['primeicons'],
                                 '@babel/cli': dependencies['@babel/cli'],
@@ -394,8 +401,8 @@ export default {
 
                 serviceArr.forEach(serv => {
                     path = sourceType === 'browser-source' ? `${serv}.js` : `src/service/${serv}.js`;
-                    let _content = sourceType === 'browser-source' ? 
-                                `${services[serv].replaceAll('export default class', 'class').replaceAll('demo/data/', './')}` : 
+                    let _content = sourceType === 'browser-source' ?
+                                `${services[serv].replaceAll('export default class', 'class').replaceAll('demo/data/', './')}` :
                                 `${services[serv]}`;
 
                     _files[path] = {
@@ -496,7 +503,7 @@ export const router = createRouter({
 
                 _files['src/main.js'] = {
                     content: `import "primeflex/primeflex.css";
-import "primevue/resources/themes/saga-blue/theme.css";
+import "primevue/resources/themes/lara-light-blue/theme.css";
 import "primevue/resources/primevue.min.css";
 import "primeicons/primeicons.css";
 import "./index.css";
@@ -534,9 +541,11 @@ import DataView from 'primevue/dataview';
 import DataViewLayoutOptions from 'primevue/dataviewlayoutoptions';
 import DeferredContent from 'primevue/deferredcontent';
 import Dialog from 'primevue/dialog';
+import DialogService from 'primevue/dialogservice'
 import Divider from 'primevue/divider';
 import Dock from 'primevue/dock';
 import Dropdown from 'primevue/dropdown';
+import DynamicDialog from 'primevue/dynamicdialog';
 import Fieldset from 'primevue/fieldset';
 import FileUpload from 'primevue/fileupload';
 import Galleria from 'primevue/galleria';
@@ -605,6 +614,7 @@ const app = createApp(${name});
 app.use(PrimeVue, { ripple: true });
 app.use(ConfirmationService);
 app.use(ToastService);
+app.use(DialogService);
 app.use(router);
 
 app.directive('tooltip', Tooltip);
@@ -642,6 +652,7 @@ app.component('Dialog', Dialog);
 app.component('Divider', Divider);
 app.component('Dock', Dock);
 app.component('Dropdown', Dropdown);
+app.component('DynamicDialog', DynamicDialog);
 app.component('Fieldset', Fieldset);
 app.component('FileUpload', FileUpload);
 app.component('Galleria', Galleria);

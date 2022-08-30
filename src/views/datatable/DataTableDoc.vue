@@ -382,6 +382,12 @@ export default {
                             <td>Custom export header of the column to be exported as CSV.</td>
                         </tr>
                         <tr>
+                            <td>exportFooter</td>
+                            <td>string</td>
+                            <td>null</td>
+                            <td>Custom export footer of the column to be exported as CSV.</td>
+                        </tr>
+                        <tr>
                             <td>filterMatchMode</td>
                             <td>string</td>
                             <td>null</td>
@@ -840,8 +846,8 @@ app.use(PrimeVue, {
 
                 <pre v-code.script><code>
 matchModes: [
-    {label: 'Starts With', FilterMatchMode.STARTS_WITH},
-    {label: 'Contains', FilterMatchMode.CONTAINS},
+    {label: 'Starts With', value: FilterMatchMode.STARTS_WITH},
+    {label: 'Contains', value: FilterMatchMode.CONTAINS},
 ]
 </code></pre>
 
@@ -856,8 +862,8 @@ FilterService.register('myfilter', (a,b) => a === b);
 <pre v-code.script><code>
 matchModes: [
     {label: 'My Filter', "myfilter"},
-    {label: 'Starts With', FilterMatchMode.STARTS_WITH},
-    {label: 'Contains', FilterMatchMode.CONTAINS},
+    {label: 'Starts With', value: FilterMatchMode.STARTS_WITH},
+    {label: 'Contains', value: FilterMatchMode.CONTAINS},
 ]
 </code></pre>
 
@@ -1242,7 +1248,7 @@ export default {
 
 </code></pre>
 
-            <p>Row Editing is specified by setting <i>cellEdit</i> as <b>row</b>, defining <i>editingRows</i> with the v-model directive to hold the reference of the editing rows,
+            <p>Row Editing is specified by setting <i>editMode</i> as <b>row</b>, defining <i>editingRows</i> with the v-model directive to hold the reference of the editing rows,
             adding a row editor column to provide the editing controls and implementing <i>@row-edit-save</i> to update the original row data. Note that
             since <i>editingRows</i> is two-way binding enabled, you may use it to initially display one or more rows in editing more or programmatically toggle row editing.</p>
 <pre v-code><code><template v-pre>
@@ -1810,6 +1816,7 @@ export default {
 </code></pre>
 
             <h5>Properties</h5>
+            <p>Any valid attribute is passed to the root element implicitly, extended properties are as follows;</p>
             <div class="doc-tablewrapper">
                 <table class="doc-table">
                     <thead>
@@ -2128,7 +2135,7 @@ export default {
                             <td>rowStyle</td>
                             <td>object</td>
                             <td>null</td>
-                            <td>A function that takes the row data as a parameter and returns the inline style for the corresponding row.</td>
+                            <td>Inline style of the row element.</td>
                         </tr>
                         <tr>
                             <td>scrollable</td>
@@ -2723,7 +2730,7 @@ export default {
                 </template>
                 <template #filter="{filterModel}">
                     <Slider v-model="filterModel.value" range class="m-3"></Slider>
-                    <div class="flex align-items-center justify-content-center px-2">
+                    <div class="flex align-items-center justify-content-between px-2">
                         <span>{{filterModel.value ? filterModel.value[0] : 0}}</span>
                         <span>{{filterModel.value ? filterModel.value[1] : 100}}</span>
                     </div>
@@ -2947,7 +2954,7 @@ export default {
                 </template>
                 <template #filter="{filterModel}">
                     <Slider v-model="filterModel.value" range class="m-3"></Slider>
-                    <div class="flex align-items-center justify-content-center px-2">
+                    <div class="flex align-items-center justify-content-between px-2">
                         <span>{{filterModel.value ? filterModel.value[0] : 0}}</span>
                         <span>{{filterModel.value ? filterModel.value[1] : 100}}</span>
                     </div>
@@ -3210,7 +3217,7 @@ img {
                     </template>
                     <template #filter="{filterModel}">
                         <p-slider v-model="filterModel.value" range class="m-3"></p-slider>
-                        <div class="flex align-items-center justify-content-center px-2">
+                        <div class="flex align-items-center justify-content-between px-2">
                             <span>{{filterModel.value ? filterModel.value[0] : 0}}</span>
                             <span>{{filterModel.value ? filterModel.value[1] : 100}}</span>
                         </div>

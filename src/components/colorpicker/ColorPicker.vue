@@ -1,8 +1,8 @@
 <template>
     <div ref="container" :class="containerClass">
         <input ref="input" type="text" :class="inputClass" readonly="readonly" :tabindex="tabindex" :disabled="disabled"
-            @click="onInputClick" @keydown="onInputKeydown" v-if="!inline" :aria-labelledby="ariaLabelledBy"/>
-        <Teleport :to="appendTarget" :disabled="appendDisabled">
+            @click="onInputClick" @keydown="onInputKeydown" v-if="!inline"/>
+        <Portal :appendTo="appendTo" :disabled="inline">
             <transition name="p-connected-overlay" @enter="onOverlayEnter" @leave="onOverlayLeave" @after-leave="onOverlayAfterLeave">
                 <div :ref="pickerRef" :class="pickerClass" v-if="inline ? true : overlayVisible" @click="onOverlayClick">
                     <div class="p-colorpicker-content">
@@ -19,13 +19,14 @@
                     </div>
                 </div>
             </transition>
-        </Teleport>
+        </Portal>
     </div>
 </template>
 
 <script>
 import {ConnectedOverlayScrollHandler,DomHandler,ZIndexUtils} from 'primevue/utils';
 import OverlayEventBus from 'primevue/overlayeventbus';
+import Portal from 'primevue/portal';
 
 export default {
     name: 'ColorPicker',
@@ -62,10 +63,6 @@ export default {
         baseZIndex: {
             type: Number,
             default: 0
-        },
-        ariaLabelledBy: {
-            type: String,
-            default: null
         },
         appendTo: {
             type: String,
@@ -356,7 +353,7 @@ export default {
             if (this.autoZIndex) {
                 ZIndexUtils.set('overlay', el, this.$primevue.config.zIndex.overlay);
             }
-            
+
             this.$emit('show');
         },
         onOverlayLeave() {
@@ -372,7 +369,7 @@ export default {
             }
         },
         alignOverlay() {
-            if (this.appendDisabled)
+            if (this.appendTo === 'self')
                 DomHandler.relativePosition(this.picker, this.$refs.input);
             else
                 DomHandler.absolutePosition(this.picker, this.$refs.input);
@@ -501,7 +498,7 @@ export default {
         bindResizeListener() {
             if (!this.resizeListener) {
                 this.resizeListener = () => {
-                    if (this.overlayVisible) {
+                    if (this.overlayVisible && !DomHandler.isTouchDevice()) {
                         this.overlayVisible = false;
                     }
                 };
@@ -580,13 +577,10 @@ export default {
                 'p-input-filled': this.$primevue.config.inputStyle === 'filled',
                 'p-ripple-disabled': this.$primevue.config.ripple === false
             }];
-        },
-        appendDisabled() {
-            return this.appendTo === 'self' || this.inline;
-        },
-        appendTarget() {
-            return this.appendDisabled ? null : this.appendTo;
         }
+    },
+    components: {
+        'Portal': Portal
     }
 }
 </script>

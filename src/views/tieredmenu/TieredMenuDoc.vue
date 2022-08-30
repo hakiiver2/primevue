@@ -270,8 +270,7 @@ toggle(event) {
                     </tr>
                     <tr>
                         <td>show</td>
-                        <td>event: Browser event <br />
-                            target: Optional target if event.target would not be used</td>
+                        <td>event: Browser event</td>
                         <td>Shows the overlay.</td>
                     </tr>
                     <tr>
@@ -323,6 +322,10 @@ toggle(event) {
                     <tr>
                         <td>p-menuitem</td>
                         <td>Menuitem element.</td>
+                    </tr>
+                    <tr>
+                        <td>p-menuitem-active</td>
+                        <td>Active menuitem element.</td>
                     </tr>
                     <tr>
                         <td>p-menuitem-text</td>
