@@ -50,13 +50,14 @@
 <script>
 import QuillImageDropAndPaste from 'quill-image-drop-and-paste'
 
-Quill.register('modules/imageDropAndPaste', QuillImageDropAndPaste)
 
 import { DomHandler } from 'primevue/utils';
 
 const QuillJS = (function () {
     try {
-        return window.Quill;
+        const windowQuill = window.Quill;
+        windowQuill.register('modules/imageDropAndPaste', QuillImageDropAndPaste)
+        return windowQuill;
     } catch {
         return null;
     }
@@ -95,8 +96,6 @@ export default {
     },
     mounted() {
         let handlers = {}
-        console.log(this.quillImageHandler)
-        console.log(this.quillImageDropAndPaste)
         if(this.quillImageHandler) {
             handlers = {
                 image: this.quillImageHandler
@@ -121,6 +120,7 @@ export default {
         const configuration = {
             modules: {
                 toolbar: this.$refs.toolbarElement,
+                ...modules,
                 ...this.modules
             },
             readOnly: this.readonly,
@@ -139,9 +139,11 @@ export default {
                 .then((module) => {
                     if (module && DomHandler.isExist(this.$refs.editorElement)) {
                         if (module.default) {
+                            module.default.register('modules/imageDropAndPaste', QuillImageDropAndPaste)
                             // webpack
                             this.quill = new module.default(this.$refs.editorElement, configuration);
                         } else {
+                            module.register('modules/imageDropAndPaste', QuillImageDropAndPaste)
                             // parceljs
                             this.quill = new module(this.$refs.editorElement, configuration);
                         }
@@ -155,15 +157,6 @@ export default {
         }
     },
     methods: {
-        imageHandler() {
-            var range = this.quill.getSelection();
-            var value = prompt('please copy paste the image url here.');
-            if(value){
-                this.quill.insertEmbed(range.index, 'image', value, Quill.sources.USER);
-            }
-
-        },
-
         renderValue(value) {
             if (this.quill) {
                 if (value)
@@ -195,17 +188,19 @@ export default {
             });
 
             this.quill.on('selection-change', (range, oldRange, source) => {
-                let html = this.$refs.editorElement.children[0].innerHTML;
-                let text = this.quill.getText().trim();
+                if(this.$refs.editorElement && this.$refs.editorElement.children) {
+                    let html = this.$refs.editorElement.children[0].innerHTML;
+                    let text = this.quill.getText().trim();
 
-                this.$emit('selection-change', {
-                    htmlValue: html,
-                    textValue: text,
-                    range: range,
-                    oldRange: oldRange,
-                    source: source,
-                    instance: this.quill
-                })
+                    this.$emit('selection-change', {
+                        htmlValue: html,
+                        textValue: text,
+                        range: range,
+                        oldRange: oldRange,
+                        source: source,
+                        instance: this.quill
+                    })
+                }
             });
         },
         handleLoad() {

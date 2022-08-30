@@ -323,7 +323,7 @@ const Tooltip = {
             target.$_ptooltipFitContent = true;
         }
         else if (typeof options.value === 'object' && options.value) {
-            if (options.value.value === undefined || options.value.value === null || options.value.value.trim() === '') return;
+            if (options.value.value === undefined || options.value.value === null || (typeof options.value.value === 'string' && options.value.value.trim() === '')) return;
             else {
                 /* eslint-disable */
                 target.$_ptooltipValue = options.value.value;
@@ -361,7 +361,7 @@ const Tooltip = {
             target.$_ptooltipClass = null;
         }
         else if (typeof options.value === 'object' && options.value) {
-            if (options.value.value === undefined || options.value.value === null || options.value.value.trim() === '') return;
+            if (options.value.value === undefined || options.value.value === null || (typeof options.value.value === 'string' && options.value.value.trim() === '')) return;
             else {
                 /* eslint-disable */
                 target.$_ptooltipValue = options.value.value;
