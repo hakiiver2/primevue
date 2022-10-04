@@ -71,6 +71,10 @@ export default {
             type: Boolean,
             default: false
         },
+        unmasked: {
+            type: Boolean,
+            default: false
+        },
         hideIcon: {
             type: String,
             default: 'pi pi-eye-slash'
@@ -110,7 +114,6 @@ export default {
             meter: null,
             infoText: null,
             focused: false,
-            unmasked: false
         };
     },
     mediumCheckRegExp: null,
@@ -306,7 +309,7 @@ export default {
             }];
         },
         toggleIconClass() {
-            return this.unmasked ? this.hideIcon : this.showIcon;
+            return !this.unmasked ? this.hideIcon : this.showIcon;
         },
         strengthClass() {
             return `p-password-strength ${this.meter ? this.meter.strength : ''}`;
