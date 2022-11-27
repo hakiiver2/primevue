@@ -53,7 +53,7 @@ export default {
         onClick(event) {
             if (!this.disabled) {
                 this.$emit('click', event);
-                if (this.clearable && this.check) {
+                if (this.clearable && this.checked) {
                     this.$emit('update:modelValue', null);
                     return
                 }
